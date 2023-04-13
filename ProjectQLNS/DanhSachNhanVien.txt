@@ -1,0 +1,48 @@
+Ma so:	1
+Ho ten:	gd1
+So dien thoai:	1231232
+Luong:	7500
+
+Ma so:	3
+Ho ten:	gd2
+So dien thoai:	123156752
+Luong:	8400
+
+Ma so:	3
+Ho ten:	gd3
+So dien thoai:	12311232
+Luong:	9000
+
+Ma so:	1
+Ho ten:	nv1
+So dien thoai:	1231232
+Luong:	2500
+
+Ma so:	3
+Ho ten:	nv2
+So dien thoai:	123156752
+Luong:	2800
+
+Ma so:	3
+Ho ten:	nv3
+So dien thoai:	12311232
+Luong:	3000
+
+Ma so:	1
+Ho ten:	tp1
+So dien thoai:	1231232
+So luong nhan vien:	0
+Luong:	5000
+
+Ma so:	3
+Ho ten:	tp2
+So dien thoai:	123156752
+So luong nhan vien:	0
+Luong:	5600
+
+Ma so:	3
+Ho ten:	tp3
+So dien thoai:	12311232
+So luong nhan vien:	0
+Luong:	6000
+
