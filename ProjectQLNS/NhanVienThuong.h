@@ -23,4 +23,5 @@ public:
   void nhap();
   void xuat();
   // friend istream &operator>>(istream &is, NhanVienThuong &nvt);
+  friend ostream &operator<<(ostream &os, const NhanVienThuong &nvt);
 };

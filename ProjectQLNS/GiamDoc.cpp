@@ -16,6 +16,17 @@ using namespace std;
 //   return is;
 // }
 
+ostream &operator<<(ostream &os, const GiamDoc &gd)
+{
+  os << "Ho ten: " << gd.hoTen << endl;
+  os << "Ma so: " << gd.maSo << endl;
+  os << "Luong: " << gd.luong << endl;
+  os << "So dien thoai: " << gd.soDienThoai << endl;
+  os << "So ngay lam viec: " << gd.soNgayLamViec << endl;
+  os << endl;
+  return os;
+}
+
 GiamDoc::GiamDoc()
 {
 }
@@ -36,9 +47,9 @@ void GiamDoc::xuat()
   cout << "\t\t\t|Luong\t\t\t| " << this->luong << "\t\t|" << endl;
   cout << "\t\t\t_________________________________________" << endl;
 
-  output << "Luong:"
-         << "\t" << this->luong << endl;
-  output << endl;
+  // output << "Luong:"
+  //        << "\t" << this->luong << endl;
+  // output << endl;
 }
 
 void GiamDoc::tinhLuong()

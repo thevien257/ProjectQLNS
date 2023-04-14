@@ -1,46 +1,400 @@
-Ma so:	1
+Ma so:	MSgd1
 Ho ten:	gd1
 So dien thoai:	1231232
-Luong:	7500
-
-Ma so:	3
+Ma so:	MSgd2
 Ho ten:	gd2
 So dien thoai:	123156752
-Luong:	8400
-
-Ma so:	3
+Ma so:	MSgd3
 Ho ten:	gd3
 So dien thoai:	12311232
-Luong:	9000
-
-Ma so:	1
+Ma so:	MSnv1
 Ho ten:	nv1
 So dien thoai:	1231232
-Luong:	2500
-
-Ma so:	3
+Ma so:	MSnv2
 Ho ten:	nv2
 So dien thoai:	123156752
-Luong:	2800
-
-Ma so:	3
+Ma so:	MSnv3
 Ho ten:	nv3
 So dien thoai:	12311232
-Luong:	3000
-
-Ma so:	1
+Ma so:	MStp1
 Ho ten:	tp1
 So dien thoai:	1231232
 So luong nhan vien:	0
 Luong:	5000
 
-Ma so:	3
+Ma so:	MStp2
 Ho ten:	tp2
 So dien thoai:	123156752
 So luong nhan vien:	0
 Luong:	5600
 
-Ma so:	3
+Ma so:	MStp3
+Ho ten:	tp3
+So dien thoai:	12311232
+So luong nhan vien:	0
+Luong:	6000
+
+Ma so:	MStp1
+Ho ten:	tp1
+So dien thoai:	1231232
+So luong nhan vien:	0
+Luong:	5000
+
+Ma so:	MStp2
+Ho ten:	tp2
+So dien thoai:	123156752
+So luong nhan vien:	0
+Luong:	5600
+
+Ma so:	MStp3
+Ho ten:	tp3
+So dien thoai:	12311232
+So luong nhan vien:	0
+Luong:	6000
+
+Ma so:	tpMoi
+Ho ten:	tpMoi
+So dien thoai:	12312321
+So luong nhan vien:	0
+Luong:	5600
+
+Ma so:	MSgd1
+Ho ten:	gd1
+So dien thoai:	1231232
+Ma so:	MSgd2
+Ho ten:	gd2
+So dien thoai:	123156752
+Ma so:	MSgd3
+Ho ten:	gd3
+So dien thoai:	12311232
+Ma so:	MSnv1
+Ho ten:	nv1
+So dien thoai:	1231232
+Ma so:	MSnv2
+Ho ten:	nv2
+So dien thoai:	123156752
+Ma so:	MSnv3
+Ho ten:	nv3
+So dien thoai:	12311232
+Ma so:	MStp1
+Ho ten:	tp1
+So dien thoai:	1231232
+So luong nhan vien:	0
+Luong:	5000
+
+Ma so:	MStp2
+Ho ten:	tp2
+So dien thoai:	123156752
+So luong nhan vien:	1
+Luong:	5600
+
+Ma so:	MStp3
+Ho ten:	tp3
+So dien thoai:	12311232
+So luong nhan vien:	0
+Luong:	6000
+
+Ma so:	tpMoi
+Ho ten:	tpMoi
+So dien thoai:	12312321
+So luong nhan vien:	3
+Luong:	5600
+
+Ma so:	nvMoi
+Ho ten:	Nvmoi
+So dien thoai:	13132242
+Ma so:	gd
+Ho ten:	gd
+So dien thoai:	12312332
+Ma so:	nvMoi
+Ho ten:	Nvmoi
+So dien thoai:	13132242
+Ma so:	gd
+Ho ten:	gd
+So dien thoai:	12312332
+Ma so:	MSgd1
+Ho ten:	gd1
+So dien thoai:	1231232
+Ma so:	MSgd2
+Ho ten:	gd2
+So dien thoai:	123156752
+Ma so:	MSgd3
+Ho ten:	gd3
+So dien thoai:	12311232
+Ma so:	MSnv1
+Ho ten:	nv1
+So dien thoai:	1231232
+Ma so:	MSnv2
+Ho ten:	nv2
+So dien thoai:	123156752
+Ma so:	MSnv3
+Ho ten:	nv3
+So dien thoai:	12311232
+Ma so:	MStp1
+Ho ten:	tp1
+So dien thoai:	1231232
+So luong nhan vien:	0
+Luong:	5000
+
+Ma so:	MStp2
+Ho ten:	tp2
+So dien thoai:	123156752
+So luong nhan vien:	1
+Luong:	5600
+
+Ma so:	MStp3
+Ho ten:	tp3
+So dien thoai:	12311232
+So luong nhan vien:	0
+Luong:	6000
+
+Ma so:	tpMoi
+Ho ten:	tpMoi
+So dien thoai:	12312321
+So luong nhan vien:	3
+Luong:	5600
+
+Ma so:	MSgd3
+Ho ten:	gd3
+So dien thoai:	12311232
+Ma so:	MSgd3
+Ho ten:	gd3
+So dien thoai:	12311232
+Ma so:	MSgd2
+Ho ten:	gd2
+So dien thoai:	123156752
+Ma so:	gd
+Ho ten:	gd
+So dien thoai:	12312332
+Ma so:	MSgd1
+Ho ten:	gd1
+So dien thoai:	1231232
+Ma so:	MStp3
+Ho ten:	tp3
+So dien thoai:	12311232
+So luong nhan vien:	0
+Luong:	6000
+
+Ma so:	MStp2
+Ho ten:	tp2
+So dien thoai:	123156752
+So luong nhan vien:	1
+Luong:	5600
+
+Ma so:	tpMoi
+Ho ten:	tpMoi
+So dien thoai:	12312321
+So luong nhan vien:	3
+Luong:	5600
+
+Ma so:	MStp1
+Ho ten:	tp1
+So dien thoai:	1231232
+So luong nhan vien:	0
+Luong:	5000
+
+Ma so:	nvMoi
+Ho ten:	Nvmoi
+So dien thoai:	13132242
+Ma so:	MSnv3
+Ho ten:	nv3
+So dien thoai:	12311232
+Ma so:	MSnv2
+Ho ten:	nv2
+So dien thoai:	123156752
+Ma so:	MSnv1
+Ho ten:	nv1
+So dien thoai:	1231232
+Ma so:	MSgd3
+Ho ten:	gd3
+So dien thoai:	12311232
+Ma so:	MSgd2
+Ho ten:	gd2
+So dien thoai:	123156752
+Ma so:	gd
+Ho ten:	gd
+So dien thoai:	12312332
+Ma so:	MSgd1
+Ho ten:	gd1
+So dien thoai:	1231232
+Ma so:	MStp3
+Ho ten:	tp3
+So dien thoai:	12311232
+So luong nhan vien:	0
+Luong:	6000
+
+Ma so:	MStp2
+Ho ten:	tp2
+So dien thoai:	123156752
+So luong nhan vien:	1
+Luong:	5600
+
+Ma so:	tpMoi
+Ho ten:	tpMoi
+So dien thoai:	12312321
+So luong nhan vien:	3
+Luong:	5600
+
+Ma so:	MStp1
+Ho ten:	tp1
+So dien thoai:	1231232
+So luong nhan vien:	0
+Luong:	5000
+
+Ma so:	nvMoi
+Ho ten:	Nvmoi
+So dien thoai:	13132242
+Ma so:	MSnv3
+Ho ten:	nv3
+So dien thoai:	12311232
+Ma so:	MSnv2
+Ho ten:	nv2
+So dien thoai:	123156752
+Ma so:	MSNVMOISUA
+Ho ten:	nvMoiSua
+So dien thoai:	888888888
+Ma so:	MSNVMOISUA
+Ho ten:	nvMoiSua
+So dien thoai:	888888888
+Ma so:	MSgd1
+Ho ten:	gd1
+So dien thoai:	1231232
+Ma so:	MSgd2
+Ho ten:	gd2
+So dien thoai:	123156752
+Ma so:	MSgd3
+Ho ten:	gd3
+So dien thoai:	12311232
+Ma so:	MSnv1
+Ho ten:	nv1
+So dien thoai:	1231232
+Ma so:	MSnv2
+Ho ten:	nv2
+So dien thoai:	123156752
+Ma so:	MSnv3
+Ho ten:	nv3
+So dien thoai:	12311232
+Ma so:	MStp1
+Ho ten:	tp1
+So dien thoai:	1231232
+So luong nhan vien:	0
+Luong:	5000
+
+Ma so:	MStp2
+Ho ten:	tp2
+So dien thoai:	123156752
+So luong nhan vien:	0
+Luong:	5600
+
+Ma so:	MStp3
+Ho ten:	tp3
+So dien thoai:	12311232
+So luong nhan vien:	0
+Luong:	6000
+
+Ma so:	MSgd1
+Ho ten:	gd1
+So dien thoai:	1231232
+Ma so:	MSgd2
+Ho ten:	gd2
+So dien thoai:	123156752
+Ma so:	MSgd3
+Ho ten:	gd3
+So dien thoai:	12311232
+Ma so:	MSnv1
+Ho ten:	nv1
+So dien thoai:	1231232
+Ma so:	MSnv2
+Ho ten:	nv2
+So dien thoai:	123156752
+Ma so:	MSnv3
+Ho ten:	nv3
+So dien thoai:	12311232
+Ma so:	MStp1
+Ho ten:	tp1
+So dien thoai:	1231232
+So luong nhan vien:	0
+Luong:	5000
+
+Ma so:	MStp2
+Ho ten:	tp2
+So dien thoai:	123156752
+So luong nhan vien:	0
+Luong:	5600
+
+Ma so:	TPMOISUA
+Ho ten:	tptp
+So dien thoai:	88888888
+So luong nhan vien:	0
+Luong:	6000
+
+Ma so:	MSgd1
+Ho ten:	gd1
+So dien thoai:	1231232
+Ma so:	MSgd2
+Ho ten:	gd2
+So dien thoai:	123156752
+Ma so:	MSgd3
+Ho ten:	gd3
+So dien thoai:	12311232
+Ma so:	MSnv1
+Ho ten:	nv1
+So dien thoai:	1231232
+Ma so:	MSnv2
+Ho ten:	nv2
+So dien thoai:	123156752
+Ma so:	MSnv3
+Ho ten:	nv3
+So dien thoai:	12311232
+Ma so:	MStp1
+Ho ten:	tp1
+So dien thoai:	1231232
+So luong nhan vien:	0
+Luong:	5000
+
+Ma so:	MStp2
+Ho ten:	tp2
+So dien thoai:	123156752
+So luong nhan vien:	0
+Luong:	5600
+
+Ma so:	MStp3
+Ho ten:	tp3
+So dien thoai:	12311232
+So luong nhan vien:	0
+Luong:	6000
+
+Ma so:	MSgd1
+Ho ten:	gd1
+So dien thoai:	1231232
+Ma so:	MSgd2
+Ho ten:	gd2
+So dien thoai:	123156752
+Ma so:	MSgd3
+Ho ten:	gd3
+So dien thoai:	12311232
+Ma so:	MSnv1
+Ho ten:	nv1
+So dien thoai:	1231232
+Ma so:	MSnv2
+Ho ten:	nv2
+So dien thoai:	123156752
+Ma so:	MSnv3
+Ho ten:	nv3
+So dien thoai:	12311232
+Ma so:	MStp1
+Ho ten:	tp1
+So dien thoai:	1231232
+So luong nhan vien:	0
+Luong:	5000
+
+Ma so:	MStp2
+Ho ten:	tp2
+So dien thoai:	123156752
+So luong nhan vien:	0
+Luong:	5600
+
+Ma so:	MStp3
 Ho ten:	tp3
 So dien thoai:	12311232
 So luong nhan vien:	0

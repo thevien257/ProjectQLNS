@@ -27,4 +27,6 @@ public:
   void XuLyLogin();
   bool login();
   void signUp();
+  bool found(string maSo);
+  void timNhanSu();
 };

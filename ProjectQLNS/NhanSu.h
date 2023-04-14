@@ -34,4 +34,5 @@ public:
   virtual void xuat();
   virtual void tinhLuong();
   friend istream &operator>>(istream &is, NhanSu &ns);
+  friend ostream &operator<<(ostream &os, const NhanSu &ns);
 };

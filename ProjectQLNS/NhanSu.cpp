@@ -9,6 +9,17 @@
 #include <sstream>
 using namespace std;
 
+ostream &operator<<(ostream &os, const NhanSu &ns)
+{
+  os << "Ho ten: " << ns.hoTen << endl;
+  os << "Ma so: " << ns.maSo << endl;
+  os << "Luong: " << ns.luong << endl;
+  os << "So dien thoai: " << ns.soDienThoai << endl;
+  os << "So ngay lam viec: " << ns.soNgayLamViec << endl;
+  os << endl;
+  return os;
+}
+
 istream &operator>>(istream &is, NhanSu &ns)
 {
   // Read data from the input stream and populate the ns object
@@ -50,13 +61,16 @@ void NhanSu::nhap()
 {
   cout << endl;
   cout << "\t\t\t\tNhap ma so: ";
-  cin >> maSo;
+  cin.ignore();
+  getline(cin, maSo);
   cout << "\t\t\t\tNhap ho ten: ";
-  cin >> hoTen;
+  getline(cin, hoTen);
   cout << "\t\t\t\tNhap so dien thoai: ";
   cin >> soDienThoai;
+  cin.ignore();
   cout << "\t\t\t\tSo ngay lam viec ";
   cin >> soNgayLamViec;
+  cin.ignore();
 }
 
 void NhanSu::xuat()

@@ -9,6 +9,42 @@
 #include <windows.h>
 using namespace std;
 
+bool XuLy::found(string maSo)
+{
+  for (NhanSu *ns : ds.getListNS())
+  {
+    if (maSo == ns->getMaSo())
+    {
+      return true;
+    }
+  }
+  return false;
+}
+
+void XuLy::timNhanSu()
+{
+  string maSo;
+  cout << "\t\t\tNhap ma so nhan su can tim";
+  cin >> maSo;
+  bool foundNS = found(maSo);
+  if (foundNS == true)
+  {
+    cout << "\t\t\tDa tim thay nhan su ✅" << endl;
+    cout << endl;
+    for (NhanSu *ns : ds.getListNS())
+    {
+      if (maSo == ns->getMaSo())
+      {
+        ns->xuat();
+      }
+    }
+  }
+  else
+  {
+    cout << "\t\t\tOOPS! Khong tim thay nhan su voi ma so " << maSo << " 🥲" << endl;
+  }
+}
+
 void XuLy::suaDoiThongTinNhanSu()
 {
   string ma;
@@ -96,16 +132,17 @@ void XuLy::phanBoNhanVienThuong()
   bool flag = true;
   int chon;
 
-  do
+  for (NhanSu *ns : ds.getListNS())
   {
-    for (NhanSu *ns : ds.getListNS())
+    if (NhanVienThuong *newNV = dynamic_cast<NhanVienThuong *>(ns))
     {
-      if (NhanVienThuong *newNV = dynamic_cast<NhanVienThuong *>(ns))
+      do
       {
         TruongPhong *tp = nullptr;
         cout << "\t\t\tDang phan bo: " << ns->getHoTen() << endl;
         cout << "\t\t\tChon 1. de phan bo hoac chon 2. de di tiep: ";
         cin >> chon;
+
         if (chon == 1 || chon == 2)
         {
           if (chon == 1)
@@ -114,25 +151,28 @@ void XuLy::phanBoNhanVienThuong()
             do
             {
               string chonMa;
-              cout << "\t\t\tNhap ma de tim truong phong: ";
+              cout << "\t\t\tNhap ma de tim truong phong 🔍 ";
               cin >> chonMa;
               tp = timTruongPhongTheoMa(chonMa);
             } while (tp == nullptr);
             newNV->setTruongPhong(tp);
             tp->tangNhanVien();
             tp->getListNV().push_back(newNV);
+            cout << "\t\t\tDa phan bo " << newNV->getHoTen() << " cho " << tp->getHoTen() << " ✅ " << endl;
+            cout << endl;
           }
 
           flag = false;
         }
         else
         {
-          cout << "\t\t\tChi duoc chon 1 hoac 2" << endl;
+          cout << "\t\t\t👀 Chi duoc chon 1 hoac 2❗ " << endl;
+          cout << endl;
           flag = true;
         }
-      }
+      } while (flag);
     }
-  } while (flag);
+  }
 }
 
 void XuLy::inMenuLogin()
@@ -379,6 +419,9 @@ void XuLy::xuLyMenu()
       break;
     case 7:
       suaDoiThongTinNhanSu();
+      break;
+    case 8:
+      timNhanSu();
       break;
     case 0:
       cout << endl;

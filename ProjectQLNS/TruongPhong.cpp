@@ -15,6 +15,26 @@ using namespace std;
 //   return is;
 // }
 
+ostream &operator<<(ostream &os, const TruongPhong &tp)
+{
+  os << "Ho ten: " << tp.hoTen << endl;
+  os << "Ma so: " << tp.maSo << endl;
+  os << "So dien thoai: " << tp.soDienThoai << endl;
+  os << "Ngay lam viec: " << tp.soNgayLamViec << endl;
+  if (tp.soLuongNhanVien > 0)
+  {
+    os << "So luong nhan vien: " << tp.soLuongNhanVien << endl;
+    os << "___________Dang quan ly cac nhan vien sau:__________" << endl;
+    for (NhanVienThuong *nvt : tp.listNV)
+    {
+      os << "Ho va ten: " << nvt->getHoTen() << endl;
+      os << "Ma so: " << nvt->getMaSo() << endl;
+    }
+  }
+  os << endl;
+  return os;
+}
+
 vector<NhanVienThuong *> &TruongPhong::getListNV() // Dùng & vì ở class khác nhau mới thay đổi được và để tránh tạo bản copy
 {
   return listNV;

@@ -15,6 +15,7 @@ private:
 
 public:
   vector<NhanSu *> getListNS();
+  danhSachNhanSu();
   void setListNS(vector<NhanSu *> listNS);
   void inMenu();
   void nhap();
@@ -22,4 +23,5 @@ public:
   void docFileNVT(string filename);
   void docFileGD(string filename);
   void docFileTP(string filename);
+  void ghiFile(string filename);
 };

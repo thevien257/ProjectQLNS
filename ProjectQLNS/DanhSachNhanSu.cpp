@@ -8,8 +8,117 @@
 #include <algorithm>
 #include <iomanip>
 #include <fstream>
+#include <string>
+#include <set>
 #include <windows.h>
 using namespace std;
+
+// void danhSachNhanSu::ghiFile(string filename)
+// {
+//   ofstream file(filename);
+//   if (file.is_open())
+//   {
+//     set<string> maSoSet; // tao set de du gia tri "Ma so"
+//     for (NhanSu *ns : dsNhanSu)
+//     {
+//       // Kiem tra xem neu trong set co ma so roi thi ko xuat nua, con chua co thi xuat
+//       if (maSoSet.count(ns->getMaSo()) == 0)
+//       {
+//         if (NhanVienThuong *nvt = dynamic_cast<NhanVienThuong *>(ns))
+//         {
+//           if (nvt != nullptr)
+//           {
+//             file << *nvt << endl;
+//             maSoSet.insert(nvt->getMaSo()); // them "Ma so moi xuat vao set"
+//           }
+//         }
+//         else if (TruongPhong *tp = dynamic_cast<TruongPhong *>(ns))
+//         {
+//           if (tp != nullptr)
+//           {
+//             file << *tp << endl;
+//             maSoSet.insert(tp->getMaSo()); // them "Ma so moi xuat vao set"
+//           }
+//         }
+//         else if (GiamDoc *gd = dynamic_cast<GiamDoc *>(ns))
+//         {
+//           if (gd != nullptr)
+//           {
+//             file << *gd << endl;
+//             maSoSet.insert(gd->getMaSo());
+//           }
+//         }
+//       }
+//     }
+//     file.close();
+//   }
+//   else
+//   {
+//     cout << "Khong mo duoc file!" << endl;
+//   }
+// }
+
+void danhSachNhanSu::ghiFile(string filename)
+{
+  ofstream file(filename);
+  if (file.is_open())
+  {
+    set<string> maSoSet;         // tao set de du gia tri "Ma so"
+    auto it = dsNhanSu.begin();  // tao iterator de duyet vector
+    while (it != dsNhanSu.end()) // duyet tu dau den cuoi vector
+    {
+      NhanSu *ns = *it;
+      // Kiem tra xem neu trong set co ma so roi thi ko xuat nua, con chua co thi xuat
+      if (maSoSet.count(ns->getMaSo()) == 0)
+      {
+        if (NhanVienThuong *nvt = dynamic_cast<NhanVienThuong *>(ns))
+        {
+          if (nvt != nullptr)
+          {
+            file << *nvt << endl;
+            maSoSet.insert(nvt->getMaSo()); // them "Ma so moi xuat vao set"
+            ++it;                           // tang iterator len 1
+          }
+        }
+        else if (TruongPhong *tp = dynamic_cast<TruongPhong *>(ns))
+        {
+          if (tp != nullptr)
+          {
+            file << *tp << endl;
+            maSoSet.insert(tp->getMaSo()); // them "Ma so moi xuat vao set"
+            ++it;                          // tang iterator len 1
+          }
+        }
+        else if (GiamDoc *gd = dynamic_cast<GiamDoc *>(ns))
+        {
+          if (gd != nullptr)
+          {
+            file << *gd << endl;
+            maSoSet.insert(gd->getMaSo());
+            ++it; // tang iterator len 1
+          }
+        }
+      }
+      else // neu ma so da ton tai trong set
+      {
+        it = dsNhanSu.erase(it); // xoa phan tu khoi vector
+        delete ns;               // giai phong bo nho cua old data object
+      }
+    }
+    file.close();
+  }
+  else
+  {
+    cout << "Khong mo duoc file!" << endl;
+  }
+}
+
+danhSachNhanSu::danhSachNhanSu()
+{
+  docFileGD("GiamDoc.txt");
+  docFileNVT("NVT.txt");
+  docFileTP("TP.txt");
+}
 
 void danhSachNhanSu::docFileNVT(string filename)
 {
@@ -103,9 +212,6 @@ void danhSachNhanSu::nhap()
 {
   bool flag = true;
   int chon;
-  docFileGD("GiamDoc.txt");
-  docFileNVT("NVT.txt");
-  docFileTP("TP.txt");
   do
   {
     inMenu();
@@ -142,9 +248,7 @@ void danhSachNhanSu::nhap()
 
 void danhSachNhanSu::xuat()
 {
-  docFileGD("GiamDoc.txt");
-  docFileNVT("NVT.txt");
-  docFileTP("TP.txt");
+  ghiFile("DanhSachNhanSu.txt");
   for (NhanSu *ns : dsNhanSu)
   {
     ns->xuat();
