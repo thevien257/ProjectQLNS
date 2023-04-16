@@ -188,7 +188,7 @@ void danhSachNhanSu::setListNS(vector<NhanSu *> listNS)
   this->dsNhanSu = listNS;
 }
 
-vector<NhanSu *> danhSachNhanSu::getListNS()
+vector<NhanSu *> &danhSachNhanSu::getListNS()
 {
   return this->dsNhanSu;
 }

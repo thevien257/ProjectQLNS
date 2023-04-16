@@ -15,6 +15,7 @@ class TruongPhong : public NhanSu
 private:
   int soLuongNhanVien;
   vector<NhanVienThuong *> listNV;
+  string maPhongBan;
 
 public:
   TruongPhong();
@@ -26,6 +27,7 @@ public:
   string
   getMaSo();
   string getTenTP();
+  void setListNV(vector<NhanVienThuong *> listNV);
   void nhap();
   void xuat();
   void tangNhanVien();
@@ -33,4 +35,5 @@ public:
   void tinhLuong();
   // friend istream &operator>>(istream &is, TruongPhong &tp);
   friend ostream &operator<<(ostream &os, const TruongPhong &tp);
+  string getMaPhongBan();
 };

@@ -15,6 +15,16 @@ using namespace std;
 //   return is;
 // }
 
+void TruongPhong::setListNV(std::vector<NhanVienThuong *> listNV)
+{
+  this->listNV = listNV;
+}
+
+string TruongPhong::getMaPhongBan()
+{
+  return maPhongBan;
+}
+
 ostream &operator<<(ostream &os, const TruongPhong &tp)
 {
   os << "Ho ten: " << tp.hoTen << endl;

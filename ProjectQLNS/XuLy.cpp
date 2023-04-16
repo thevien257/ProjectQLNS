@@ -1,5 +1,6 @@
 #include "XuLy.h"
 #include "NhanVienThuong.h"
+#include "GiamDoc.h"
 #include <iostream>
 #include <vector>
 #include <string>
@@ -19,6 +20,63 @@ bool XuLy::found(string maSo)
     }
   }
   return false;
+}
+
+void XuLy::xoaNhanSu()
+{
+  string maSo;
+  cout << "\t\t\tNhap ma so de xoa nhan su: ";
+  cin >> maSo;
+  bool foundNS = found(maSo);
+  if (foundNS)
+  {
+    cout << "\t\t\tDa tim thay nhan su ✅" << endl;
+    Sleep(1500);
+    cout << "\t\t\tDa xoa nhan su mang ma so ✅" << maSo << endl;
+    for (int i = 0; i < ds.getListNS().size(); i++)
+    {
+      if (TruongPhong *tp = dynamic_cast<TruongPhong *>(ds.getListNS()[i]))
+      {
+        if (tp != nullptr)
+        {
+          if (tp->getMaSo() == maSo)
+          {
+            xoaTruongPhong(tp);
+          }
+        }
+      }
+    }
+  }
+  else
+  {
+    cout << "\t\t\tOOPS! Khong tim thay nhan su voi ma so " << maSo << " 🥲" << endl;
+  }
+}
+
+void XuLy::xoaTruongPhong(TruongPhong *truongPhong)
+{
+  bool deleted = false;
+  for (int i = 0; i < ds.getListNS().size(); i++)
+  {
+    if (NhanVienThuong *nvt = dynamic_cast<NhanVienThuong *>(ds.getListNS()[i]))
+    {
+      if (nvt != nullptr)
+      {
+        if (nvt->getTruongPhong() != nullptr)
+        {
+          if (nvt->getTruongPhong()->getMaSo() == truongPhong->getMaSo())
+          {
+            nvt->setTruongPhong(nullptr); // Set hết các nhân viên thường có trưởng phòng này thành nullptr
+          }
+        }
+      }
+    }
+  }
+  auto it = std::find(ds.getListNS().begin(), ds.getListNS().end(), truongPhong);
+  if (it != ds.getListNS().end())
+  {
+    ds.getListNS().erase(it);
+  }
 }
 
 void XuLy::timNhanSu()
@@ -379,11 +437,12 @@ void XuLy::inMenu()
   cout << "\t\t\t\t1. Them nhan su " << endl;
   cout << "\t\t\t\t2. Xuat nhan su" << endl;
   cout << "\t\t\t\t3. Phan bo truong phong" << endl;
-  cout << "\t\t\t\t4. Tim nhan vien tre tuoi nhat" << endl;
+  cout << "\t\t\t\t4. Sap xep nhan vien theo ten A-Z" << endl;
   cout << "\t\t\t\t5. Tim nhan vien luong cao nhat" << endl;
   cout << "\t\t\t\t6. Sap xep luong giam dan" << endl;
   cout << "\t\t\t\t7. Sua doi thong tin nhan vien" << endl;
   cout << "\t\t\t\t8. Tim nhan vien" << endl;
+  cout << "\t\t\t\t8. Xoa nhan su" << endl;
   cout << "\t\t\t\t--------------------> Moi chon: ";
 }
 
@@ -422,6 +481,9 @@ void XuLy::xuLyMenu()
       break;
     case 8:
       timNhanSu();
+      break;
+    case 9:
+      xoaNhanSu();
       break;
     case 0:
       cout << endl;

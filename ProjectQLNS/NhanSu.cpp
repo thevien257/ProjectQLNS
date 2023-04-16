@@ -9,6 +9,11 @@
 #include <sstream>
 using namespace std;
 
+vector<Task *> NhanSu::getDSTask()
+{
+  return dsTask;
+}
+
 ostream &operator<<(ostream &os, const NhanSu &ns)
 {
   os << "Ho ten: " << ns.hoTen << endl;
@@ -79,13 +84,13 @@ void NhanSu::xuat()
   cout << "\t\t\t|Ma so\t\t\t| " << this->maSo << "\t\t|" << endl;
   cout << "\t\t\t|Ho ten\t\t\t| " << this->hoTen << "\t\t|" << endl;
   cout << "\t\t\t|So dien thoai\t\t|" << this->soDienThoai << "   \t|" << endl;
-  ofstream output("DanhSachNhanVien.txt", ios::app);
-  output << "Ma so:"
-         << "\t" << this->maSo << endl;
-  output << "Ho ten:"
-         << "\t" << this->hoTen << endl;
-  output << "So dien thoai:"
-         << "\t" << this->soDienThoai << endl;
+  // ofstream output("DanhSachNhanVien.txt", ios::app);
+  // output << "Ma so:"
+  //        << "\t" << this->maSo << endl;
+  // output << "Ho ten:"
+  //        << "\t" << this->hoTen << endl;
+  // output << "So dien thoai:"
+  //        << "\t" << this->soDienThoai << endl;
 }
 
 void NhanSu::tinhLuong()

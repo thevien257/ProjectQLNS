@@ -1,57 +1,25 @@
-Ho ten: gd1
+Ho ten: GD
 Ma so: MSgd1
-Luong: 7500
-So dien thoai: 1231232
-So ngay lam viec: 25
-
-
-Ho ten: gd2
-Ma so: MSgd2
 Luong: 8400
-So dien thoai: 123156752
+So dien thoai: 1243123
 So ngay lam viec: 28
 
 
-Ho ten: gd3
-Ma so: MSgd3
-Luong: 9000
-So dien thoai: 12311232
-So ngay lam viec: 30
-
-
-Ho ten: nv1
+Ho ten: Chuoi
 Ma so: MSnv1
 So dien thoai: 1231232
 So ngay lam viec: 25
 
 
-Ho ten: nv2
+Ho ten: Cam
 Ma so: MSnv2
 So dien thoai: 123156752
 So ngay lam viec: 28
 
 
-Ho ten: nv3
-Ma so: MSnv3
-So dien thoai: 12311232
-So ngay lam viec: 30
-
-
-Ho ten: tp1
-Ma so: MStp1
-So dien thoai: 1231232
-Ngay lam viec: 25
-
-
-Ho ten: tp2
+Ho ten: Truong
 Ma so: MStp2
 So dien thoai: 123156752
 Ngay lam viec: 28
-
-
-Ho ten: tp3
-Ma so: MStp3
-So dien thoai: 12311232
-Ngay lam viec: 30
 
 

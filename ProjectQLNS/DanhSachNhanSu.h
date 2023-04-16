@@ -14,7 +14,7 @@ private:
   NhanSu *ns;
 
 public:
-  vector<NhanSu *> getListNS();
+  vector<NhanSu *> &getListNS();
   danhSachNhanSu();
   void setListNS(vector<NhanSu *> listNS);
   void inMenu();

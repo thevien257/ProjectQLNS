@@ -20,6 +20,7 @@ public:
   NhanVienThuong(string maSo, string hoTen, string soDienThoai, float soNgayLamViec);
   void tinhLuong();
   void setTruongPhong(TruongPhong *tp);
+  TruongPhong *getTruongPhong();
   void nhap();
   void xuat();
   // friend istream &operator>>(istream &is, NhanVienThuong &nvt);

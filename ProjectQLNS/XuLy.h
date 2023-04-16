@@ -29,4 +29,8 @@ public:
   void signUp();
   bool found(string maSo);
   void timNhanSu();
+  void xoaNhanSu();
+  void xoaGiamDoc(string maSo);
+  void xoaTruongPhong(TruongPhong *truongPhong);
+  void xoatNhanVienThuong(string maSo);
 };

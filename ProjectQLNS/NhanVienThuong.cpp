@@ -15,6 +15,11 @@ using namespace std;
 //   return is;
 // }
 
+TruongPhong *NhanVienThuong::getTruongPhong()
+{
+  return tp;
+}
+
 ostream &operator<<(ostream &os, const NhanVienThuong &nvt)
 {
   os << "Ho ten: " << nvt.hoTen << endl;

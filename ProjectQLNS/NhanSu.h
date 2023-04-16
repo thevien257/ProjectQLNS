@@ -6,6 +6,7 @@
 #include <iomanip>
 #include <fstream>
 #include <windows.h>
+#include "Task.h"
 using namespace std;
 
 const int luong1NgayNVT = 100;
@@ -20,6 +21,7 @@ protected:
   string soDienThoai;
   float soNgayLamViec;
   long luong;
+  vector<Task *> dsTask;
 
 public:
   NhanSu();
@@ -35,4 +37,5 @@ public:
   virtual void tinhLuong();
   friend istream &operator>>(istream &is, NhanSu &ns);
   friend ostream &operator<<(ostream &os, const NhanSu &ns);
+  vector<Task *> getDSTask();
 };
