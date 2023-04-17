@@ -13,6 +13,11 @@
 #include <windows.h>
 using namespace std;
 
+danhSachNhanSu::~danhSachNhanSu()
+{
+  delete[] ns;
+}
+
 // void danhSachNhanSu::ghiFile(string filename)
 // {
 //   ofstream file(filename);

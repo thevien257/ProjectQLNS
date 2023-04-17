@@ -81,7 +81,7 @@ void TruongPhong::nhap()
 void TruongPhong::xuat()
 {
   NhanSu::xuat();
-  ofstream output("DanhSachNhanVien.txt", ios::app);
+  // ofstream output("DanhSachNhanVien.txt", ios::app);
   if (soLuongNhanVien <= 0)
   {
     cout << "\t\t\t|So luong nhan vien\t| " << this->soLuongNhanVien << "\t\t|" << endl;
@@ -97,15 +97,15 @@ void TruongPhong::xuat()
     for (NhanVienThuong *nv : listNV)
     {
       cout << "\t\t\t|Ten nhan vien\t| " << nv->getHoTen() << "\t|" << endl;
-      cout << "\t\t\t|Ma so nhan vien\t\t\t| " << nv->getMaSo() << "\t|" << endl;
+      cout << "\t\t\t|Ma so nhan vien\t| " << nv->getMaSo() << "\t|" << endl;
     }
     cout << "\t\t\t_________________________________________" << endl;
   }
-  output << "So luong nhan vien:"
-         << "\t" << this->soLuongNhanVien << endl;
-  output << "Luong:"
-         << "\t" << this->luong << endl;
-  output << endl;
+  // output << "So luong nhan vien:"
+  //        << "\t" << this->soLuongNhanVien << endl;
+  // output << "Luong:"
+  //        << "\t" << this->luong << endl;
+  // output << endl;
 }
 
 void TruongPhong::tangNhanVien()

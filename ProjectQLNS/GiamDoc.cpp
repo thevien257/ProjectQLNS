@@ -43,7 +43,7 @@ void GiamDoc::nhap()
 void GiamDoc::xuat()
 {
   NhanSu::xuat();
-  ofstream output("DanhSachNhanVien.txt", ios::app);
+  // ofstream output("DanhSachNhanVien.txt", ios::app);
   cout << "\t\t\t|Luong\t\t\t| " << this->luong << "\t\t|" << endl;
   cout << "\t\t\t_________________________________________" << endl;
 

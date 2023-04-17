@@ -24,4 +24,5 @@ public:
   void docFileGD(string filename);
   void docFileTP(string filename);
   void ghiFile(string filename);
+  ~danhSachNhanSu();
 };

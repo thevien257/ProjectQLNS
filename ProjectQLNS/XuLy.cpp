@@ -289,16 +289,20 @@ void XuLy::phanBoNhanVienThuong()
 
 void XuLy::inMenuLogin()
 {
-  cout << "\t\t\t\t ___________________________________\n";
-  cout << "\t\t\t\t|                                   |\n";
-  cout << "\t\t\t\t|        Menu Dang Nhap 💻          |\n";
-  cout << "\t\t\t\t|                                   |\n";
-  cout << "\t\t\t\t|___________________________________|\n";
   cout << endl;
-  cout << "\t\t\t\t1. Dang nhap " << endl;
-  cout << "\t\t\t\t2. Dang ky" << endl;
-  cout << "\t\t\t\t3. Thoat" << endl;
-  cout << "\t\t\t\t--------------------> Moi chon: ";
+  HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+  SetConsoleTextAttribute(color, 11);
+  cout << "\t\t\t\t\t ___________________________________\n";
+  cout << "\t\t\t\t\t|                                   |\n";
+  cout << "\t\t\t\t\t|        Menu Dang Nhap 💻          |\n";
+  cout << "\t\t\t\t\t|                                   |\n";
+  cout << "\t\t\t\t\t|___________________________________|\n";
+  cout << endl;
+  SetConsoleTextAttribute(color, 7);
+  cout << "\t\t\t\t\t1. Dang nhap " << endl;
+  cout << "\t\t\t\t\t2. Dang ky" << endl;
+  cout << "\t\t\t\t\t3. Thoat" << endl;
+  cout << "\t\t\t\t\t--------------------> Moi chon 👉 ";
 }
 
 bool XuLy::login()
@@ -348,6 +352,8 @@ bool XuLy::login()
   // cout << "\t\t\t\t║                                    ║\n";
   // cout << "\t\t\t\t╚════════════════════════════════════╝\n\n";
 
+  HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+  SetConsoleTextAttribute(color, 11);
   cout << endl;
   cout << "\t\t\t\t\t╔════════════════════════════════════╗\n";
   cout << "\t\t\t\t\t║          LOGIN FORM                ║\n";
@@ -361,6 +367,7 @@ bool XuLy::login()
   cout << "\033[6;55H"; // Move the cursor to the position after "Tai khoan:"
 
   // get user input for tai khoan
+  SetConsoleTextAttribute(color, 7);
   cin >> tk;
 
   cout << "\033[7;55H"; // Move the cursor to the position after "Mat khau:"
@@ -377,8 +384,11 @@ bool XuLy::login()
       cout << endl;
       cout << endl;
       cout << endl;
-      cout << "\n\t\t\t\t\tDang nhap thanh cong ✅" << endl;
-      cout << "\t\t\t\t\tXin chao " << itk << " 👋 " << endl;
+      HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+      SetConsoleTextAttribute(color, 10);
+      cout << "\n\t\t\t\t\t\tDang nhap thanh cong ✅" << endl;
+      SetConsoleTextAttribute(color, 7);
+      cout << "\t\t\t\t\t\tXin chao " << itk << " 👋 " << endl;
       Sleep(2000);
       system("cls");
       break;
@@ -392,8 +402,11 @@ bool XuLy::login()
     cout << endl;
     cout << endl;
     cout << endl;
-    cout << "\t\t\t❌ Sai tai khoan hoac mat khau! Vui long nhap lai 😚 " << endl;
-    cout << "\t\t\tHoac ban chua dang ky tai khoan, vui long dang ky truoc khi dang nhap 🧐" << endl;
+    HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(color, 12);
+    cout << "\t\t\t\t❌ Sai tai khoan hoac mat khau! Vui long nhap lai 😚 " << endl;
+    // cout << "\t\t\tHoac ban chua dang ky tai khoan, vui long dang ky truoc khi dang nhap 🧐" << endl;
+    SetConsoleTextAttribute(color, 7);
   }
 
   if (flag == true)
@@ -411,6 +424,8 @@ void XuLy::signUp()
   system("cls");
   string tk, mk, itk, imk;
   cout << endl;
+  HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+  SetConsoleTextAttribute(color, 11);
   cout << "\t\t\t\t\t╔════════════════════════════════════╗\n";
   cout << "\t\t\t\t\t║          SIGNUP FORM               ║\n";
   cout << "\t\t\t\t\t╟────────────────────────────────────╢\n";
@@ -422,7 +437,7 @@ void XuLy::signUp()
   cout << "\t\t\t\t\t╚════════════════════════════════════╝\n\n";
 
   cout << "\033[6;55H"; // Move the cursor to the position after "Tai khoan:"
-
+  SetConsoleTextAttribute(color, 7);
   // get user input for tai khoan
   cin >> itk;
   cout << "\033[7;55H"; // Move the cursor to the position after "Mat khau:"
@@ -440,7 +455,10 @@ void XuLy::signUp()
       cout << endl;
       cout << endl;
       cout << endl;
+      HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+      SetConsoleTextAttribute(color, 12);
       cout << "\t\t\t\t❌ Mat khau ban da nhap khong giong voi mat khau truoc 😚 " << endl;
+      SetConsoleTextAttribute(color, 7);
     }
   } while (imk != mk);
 
@@ -451,7 +469,9 @@ void XuLy::signUp()
   cout << endl;
   cout << endl;
   cout << "\033[K" << endl;
+  SetConsoleTextAttribute(color, 10);
   cout << "\t\t\t\t\t\tDang ky thanh cong ✅" << endl;
+  SetConsoleTextAttribute(color, 7);
   Sleep(1500);
   system("cls");
 }

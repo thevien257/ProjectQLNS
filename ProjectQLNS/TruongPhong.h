@@ -24,8 +24,7 @@ public:
               string soDienThoai,
               float soNgayLamViec);
   vector<NhanVienThuong *> &getListNV();
-  string
-  getMaSo();
+  string getMaSo();
   string getTenTP();
   void setListNV(vector<NhanVienThuong *> listNV);
   void nhap();

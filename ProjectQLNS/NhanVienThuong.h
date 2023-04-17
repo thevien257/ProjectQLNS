@@ -23,6 +23,7 @@ public:
   TruongPhong *getTruongPhong();
   void nhap();
   void xuat();
+  ~NhanVienThuong();
   // friend istream &operator>>(istream &is, NhanVienThuong &nvt);
   friend ostream &operator<<(ostream &os, const NhanVienThuong &nvt);
 };

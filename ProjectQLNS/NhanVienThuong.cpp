@@ -15,6 +15,11 @@ using namespace std;
 //   return is;
 // }
 
+NhanVienThuong::~NhanVienThuong()
+{
+  delete[] tp;
+}
+
 TruongPhong *NhanVienThuong::getTruongPhong()
 {
   return tp;
@@ -65,7 +70,7 @@ void NhanVienThuong::xuat()
   if (tp != nullptr)
   {
     NhanSu::xuat();
-    ofstream output("DanhSachNhanVien.txt", ios::app);
+    // ofstream output("DanhSachNhanVien.txt", ios::app);
 
     cout << "\t\t\t|Luong\t\t\t| " << this->luong << "\t\t|" << endl;
     cout << "\t\t\t|____Day la thong tin nguoi quan ly____"
@@ -86,7 +91,7 @@ void NhanVienThuong::xuat()
   else if (tp == nullptr)
   {
     NhanSu::xuat();
-    ofstream output("DanhSachNhanVien.txt", ios::app);
+    // ofstream output("DanhSachNhanVien.txt", ios::app);
     cout << "\t\t\t|Luong\t\t\t| " << this->luong << "\t\t|" << endl;
     cout << "\t\t\t_________________________________________" << endl;
 
