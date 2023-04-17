@@ -30,9 +30,9 @@ void XuLy::xoaNhanSu()
   bool foundNS = found(maSo);
   if (foundNS)
   {
-    cout << "\t\t\tDa tim thay nhan su ✅" << endl;
-    Sleep(1500);
-    cout << "\t\t\tDa xoa nhan su mang ma so ✅" << maSo << endl;
+    cout << "\t\t\t\tDa tim thay nhan su ✅" << endl;
+    Sleep(1000);
+    cout << "\t\t\t\tDa xoa nhan su mang ma so " << maSo << " ✅" << endl;
     for (int i = 0; i < ds.getListNS().size(); i++)
     {
       if (TruongPhong *tp = dynamic_cast<TruongPhong *>(ds.getListNS()[i]))
@@ -42,6 +42,29 @@ void XuLy::xoaNhanSu()
           if (tp->getMaSo() == maSo)
           {
             xoaTruongPhong(tp);
+            cout << "\t\t\t\tDa xoa truong phong co ten " << tp->getHoTen() << " ✅" << endl;
+          }
+        }
+      }
+      if (GiamDoc *giamDoc = dynamic_cast<GiamDoc *>(ds.getListNS()[i]))
+      {
+        if (giamDoc != nullptr)
+        {
+          if (giamDoc->getMaSo() == maSo)
+          {
+            ds.getListNS().erase(ds.getListNS().begin() + i);
+            cout << "\t\t\t\tDa xoa giam doc co ten " << giamDoc->getHoTen() << " ✅" << endl;
+          }
+        }
+      }
+      if (NhanVienThuong *nvt = dynamic_cast<NhanVienThuong *>(ds.getListNS()[i]))
+      {
+        if (nvt != nullptr)
+        {
+          if (nvt->getMaSo() == maSo)
+          {
+            xoaNhanVienThuong(nvt, maSo);
+            cout << "\t\t\t\tDa xoa nhan vien thuong co ten " << nvt->getHoTen() << " ✅" << endl;
           }
         }
       }
@@ -53,9 +76,40 @@ void XuLy::xoaNhanSu()
   }
 }
 
+void XuLy::xoaNhanVienThuong(NhanVienThuong *nvt, string maSo)
+{
+  for (int i = 0; i < ds.getListNS().size(); i++)
+  {
+    if (TruongPhong *tp = dynamic_cast<TruongPhong *>(ds.getListNS()[i]))
+    {
+      if (tp != nullptr)
+      {
+        int j = 0;
+        while (j < tp->getListNV().size())
+        {
+          if (tp->getListNV()[j]->getMaSo() == maSo)
+          {
+            tp->getListNV().erase(tp->getListNV().begin() + j);
+            tp->giamNhanVien();
+            break;
+          }
+          else
+          {
+            j++;
+          }
+        }
+      }
+    }
+  }
+  auto it = std::find(ds.getListNS().begin(), ds.getListNS().end(), nvt);
+  if (it != ds.getListNS().end())
+  {
+    ds.getListNS().erase(it);
+  }
+}
+
 void XuLy::xoaTruongPhong(TruongPhong *truongPhong)
 {
-  bool deleted = false;
   for (int i = 0; i < ds.getListNS().size(); i++)
   {
     if (NhanVienThuong *nvt = dynamic_cast<NhanVienThuong *>(ds.getListNS()[i]))
@@ -442,7 +496,7 @@ void XuLy::inMenu()
   cout << "\t\t\t\t6. Sap xep luong giam dan" << endl;
   cout << "\t\t\t\t7. Sua doi thong tin nhan vien" << endl;
   cout << "\t\t\t\t8. Tim nhan vien" << endl;
-  cout << "\t\t\t\t8. Xoa nhan su" << endl;
+  cout << "\t\t\t\t9. Xoa nhan su" << endl;
   cout << "\t\t\t\t--------------------> Moi chon: ";
 }
 

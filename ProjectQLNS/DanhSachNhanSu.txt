@@ -1,25 +1,13 @@
-Ho ten: GD
-Ma so: MSgd1
+Ho ten: SuaGd
+Ma so: SuaGD
 Luong: 8400
-So dien thoai: 1243123
-So ngay lam viec: 28
+So dien thoai: 123123
+So ngay lam viec: 30
 
 
 Ho ten: Chuoi
 Ma so: MSnv1
 So dien thoai: 1231232
 So ngay lam viec: 25
-
-
-Ho ten: Cam
-Ma so: MSnv2
-So dien thoai: 123156752
-So ngay lam viec: 28
-
-
-Ho ten: Truong
-Ma so: MStp2
-So dien thoai: 123156752
-Ngay lam viec: 28
 
 
