@@ -32,4 +32,6 @@ public:
   void xoaNhanSu();
   void xoaTruongPhong(TruongPhong *truongPhong);
   void xoaNhanVienThuong(NhanVienThuong *nvt, string maSo);
+  void printGoodBye();
+  void printASCII(string fileName);
 };

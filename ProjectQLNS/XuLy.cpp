@@ -8,6 +8,8 @@
 #include <iomanip>
 #include <fstream>
 #include <windows.h>
+#include <fstream>
+#include <string>
 using namespace std;
 
 bool XuLy::found(string maSo)
@@ -512,18 +514,45 @@ void XuLy::inMenu()
   cout << "\t\t\t\t2. Xuat nhan su" << endl;
   cout << "\t\t\t\t3. Phan bo truong phong" << endl;
   cout << "\t\t\t\t4. Sap xep nhan vien theo ten A-Z" << endl;
-  cout << "\t\t\t\t5. Tim nhan vien luong cao nhat" << endl;
-  cout << "\t\t\t\t6. Sap xep luong giam dan" << endl;
-  cout << "\t\t\t\t7. Sua doi thong tin nhan vien" << endl;
-  cout << "\t\t\t\t8. Tim nhan vien" << endl;
+  cout << "\t\t\t\t5. Sap xep luong giam dan" << endl;
+  cout << "\t\t\t\t6. Tim nhan vien" << endl;
+  cout << "\t\t\t\t7. Tim nhan vien luong cao nhat" << endl;
+  cout << "\t\t\t\t8. Sua doi thong tin nhan vien" << endl;
   cout << "\t\t\t\t9. Xoa nhan su" << endl;
   cout << "\t\t\t\t--------------------> Moi chon: ";
+}
+
+void XuLy::printASCII(string fileName)
+{
+  string line = "";
+  ifstream inFile;
+  inFile.open("goodBye.txt");
+  if (inFile.is_open())
+  {
+    while (getline(inFile, line))
+    {
+      cout << "\t\t\t\t" << line << endl;
+    }
+    inFile.close();
+  }
+  else
+  {
+    cout << "File failed to load" << endl;
+  }
+  inFile.close();
+}
+
+void XuLy::printGoodBye()
+{
+  string fileName = "goodBye.txt";
+  printASCII(fileName);
 }
 
 void XuLy::xuLyMenu()
 {
   bool flag = true;
   int chon;
+  HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
   do
   {
     inMenu();
@@ -544,24 +573,28 @@ void XuLy::xuLyMenu()
       ds.xuat();
       break;
     case 5:
-      timNVLuongCaoNhat();
+      sapXepLuongGiamDan();
       break;
     case 6:
-      sapXepLuongGiamDan();
-      ds.xuat();
+      timNhanSu();
       break;
     case 7:
-      suaDoiThongTinNhanSu();
+      timNVLuongCaoNhat();
+      ds.xuat();
       break;
     case 8:
-      timNhanSu();
+      suaDoiThongTinNhanSu();
       break;
     case 9:
       xoaNhanSu();
       break;
     case 0:
       cout << endl;
+      SetConsoleTextAttribute(color, 3);
       cout << "\t\t\t\t\tSee you next time 😁" << endl;
+      cout << endl;
+      SetConsoleTextAttribute(color, 14);
+      printGoodBye();
       Sleep(2000);
       flag = false;
       break;
