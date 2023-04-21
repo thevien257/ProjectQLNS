@@ -15,6 +15,16 @@ using namespace std;
 //   return is;
 // }
 
+string NhanVienThuong::getMaPhongBan()
+{
+  return maPhongBan;
+}
+
+void NhanVienThuong::setMaPhongBan(string maPhongBan)
+{
+  this->maPhongBan = maPhongBan;
+}
+
 NhanVienThuong::~NhanVienThuong()
 {
   delete[] tp;
@@ -25,19 +35,41 @@ TruongPhong *NhanVienThuong::getTruongPhong()
   return tp;
 }
 
+// ostream &operator<<(ostream &os, const NhanVienThuong &nvt)
+// {
+//   os << "Ho ten: " << nvt.hoTen << endl;
+//   os << "Ma so: " << nvt.maSo << endl;
+//   os << "So dien thoai: " << nvt.soDienThoai << endl;
+//   os << "So ngay lam viec: " << nvt.soNgayLamViec << endl;
+//   if (nvt.tp != nullptr)
+//   {
+//     os << "___________Thong tin nguoi quan ly__________" << endl;
+//     os << "Ho ten truong phong: " << nvt.tp->getHoTen() << endl;
+//     os << "Ma so truong phong: " << nvt.tp->getMaSo() << endl;
+//   }
+//   if (nvt.maPhongBan != "")
+//   {
+//     os << "Ma phong ban: " << nvt.maPhongBan << endl;
+//   }
+//   os << endl;
+//   return os;
+// }
+
 ostream &operator<<(ostream &os, const NhanVienThuong &nvt)
 {
-  os << "Ho ten: " << nvt.hoTen << endl;
-  os << "Ma so: " << nvt.maSo << endl;
-  os << "So dien thoai: " << nvt.soDienThoai << endl;
-  os << "So ngay lam viec: " << nvt.soNgayLamViec << endl;
+  os << nvt.maSo << "\t" << nvt.hoTen << "\t" << nvt.soDienThoai << "\t" << nvt.soNgayLamViec << "\t" << nvt.luong << "\t";
+  if (nvt.maPhongBan != "")
+  {
+    os << nvt.maPhongBan << "\t";
+  }
+  else
+  {
+    os << "\t";
+  }
   if (nvt.tp != nullptr)
   {
-    os << "___________Thong tin nguoi quan ly__________" << endl;
-    os << "Ho ten truong phong: " << nvt.tp->getHoTen() << endl;
-    os << "Ma so truong phong: " << nvt.tp->getMaSo() << endl;
+    os << nvt.tp->getHoTen() << "\t" << nvt.tp->getMaSo() << "\t";
   }
-  os << endl;
   return os;
 }
 
@@ -49,6 +81,7 @@ void NhanVienThuong::setTruongPhong(TruongPhong *tp)
 NhanVienThuong::NhanVienThuong()
 {
   tp = nullptr;
+  maPhongBan = "";
 }
 
 NhanVienThuong::NhanVienThuong(string maSo, string hoTen, string soDienThoai, float soNgayLamViec) : NhanSu(maSo, hoTen, soDienThoai, soNgayLamViec)
@@ -67,12 +100,16 @@ void NhanVienThuong::nhap()
 
 void NhanVienThuong::xuat()
 {
+  NhanSu::xuat();
+  cout << "\t\t\t|Luong\t\t\t| " << this->luong << "\t\t|" << endl;
+
+  if (maPhongBan != "")
+  {
+    cout << "\t\t\t|Ma phong ban\t\t| " << this->maPhongBan << "\t\t|" << endl;
+    cout << "\t\t\t_________________________________________" << endl;
+  }
   if (tp != nullptr)
   {
-    NhanSu::xuat();
-    // ofstream output("DanhSachNhanVien.txt", ios::app);
-
-    cout << "\t\t\t|Luong\t\t\t| " << this->luong << "\t\t|" << endl;
     cout << "\t\t\t|____Day la thong tin nguoi quan ly____"
          << "\t|" << endl;
     cout << "\t\t\t|Ten truong phong\t| " << tp->getHoTen() << "\t\t|" << endl;
@@ -86,17 +123,6 @@ void NhanVienThuong::xuat()
     //        << "\t" << this->hoTen << endl;
     // output << "Ma truong phong:"
     //        << "\t" << this->getMaSo() << endl;
-    // output << endl;
-  }
-  else if (tp == nullptr)
-  {
-    NhanSu::xuat();
-    // ofstream output("DanhSachNhanVien.txt", ios::app);
-    cout << "\t\t\t|Luong\t\t\t| " << this->luong << "\t\t|" << endl;
-    cout << "\t\t\t_________________________________________" << endl;
-
-    // output << "Luong:"
-    //        << "\t" << this->luong << endl;
     // output << endl;
   }
 }

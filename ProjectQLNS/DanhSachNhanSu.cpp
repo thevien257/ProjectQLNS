@@ -70,8 +70,24 @@ void danhSachNhanSu::ghiFile(string filename)
   {
     set<string> maSoSet;         // tao set de du gia tri "Ma so"
     auto it = dsNhanSu.begin();  // tao iterator de duyet vector
+    bool headerPrinted = false;  // flag to track if header has been printed
     while (it != dsNhanSu.end()) // duyet tu dau den cuoi vector
     {
+      if (!headerPrinted) // if header has not been printed
+      {
+        file << "Ma so\t"
+             << "Ho ten\t"
+             << "So dien thoai\t"
+             << "So ngay lam viec\t"
+             << "Luong\t"
+             << "Ma phong ban\t"
+             << "Nguoi quan ly\t"
+             << "Ma so\t"
+             << "So luong nhan vien\t"
+             << "Ho va ten\t"
+             << "Ma so\t" << endl; // print header
+        headerPrinted = true;      // set flag to true
+      }
       NhanSu *ns = *it;
       // Kiem tra xem neu trong set co ma so roi thi ko xuat nua, con chua co thi xuat
       if (maSoSet.count(ns->getMaSo()) == 0)
@@ -210,6 +226,7 @@ void danhSachNhanSu::inMenu()
   cout << "\t\t\t\t1. Them truong phong " << endl;
   cout << "\t\t\t\t2. Them nhan vien thuong" << endl;
   cout << "\t\t\t\t3. Them giam doc" << endl;
+  cout << "\t\t\t\t4. Thoat" << endl;
   cout << "\t\t\t\t--------------------> Moi chon: ";
 }
 

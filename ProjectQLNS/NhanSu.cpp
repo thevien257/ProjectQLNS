@@ -14,14 +14,20 @@ vector<Task *> NhanSu::getDSTask()
   return dsTask;
 }
 
+// ostream &operator<<(ostream &os, const NhanSu &ns)
+// {
+//   os << "Ho ten: " << ns.hoTen << endl;
+//   os << "Ma so: " << ns.maSo << endl;
+//   os << "Luong: " << ns.luong << endl;
+//   os << "So dien thoai: " << ns.soDienThoai << endl;
+//   os << "So ngay lam viec: " << ns.soNgayLamViec << endl;
+//   os << endl;
+//   return os;
+// }
+
 ostream &operator<<(ostream &os, const NhanSu &ns)
 {
-  os << "Ho ten: " << ns.hoTen << endl;
-  os << "Ma so: " << ns.maSo << endl;
-  os << "Luong: " << ns.luong << endl;
-  os << "So dien thoai: " << ns.soDienThoai << endl;
-  os << "So ngay lam viec: " << ns.soNgayLamViec << endl;
-  os << endl;
+  os << ns.hoTen << "\t" << ns.maSo << "\t" << ns.luong << "\t" << ns.soDienThoai << "\t" << ns.soNgayLamViec << endl;
   return os;
 }
 

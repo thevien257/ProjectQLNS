@@ -1,5 +1,7 @@
 #pragma once
 #include "DanhSachNhanSu.h"
+#include "DanhSachPhongBan.h"
+#include "DanhSachTask.h"
 #include "TruongPhong.h"
 #include <iostream>
 #include <vector>
@@ -12,6 +14,8 @@ class XuLy
 {
 private:
   danhSachNhanSu ds;
+  DanhSachPhongBan dsPB;
+  DanhSachTask dsTask;
 
 public:
   void lietKeDanhSachTruongPhong();
@@ -21,7 +25,7 @@ public:
   void sapXepLuongGiamDan();
   void timNVLuongCaoNhat();
   void inMenu();
-  void xuLyMenu();
+  void XuLyMenuNhanSu();
   void suaDoiThongTinNhanSu();
   void inMenuLogin();
   void XuLyLogin();
@@ -34,4 +38,14 @@ public:
   void xoaNhanVienThuong(NhanVienThuong *nvt, string maSo);
   void printGoodBye();
   void printASCII(string fileName);
+  void xuLyMenuPhongBan();
+  void xuLyMenuTask();
+  void inMenuTask();
+  void phanBoTask();
+  void inMenuPhongBan();
+  void phanBoNhanVienThuongVaoPhongBan();
+  PhongBan *timPhongBan(string maPhong);
+  void chiDinhTruongPhong();
+  void XuLyChung();
+  void inMenuChung();
 };

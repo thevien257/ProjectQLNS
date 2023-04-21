@@ -14,12 +14,15 @@ class NhanVienThuong : public NhanSu
 {
 private:
   TruongPhong *tp;
+  string maPhongBan;
 
 public:
   NhanVienThuong();
   NhanVienThuong(string maSo, string hoTen, string soDienThoai, float soNgayLamViec);
   void tinhLuong();
   void setTruongPhong(TruongPhong *tp);
+  void setMaPhongBan(string maPhongBan);
+  string getMaPhongBan();
   TruongPhong *getTruongPhong();
   void nhap();
   void xuat();

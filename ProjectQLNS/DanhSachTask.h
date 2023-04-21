@@ -9,6 +9,10 @@ private:
   vector<Task *> dsTask;
 
 public:
-  vector<Task *> getDSTask();
+  vector<Task *> &getDSTask();
+  DanhSachTask();
   void setDSTask(vector<Task *> dsTask);
+  void nhapTask();
+  void xuatTask();
+  void docFileTask(string fileName);
 };

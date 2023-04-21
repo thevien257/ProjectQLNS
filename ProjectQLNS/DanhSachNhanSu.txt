@@ -1,31 +1,7 @@
-Ho ten: GD
-Ma so: MSgd1
-Luong: 8400
-So dien thoai: 1243123
-So ngay lam viec: 28
-
-
-Ho ten: Chuoi
-Ma so: MSnv1
-So dien thoai: 1231232
-So ngay lam viec: 25
-
-
-Ho ten: Cam
-Ma so: MSnv2
-So dien thoai: 123156752
-So ngay lam viec: 28
-
-
-Ho ten: Vien
-Ma so: MStp1
-So dien thoai: 1231232
-Ngay lam viec: 25
-
-
-Ho ten: Truong
-Ma so: MStp2
-So dien thoai: 123156752
-Ngay lam viec: 28
-
-
+Ma so	Ho ten	So dien thoai	So ngay lam viec	Luong	Ma phong ban	Nguoi quan ly	Ma so	So luong nhan vien	Ho va ten	Ma so	
+MSgd1	GD	1243123	28	8400	
+MSnv1	Chuoi	1231232	25	2500	pb1	Vien	MStp1	
+MSnv2	Cam	123156752	28	2800	pb1	Vien	MStp1	
+MStp1	Vien	1231232	25	5000	pb1			2	Chuoi	MSnv1	
+									Cam	MSnv2	
+MStp2	Truong	123156752	28	5600				

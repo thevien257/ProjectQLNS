@@ -27,6 +27,7 @@ public:
   string getMaSo();
   string getTenTP();
   void setListNV(vector<NhanVienThuong *> listNV);
+  void setMaPhongBan(string maPhongBan);
   void nhap();
   void xuat();
   void tangNhanVien();

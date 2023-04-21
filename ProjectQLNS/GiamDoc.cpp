@@ -16,14 +16,24 @@ using namespace std;
 //   return is;
 // }
 
+// ostream &operator<<(ostream &os, const GiamDoc &gd)
+// {
+//   os << "Ho ten: " << gd.hoTen << endl;
+//   os << "Ma so: " << gd.maSo << endl;
+//   os << "Luong: " << gd.luong << endl;
+//   os << "So dien thoai: " << gd.soDienThoai << endl;
+//   os << "So ngay lam viec: " << gd.soNgayLamViec << endl;
+//   os << endl;
+//   return os;
+// }
+
 ostream &operator<<(ostream &os, const GiamDoc &gd)
 {
-  os << "Ho ten: " << gd.hoTen << endl;
-  os << "Ma so: " << gd.maSo << endl;
-  os << "Luong: " << gd.luong << endl;
-  os << "So dien thoai: " << gd.soDienThoai << endl;
-  os << "So ngay lam viec: " << gd.soNgayLamViec << endl;
-  os << endl;
+  os << gd.maSo << "\t";
+  os << gd.hoTen << "\t";
+  os << gd.soDienThoai << "\t";
+  os << gd.soNgayLamViec << "\t";
+  os << gd.luong << "\t";
   return os;
 }
 
