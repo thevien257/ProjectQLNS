@@ -1,8 +1,0 @@
-admin admin
-thevien123 123123
-test test
-thevien123 123123
-testNew testNeww
-test test
-admin admin
-admin admin
