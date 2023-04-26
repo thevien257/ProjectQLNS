@@ -19,6 +19,7 @@ protected:
   string maSo;
   string hoTen;
   string soDienThoai;
+  string viTriViecLam;
   float soNgayLamViec;
   long luong;
   vector<Task *> dsTask;
@@ -31,6 +32,8 @@ public:
          float soNgayLamViec);
   string getMaSo();
   string getHoTen();
+  string getViTriViecLam();
+  void setViTriViecLam(string viTriViecLam);
   long getLuong();
   virtual void nhap();
   virtual void xuat();

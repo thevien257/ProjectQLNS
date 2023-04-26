@@ -9,6 +9,16 @@
 #include <sstream>
 using namespace std;
 
+string NhanSu::getViTriViecLam()
+{
+  return viTriViecLam;
+}
+
+void NhanSu::setViTriViecLam(string viTriViecLam)
+{
+  this->viTriViecLam = viTriViecLam;
+}
+
 vector<Task *> NhanSu::getDSTask()
 {
   return dsTask;
@@ -86,17 +96,64 @@ void NhanSu::nhap()
 
 void NhanSu::xuat()
 {
-  cout << "\t\t\t_________________________________________" << endl;
-  cout << "\t\t\t|Ma so\t\t\t| " << this->maSo << "\t\t|" << endl;
-  cout << "\t\t\t|Ho ten\t\t\t| " << this->hoTen << "\t\t|" << endl;
-  cout << "\t\t\t|So dien thoai\t\t|" << this->soDienThoai << "   \t|" << endl;
-  // ofstream output("DanhSachNhanVien.txt", ios::app);
-  // output << "Ma so:"
-  //        << "\t" << this->maSo << endl;
-  // output << "Ho ten:"
-  //        << "\t" << this->hoTen << endl;
-  // output << "So dien thoai:"
-  //        << "\t" << this->soDienThoai << endl;
+  // cout << "\t\t\t\t║  Ma so              ║ " << std::left << std::setw(20) << this->maSo << std::right << " ║" << endl;
+  // cout << "\t\t\t\t║  Ho ten             ║ " << std::left << std::setw(20) << this->hoTen << std::right << " ║" << endl;
+  // if (viTriViecLam == "Nhan vien thuong")
+  // {
+  //   cout << "\t\t\t\t║  Vi tri viec lam    ║ " << std::left << std::setw(20) << viTriViecLam << std::right << " ║" << endl;
+  // }
+  // else if (viTriViecLam == "Truong phong")
+  // {
+  //   cout << "\t\t\t\t║  Vi tri viec lam    ║ " << std::left << std::setw(20) << this->viTriViecLam << std::right << " ║" << endl;
+  // }
+  // else
+  // {
+  //   cout << "\t\t\t\t║  Vi tri viec lam    ║ " << std::left << std::setw(20) << this->viTriViecLam << std::right << " ║" << endl;
+  // }
+  // cout << "\t\t\t\t║  So dien thoai      ║ " << std::left << std::setw(20) << this->soDienThoai << std::right << " ║" << endl;
+  HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+  cout << "\t\t\t\t║  ";
+  SetConsoleTextAttribute(color, 14);
+  cout << "Ma so              ";
+  SetConsoleTextAttribute(color, 7);
+  cout << "║ " << std::left << std::setw(20) << this->maSo << std::right << " ║" << endl;
+
+  cout << "\t\t\t\t║  ";
+  SetConsoleTextAttribute(color, 14);
+  cout << "Ho ten             ";
+  SetConsoleTextAttribute(color, 7);
+  cout << "║ " << std::left << std::setw(20) << this->hoTen << std::right << " ║" << endl;
+
+  if (viTriViecLam == "Nhan vien thuong")
+  {
+    cout << "\t\t\t\t║  ";
+    SetConsoleTextAttribute(color, 14);
+    cout << "Vi tri viec lam    ";
+    SetConsoleTextAttribute(color, 7);
+    cout << "║ " << std::left << std::setw(20) << viTriViecLam << std::right << " ║" << endl;
+  }
+  else if (viTriViecLam == "Truong phong")
+  {
+    cout << "\t\t\t\t║  ";
+    SetConsoleTextAttribute(color, 14);
+    cout << "Vi tri viec lam    ";
+    SetConsoleTextAttribute(color, 7);
+    cout << "║ " << std::left << std::setw(20) << this->viTriViecLam << std::right << " ║" << endl;
+  }
+  else
+  {
+    cout << "\t\t\t\t║  ";
+    SetConsoleTextAttribute(color, 14);
+    cout << "Vi tri viec lam    ";
+    SetConsoleTextAttribute(color, 7);
+    cout << "║ " << std::left << std::setw(20) << this->viTriViecLam << std::right << " ║" << endl;
+  }
+
+  cout << "\t\t\t\t║  ";
+  SetConsoleTextAttribute(color, 14);
+  cout << "So dien thoai      ";
+  SetConsoleTextAttribute(color, 7);
+  cout << "║ " << std::left << std::setw(20) << this->soDienThoai << std::right << " ║" << endl;
 }
 
 void NhanSu::tinhLuong()

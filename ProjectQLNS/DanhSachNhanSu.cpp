@@ -151,6 +151,7 @@ void danhSachNhanSu::docFileNVT(string filename)
       // read data from file and create new employee object
       NhanSu *ns = new NhanVienThuong(); // replace with appropriate subclass
       file >> *ns;
+      ns->setViTriViecLam("Nhan vien thuong");
       ns->tinhLuong();
       this->dsNhanSu.push_back(ns);
     }
@@ -172,6 +173,7 @@ void danhSachNhanSu::docFileGD(string filename)
       // read data from file and create new employee object
       NhanSu *ns = new GiamDoc(); // replace with appropriate subclass
       file >> *ns;
+      ns->setViTriViecLam("Giam doc");
       ns->tinhLuong();
       this->dsNhanSu.push_back(ns);
     }
@@ -193,6 +195,7 @@ void danhSachNhanSu::docFileTP(string filename)
       // read data from file and create new employee object
       NhanSu *ns = new TruongPhong(); // replace with appropriate subclass
       file >> *ns;
+      ns->setViTriViecLam("Truong phong");
       ns->tinhLuong();
       this->dsNhanSu.push_back(ns);
     }
@@ -244,18 +247,21 @@ void danhSachNhanSu::nhap()
       ns = new TruongPhong();
       ns->nhap();
       ns->tinhLuong();
+      ns->setViTriViecLam("Truong Phong");
       this->dsNhanSu.push_back(ns);
       break;
     case 2:
       ns = new NhanVienThuong();
       ns->nhap();
       ns->tinhLuong();
+      ns->setViTriViecLam("Nhan Vien Thuong");
       this->dsNhanSu.push_back(ns);
       break;
     case 3:
       ns = new GiamDoc();
       ns->nhap();
       ns->tinhLuong();
+      ns->setViTriViecLam("Giam Doc");
       this->dsNhanSu.push_back(ns);
       break;
     case 0:
@@ -270,9 +276,42 @@ void danhSachNhanSu::nhap()
 
 void danhSachNhanSu::xuat()
 {
+  bool flag = true;
+  int chon;
   ghiFile("DanhSachNhanSu.txt");
+  HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+  cout << "\t\t\t\t    ╔═══════════════════════════════════╗\n";
+  cout << "\t\t\t\t╔═══║ ";
+  SetConsoleTextAttribute(color, 11);
+  cout << "Thong tin nhan su cua cong ty  📂";
+  SetConsoleTextAttribute(color, 7);
+  cout << " ║════╗\n";
+  cout << "\t\t\t\t║   ╚═════════════════╦═════════════════╝    ║\n";
+
+  int j = 1;
+  NhanSu *lastNS = dsNhanSu.back();
   for (NhanSu *ns : dsNhanSu)
   {
-    ns->xuat();
+    if (ns != lastNS)
+    {
+      cout << "\t\t\t\t║  ";
+      SetConsoleTextAttribute(color, 14);
+      cout << "So thu tu          ";
+      SetConsoleTextAttribute(color, 7);
+      cout << "║ " << std::left << std::setw(20) << j << std::right << " ║" << endl;
+      ns->xuat();
+      cout << "\t\t\t\t╠═════════════════════╬══════════════════════╣\n";
+      j++;
+    }
+    else
+    {
+      cout << "\t\t\t\t║  ";
+      SetConsoleTextAttribute(color, 14);
+      cout << "So thu tu          ";
+      SetConsoleTextAttribute(color, 7);
+      cout << "║ " << std::left << std::setw(20) << j << std::right << " ║" << endl;
+      ns->xuat();
+      cout << "\t\t\t\t╚═════════════════════╩══════════════════════╝\n";
+    }
   }
 }

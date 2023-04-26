@@ -31,15 +31,47 @@ void DanhSachPhongBan::xuatPB()
 {
   if (dsPhongBan.size() == 0)
   {
-    cout << "\t\t\tChua co phong ban nao" << endl;
+    HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(color, 12);
+    cout << "\t\t\t\tChua co phong ban nao" << endl;
+    SetConsoleTextAttribute(color, 7);
   }
   else
   {
+    HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+    cout << "\t\t\t\t    ╔═══════════════════════════════════╗\n";
+    cout << "\t\t\t\t╔═══║ ";
+    SetConsoleTextAttribute(color, 11);
+    cout << "      Thong tin phong ban  📂";
+    SetConsoleTextAttribute(color, 7);
+    cout << "     ║════╗\n";
+    cout << "\t\t\t\t║   ╚═════════════════╦═════════════════╝    ║\n";
+
+    PhongBan *lastPB = dsPhongBan.back();
+    int j = 1;
     for (int i = 0; i < dsPhongBan.size(); i++)
     {
-      cout << "\t\tPhong ban thu " << i + 1 << endl;
-      dsPhongBan[i]->xuatPB();
-      cout << endl;
+      if (dsPhongBan[i] != lastPB)
+      {
+        cout << "\t\t\t\t║";
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14); // set color to yellow
+        cout << "     So thu tu       ";
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7); // set color to white
+        cout << "║ " << std::left << std::setw(20) << j << std::right << " ║" << endl;
+        dsPhongBan[i]->xuatPB();
+        cout << "\t\t\t\t╠═════════════════════╬══════════════════════╣\n";
+        j++;
+      }
+      else
+      {
+        cout << "\t\t\t\t║";
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14); // set color to yellow
+        cout << "     So thu tu       ";
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7); // set color to white
+        cout << "║ " << std::left << std::setw(20) << j << std::right << " ║" << endl;
+        dsPhongBan[i]->xuatPB();
+        cout << "\t\t\t\t╚═════════════════════╩══════════════════════╝\n";
+      }
     }
   }
 }

@@ -53,9 +53,13 @@ void GiamDoc::nhap()
 void GiamDoc::xuat()
 {
   NhanSu::xuat();
+  HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
   // ofstream output("DanhSachNhanVien.txt", ios::app);
-  cout << "\t\t\t|Luong\t\t\t| " << this->luong << "\t\t|" << endl;
-  cout << "\t\t\t_________________________________________" << endl;
+  cout << "\t\t\t\t║";
+  SetConsoleTextAttribute(color, 14);
+  cout << "  Luong";
+  SetConsoleTextAttribute(color, 7);
+  cout << "              ║ " << std::left << std::setw(20) << this->luong << std::right << " ║" << endl;
 
   // output << "Luong:"
   //        << "\t" << this->luong << endl;

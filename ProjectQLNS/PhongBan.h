@@ -13,11 +13,16 @@ private:
   string maPhongBan;
   TruongPhong *tp;
   vector<NhanVienThuong *> dsNV;
+  int soLuongNhanSu;
 
 public:
+  int getSoluongNhanSu();
+  void tangSoLuongNhanSu();
+  void giamSoLuongNhanSu();
   string getTenPhongBan();
   string getMaPhongBan();
   PhongBan();
+  TruongPhong *getTruongPhong();
   void setTruongPhong(TruongPhong *tp);
   vector<NhanVienThuong *> &getDsNV();
   void nhapPB();
