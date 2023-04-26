@@ -1,6 +1,13 @@
 Ma so	Ho ten	So dien thoai	So ngay lam viec	Luong	Ma phong ban	Nguoi quan ly	Ma so	So luong nhan vien	Ho va ten	Ma so	
 MSgd1	GD	1243123	28	8400	
+<<<<<<< HEAD:ProjectQLNS/DanhSachNhanSu.txt
 MSnv1	Chuoi	1231232	25	2500	pb2	Truong	MStp2	
 MSnv2	Cam	123156752	28	2800	pb1	
 MStp1	Vien	1231232	25	5000				
 MStp2	Truong	123156752	28	5600	pb2			1	Chuoi	MSnv1	
+=======
+MSnv1	Chuoi	1231232	25	2500		
+MSnv2	Cam	123156752	28	2800		
+MStp1	Vien	1231232	25	5000				
+MStp2	Truong	123156752	28	5600				
+>>>>>>> origin:ProjectQLNS/ProjectQLNS/DanhSachNhanSu.txt

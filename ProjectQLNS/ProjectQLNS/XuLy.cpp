@@ -11,8 +11,11 @@
 #include <fstream>
 #include <string>
 #include <conio.h>
+<<<<<<< HEAD:ProjectQLNS/XuLy.cpp
 #include <fcntl.h>
 #include <io.h>
+=======
+>>>>>>> origin:ProjectQLNS/ProjectQLNS/XuLy.cpp
 using namespace std;
 
 // void XuLy::inMenuPhongBan()
@@ -90,6 +93,7 @@ using namespace std;
 
 void clearScreen()
 {
+<<<<<<< HEAD:ProjectQLNS/XuLy.cpp
   HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
   COORD coordScreen = {0, 0}; // top-left corner
   DWORD cCharsWritten;
@@ -109,6 +113,24 @@ void clearScreen()
 
   // Move the cursor back to the top-left corner.
   SetConsoleCursorPosition(hConsole, coordScreen);
+=======
+  cout << endl;
+  HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+  SetConsoleTextAttribute(color, 11);
+  cout << "\t\t\t\t\t ___________________________________\n";
+  cout << "\t\t\t\t\t|                                   |\n";
+  cout << "\t\t\t\t\t|    Menu Quan ly phong ban 🏢\t\t|\n";
+  cout << "\t\t\t\t\t|                                   |\n";
+  cout << "\t\t\t\t\t|___________________________________|\n";
+  cout << endl;
+  SetConsoleTextAttribute(color, 7);
+  cout << "\t\t\t\t\t1. Them phong ban " << endl;
+  cout << "\t\t\t\t\t2. Xuat phong ban" << endl;
+  cout << "\t\t\t\t\t3. Phan bo nhan vien ve phong ban" << endl;
+  cout << "\t\t\t\t\t4. Chi dinh truong phong ve phong ban" << endl;
+  cout << "\t\t\t\t\t0. Thoat khoi menu quan ly phong ban" << endl;
+  cout << "\t\t\t\t\t--------------------> Moi chon 👉 ";
+>>>>>>> origin:ProjectQLNS/ProjectQLNS/XuLy.cpp
 }
 
 // void XuLy::xuLyMenuPhongBan()

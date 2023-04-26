@@ -88,6 +88,7 @@ void PhongBan::xuatPB()
 
   if (tp != nullptr)
   {
+<<<<<<< HEAD:ProjectQLNS/PhongBan.cpp
     cout << "\t\t\t\t║";
     cout << "──────────";
     SetConsoleTextAttribute(color, 3);
@@ -106,6 +107,19 @@ void PhongBan::xuatPB()
     cout << "║ " << std::left << std::setw(20) << tp->getHoTen() << std::right << " ║" << endl;
     SetConsoleTextAttribute(color, 7);
     SetConsoleTextAttribute(color, 7);
+=======
+    cout << "\t\t\t\t Truong phong cua phong ban nay la: " << endl;
+    cout << "Ma so: " << tp->getMaSo() << "\t"
+         << "Ho ten: " << tp->getHoTen() << endl;
+  }
+  else
+  {
+    cout << "Chua co truong phong trong phong ban " << tenPhongBan << " - Mang ma so " << maPhongBan << endl;
+  }
+  if (dsNV.size() == 0)
+  {
+    cout << "\t\t\t\tChua co nhan vien nao trong phong ban " << tenPhongBan << " - Mang ma so " << maPhongBan << endl;
+>>>>>>> origin:ProjectQLNS/ProjectQLNS/PhongBan.cpp
   }
   else
   {

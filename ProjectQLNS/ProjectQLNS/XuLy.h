@@ -50,10 +50,15 @@ public:
   void chiDinhTruongPhong();
   void XuLyChung();
   void inMenuChung();
+<<<<<<< HEAD:ProjectQLNS/XuLy.h
   void gotoxy(int x, int y);
   void xoaTPkhoiPB();
   void xoaNVkhoiPB();
   void xoaPB();
   void sapXepSoLuongNhanSuPBGD();
   void sapXepSoLuongNhanSuPBTD();
+=======
+  void coLor(int color);
+  void gotoxy(int x, int y);
+>>>>>>> origin:ProjectQLNS/ProjectQLNS/XuLy.h
 };

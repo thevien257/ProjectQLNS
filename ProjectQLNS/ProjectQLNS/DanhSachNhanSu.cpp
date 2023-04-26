@@ -288,12 +288,16 @@ void danhSachNhanSu::xuat()
   cout << " ║════╗\n";
   cout << "\t\t\t\t║   ╚═════════════════╦═════════════════╝    ║\n";
 
+<<<<<<< HEAD:ProjectQLNS/DanhSachNhanSu.cpp
   int j = 1;
+=======
+>>>>>>> origin:ProjectQLNS/ProjectQLNS/DanhSachNhanSu.cpp
   NhanSu *lastNS = dsNhanSu.back();
   for (NhanSu *ns : dsNhanSu)
   {
     if (ns != lastNS)
     {
+<<<<<<< HEAD:ProjectQLNS/DanhSachNhanSu.cpp
       cout << "\t\t\t\t║  ";
       SetConsoleTextAttribute(color, 14);
       cout << "So thu tu          ";
@@ -310,6 +314,13 @@ void danhSachNhanSu::xuat()
       cout << "So thu tu          ";
       SetConsoleTextAttribute(color, 7);
       cout << "║ " << std::left << std::setw(20) << j << std::right << " ║" << endl;
+=======
+      ns->xuat();
+      cout << "\t\t\t\t╠═════════════════════╬══════════════════════╣\n";
+    }
+    else
+    {
+>>>>>>> origin:ProjectQLNS/ProjectQLNS/DanhSachNhanSu.cpp
       ns->xuat();
       cout << "\t\t\t\t╚═════════════════════╩══════════════════════╝\n";
     }
