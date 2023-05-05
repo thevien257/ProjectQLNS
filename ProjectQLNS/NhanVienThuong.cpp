@@ -8,6 +8,13 @@
 #include <windows.h>
 using namespace std;
 
+// istream &operator>>(istream &is, NhanVienThuong &nvt)
+// {
+//   // Read data from the input stream and populate the ns object
+//   is >> nvt.hoTen >> nvt.maSo >> nvt.soDienThoai >> nvt.soNgayLamViec;
+//   return is;
+// }
+
 void NhanVienThuong::giamSoLuongTask()
 {
   this->soLuongTask--;
@@ -69,9 +76,29 @@ TruongPhong *NhanVienThuong::getTruongPhong()
   return tp;
 }
 
+// ostream &operator<<(ostream &os, const NhanVienThuong &nvt)
+// {
+//   os << "Ho ten: " << nvt.hoTen << endl;
+//   os << "Ma so: " << nvt.maSo << endl;
+//   os << "So dien thoai: " << nvt.soDienThoai << endl;
+//   os << "So ngay lam viec: " << nvt.soNgayLamViec << endl;
+//   if (nvt.tp != nullptr)
+//   {
+//     os << "___________Thong tin nguoi quan ly__________" << endl;
+//     os << "Ho ten truong phong: " << nvt.tp->getHoTen() << endl;
+//     os << "Ma so truong phong: " << nvt.tp->getMaSo() << endl;
+//   }
+//   if (nvt.maPhongBan != "")
+//   {
+//     os << "Ma phong ban: " << nvt.maPhongBan << endl;
+//   }
+//   os << endl;
+//   return os;
+// }
+
 ostream &operator<<(ostream &os, const NhanVienThuong &nvt)
 {
-  os << nvt.maSo << "\t" << nvt.hoTen << "\t" << nvt.soDienThoai << "\t" << nvt.viTriViecLam << "\t" << nvt.soNgayLamViec << "\t" << nvt.luong << "\t";
+  os << nvt.maSo << "\t" << nvt.hoTen << "\t" << nvt.soDienThoai << "\t" << nvt.soNgayLamViec << "\t" << nvt.luong << "\t";
   if (nvt.maPhongBan != "")
   {
     os << nvt.maPhongBan << "\t";
@@ -79,30 +106,6 @@ ostream &operator<<(ostream &os, const NhanVienThuong &nvt)
   else
   {
     os << "\t";
-  }
-  if (nvt.soLuongTask != 0)
-  {
-    os << nvt.soLuongTask << "\t";
-    for (int i = 0; i < nvt.soLuongTask; i++)
-    {
-      Task *task = nvt.dsTask.at(i);
-      os << nvt.dsTask[i]->getMaTask() << "\t";
-      os << nvt.dsTask[i]->getTenTask() << "\t";
-      os << nvt.dsTask[i]->getTrangThaiTask() << "\t";
-      if (i == nvt.dsTask.size() - 1)
-      {
-        break;
-      }
-      else if (i != nvt.dsTask.size() - 1 && !os.fail())
-      {
-        os << endl;
-        os << "\t\t\t\t\t\t\t\t";
-      }
-    }
-  }
-  else
-  {
-    os << "\t\t\t\t";
   }
   if (nvt.tp != nullptr)
   {
@@ -131,7 +134,7 @@ NhanVienThuong::NhanVienThuong(string maSo, string hoTen, string soDienThoai, fl
 
 void NhanVienThuong::tinhLuong()
 {
-  this->luong = NhanSu::luong1NgayNVT * this->soNgayLamViec + NhanSu::phuCapNVT * hoanThanhTask - NhanSu::phuCapNVT * chuaHoanThanhTask;
+  this->luong = luong1NgayNVT * this->soNgayLamViec;
 }
 
 void NhanVienThuong::nhap()
@@ -143,12 +146,27 @@ void NhanVienThuong::xuat()
 {
   HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
   NhanSu::xuat();
+  // cout << "\t\t\t\t║  Luong              ║ " << std::left << std::setw(20) << this->luong << std::right << " ║" << endl;
+  // if (maPhongBan != "")
+  // {
+  //   cout << "\t\t\t\t║  Ma phong ban       ║ " << std::left << std::setw(20) << this->maPhongBan << std::right << " ║" << endl;
+  // }
+  // if (tp != nullptr)
+  // {
+  //   cout << "\t\t\t\t║";
+  //   SetConsoleTextAttribute(color, 11);
+  //   cout << "          Thong tin nguoi quan ly";
+  //   SetConsoleTextAttribute(color, 7);
+  //   cout << "           ║\n";
+  //   cout << "\t\t\t\t║  Ten truong phong   ║ " << std::left << std::setw(20) << tp->getHoTen() << std::right << " ║" << endl;
+  //   cout << "\t\t\t\t║  Ma truong phong    ║ " << std::left << std::setw(20) << tp->getMaSo() << std::right << " ║" << endl;
+  // }
 
   cout << "\t\t\t\t║";
   SetConsoleTextAttribute(color, 14);
   cout << "  Luong              ";
   SetConsoleTextAttribute(color, 7);
-  cout << "║ " << std::left << std::setw(20) << formatLuong(this->luong) << std::right << " ║" << endl;
+  cout << "║ " << std::left << std::setw(20) << this->luong << std::right << " ║" << endl;
   SetConsoleTextAttribute(color, 7);
   cout << "\t\t\t\t║";
   SetConsoleTextAttribute(color, 14);

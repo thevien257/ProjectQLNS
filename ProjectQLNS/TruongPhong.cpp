@@ -30,22 +30,41 @@ string TruongPhong::getMaPhongBan()
   return maPhongBan;
 }
 
+// ostream &operator<<(ostream &os, const TruongPhong &tp)
+// {
+//   os << "Ho ten: " << tp.hoTen << endl;
+//   os << "Ma so: " << tp.maSo << endl;
+//   os << "So dien thoai: " << tp.soDienThoai << endl;
+//   os << "Ngay lam viec: " << tp.soNgayLamViec << endl;
+//   if (tp.soLuongNhanVien > 0)
+//   {
+//     os << "So luong nhan vien: " << tp.soLuongNhanVien << endl;
+//     os << "___________Dang quan ly cac nhan vien sau:__________" << endl;
+//     for (NhanVienThuong *nvt : tp.listNV)
+//     {
+//       os << "Ho va ten: " << nvt->getHoTen() << endl;
+//       os << "Ma so: " << nvt->getMaSo() << endl;
+//     }
+//   }
+//   os << endl;
+//   return os;
+// }
+
 ostream &operator<<(ostream &os, const TruongPhong &tp)
 
 {
   os << tp.maSo << "\t";
   os << tp.hoTen << "\t";
   os << tp.soDienThoai << "\t";
-  os << tp.viTriViecLam << "\t";
   os << tp.soNgayLamViec << "\t";
   os << tp.luong << "\t";
   if (tp.maPhongBan != "")
   {
-    os << tp.maPhongBan << "\t\t\t\t\t\t\t";
+    os << tp.maPhongBan << "\t\t\t";
   }
   else
   {
-    os << "\t\t\t\t\t\t\t";
+    os << "\t\t\t";
   }
   if (tp.soLuongNhanVien > 0)
   {
@@ -64,7 +83,7 @@ ostream &operator<<(ostream &os, const TruongPhong &tp)
       else if (i != tp.listNV.size() - 1 && !os.fail())
       {
         os << endl;
-        os << "\t\t\t\t\t\t\t\t\t\t\t\t\t\t";
+        os << "\t\t\t\t\t\t\t\t\t";
       }
     }
   }
@@ -141,7 +160,7 @@ void TruongPhong::xuat()
   SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
   cout << "  Luong              ";
   SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
-  cout << "║ " << std::left << std::setw(20) << formatLuong(this->luong) << std::right << " ║" << endl;
+  cout << "║ " << std::left << std::setw(20) << this->luong << std::right << " ║" << endl;
 
   cout << "\t\t\t\t║";
   SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
@@ -191,5 +210,5 @@ void TruongPhong::giamNhanVien()
 
 void TruongPhong::tinhLuong()
 {
-  this->luong = NhanSu::luong1NgayTP * this->soNgayLamViec + NhanSu::phuCapTP * this->soLuongNhanVien;
+  this->luong = luong1NgayTP * this->soNgayLamViec + 100 * this->soLuongNhanVien;
 }

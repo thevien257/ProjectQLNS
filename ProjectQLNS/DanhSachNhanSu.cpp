@@ -78,20 +78,15 @@ void danhSachNhanSu::ghiFile(string filename)
         file << "Ma so\t"
              << "Ho ten\t"
              << "So dien thoai\t"
-             << "Vi tri viec lam\t"
              << "So ngay lam viec\t"
              << "Luong\t"
              << "Ma phong ban\t"
-             << "So luong task\t"
-             << "Ma task\t"
-             << "Ten task\t"
-             << "Trang thai Task\t"
              << "Nguoi quan ly\t"
              << "Ma so\t"
              << "So luong nhan vien\t"
-             << "Ho va ten nhan vien\t"
-             << "Ma so nhan vien\t" << endl; // print header
-        headerPrinted = true;                // set flag to true
+             << "Ho va ten\t"
+             << "Ma so\t" << endl; // print header
+        headerPrinted = true;      // set flag to true
       }
       NhanSu *ns = *it;
       // Kiem tra xem neu trong set co ma so roi thi ko xuat nua, con chua co thi xuat
@@ -304,7 +299,6 @@ void danhSachNhanSu::xuat()
       cout << "So thu tu          ";
       SetConsoleTextAttribute(color, 7);
       cout << "║ " << std::left << std::setw(20) << j << std::right << " ║" << endl;
-      ns->tinhLuong();
       ns->xuat();
       cout << "\t\t\t\t╠═════════════════════╬══════════════════════╣\n";
       j++;
@@ -316,7 +310,6 @@ void danhSachNhanSu::xuat()
       cout << "So thu tu          ";
       SetConsoleTextAttribute(color, 7);
       cout << "║ " << std::left << std::setw(20) << j << std::right << " ║" << endl;
-      ns->tinhLuong();
       ns->xuat();
       cout << "\t\t\t\t╚═════════════════════╩══════════════════════╝\n";
     }

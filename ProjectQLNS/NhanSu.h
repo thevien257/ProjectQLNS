@@ -9,9 +9,9 @@
 #include "Task.h"
 using namespace std;
 
-// const int luong1NgayNVT = 100;
-// const int luong1NgayTP = 200;
-// const int luong1NgayGD = 300;
+const int luong1NgayNVT = 100;
+const int luong1NgayTP = 200;
+const int luong1NgayGD = 300;
 
 class NhanSu
 {
@@ -23,11 +23,6 @@ protected:
   float soNgayLamViec;
   long luong;
   vector<Task *> dsTask;
-  static long luong1NgayNVT;
-  static long luong1NgayTP;
-  static long luong1NgayGD;
-  static long phuCapNVT;
-  static long phuCapTP;
 
 public:
   NhanSu();
@@ -46,5 +41,4 @@ public:
   friend istream &operator>>(istream &is, NhanSu &ns);
   friend ostream &operator<<(ostream &os, const NhanSu &ns);
   vector<Task *> getDSTask();
-  string formatLuong(double amount);
 };
