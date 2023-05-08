@@ -1,0 +1,8 @@
+Ma so	Ho ten	So dien thoai	Vi tri viec lam	So ngay lam viec	Luong	Ma phong ban	So luong task	Ma task	Ten task	Trang thai Task	Nguoi quan ly	Ma so	So luong nhan vien	Ho va ten nhan vien	Ma so nhan vien	
+MSgd1	GD	1243123	Giam doc	28	28000000	
+MSnv1	Chuoi	1231232	Nhan vien thuong	25	5100000	pb1	2	task1	QuanLyGioLam	Hoan thanh	
+								task3	DataBase	Hoan thanh	Vien	MStp1	
+MSnv2	Cam	123156752	Nhan vien thuong	28	5700000	pb1	1	task2	InAn	Hoan thanh	Vien	MStp1	
+MStp1	Vien	1231232	Truong phong	25	7900000	pb1							2	Chuoi	MSnv1	
+														Cam	MSnv2	
+MStp2	Truong	123156752	Truong phong	28	8400000	pb2							
