@@ -8,5 +8,7 @@ admin admin
 admin admin
 12 12
 0 0
+<<<<<<< HEAD:ProjectQLNS/output.txt
 thevien2507 123123
-ad ad
+=======
+>>>>>>> origin:ProjectQLNS/ProjectQLNS/output.txt

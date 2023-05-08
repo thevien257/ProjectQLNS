@@ -17,15 +17,10 @@ void DanhSachPhongBan::setDsPhongBan(vector<PhongBan *> dsPhongBan)
 void DanhSachPhongBan::nhapPB()
 {
   int n;
-  cout << "\t\t\t\tNhap so luong phong ban: ";
+  cout << "\t\tNhap so luong phong ban: ";
   cin >> n;
-  HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
   for (int i = 0; i < n; i++)
   {
-    cout << endl;
-    SetConsoleTextAttribute(color, 11);
-    cout << "\t\t\t\tNhap phong ban thu " << i + 1 << " ✍️" << endl;
-    SetConsoleTextAttribute(color, 7);
     PhongBan *pb = new PhongBan();
     pb->nhapPB();
     dsPhongBan.push_back(pb);

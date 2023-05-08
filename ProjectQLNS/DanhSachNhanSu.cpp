@@ -288,12 +288,16 @@ void danhSachNhanSu::xuat()
   cout << " ║════╗\n";
   cout << "\t\t\t\t║   ╚═════════════════╦═════════════════╝    ║\n";
 
+<<<<<<< HEAD:ProjectQLNS/DanhSachNhanSu.cpp
   int j = 1;
+=======
+>>>>>>> origin:ProjectQLNS/ProjectQLNS/DanhSachNhanSu.cpp
   NhanSu *lastNS = dsNhanSu.back();
   for (NhanSu *ns : dsNhanSu)
   {
     if (ns != lastNS)
     {
+<<<<<<< HEAD:ProjectQLNS/DanhSachNhanSu.cpp
       cout << "\t\t\t\t║  ";
       SetConsoleTextAttribute(color, 14);
       cout << "So thu tu          ";
@@ -310,89 +314,15 @@ void danhSachNhanSu::xuat()
       cout << "So thu tu          ";
       SetConsoleTextAttribute(color, 7);
       cout << "║ " << std::left << std::setw(20) << j << std::right << " ║" << endl;
+=======
+      ns->xuat();
+      cout << "\t\t\t\t╠═════════════════════╬══════════════════════╣\n";
+    }
+    else
+    {
+>>>>>>> origin:ProjectQLNS/ProjectQLNS/DanhSachNhanSu.cpp
       ns->xuat();
       cout << "\t\t\t\t╚═════════════════════╩══════════════════════╝\n";
     }
-  }
-}
-
-void danhSachNhanSu::xuatNV()
-{
-  vector<NhanVienThuong *> listNVT;
-  for (NhanSu *ns : dsNhanSu)
-  {
-    if (NhanVienThuong *nvt = dynamic_cast<NhanVienThuong *>(ns))
-    {
-      if (nvt != nullptr)
-      {
-        listNVT.push_back(nvt);
-      }
-    }
-  }
-  bool flag = true;
-  int chon;
-  HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
-  cout << "\t\t\t\t    ╔═══════════════════════════════════╗\n";
-  cout << "\t\t\t\t╔═══║ ";
-  SetConsoleTextAttribute(color, 11);
-  cout << "  Nhan vien hoan thanh task    📂";
-  SetConsoleTextAttribute(color, 7);
-  cout << " ║════╗\n";
-  cout << "\t\t\t\t║   ╚═════════════════╦═════════════════╝    ║\n";
-
-  int j = 1;
-  NhanVienThuong *lastNV = listNVT.back();
-  for (NhanVienThuong *nvt : listNVT)
-  {
-    cout << "\t\t\t\t║  ";
-    SetConsoleTextAttribute(color, 14);
-    cout << "So thu tu          ";
-    SetConsoleTextAttribute(color, 7);
-    cout << "║ " << std::left << std::setw(20) << j << std::right << " ║" << endl;
-    nvt->xuat();
-    if (nvt != lastNV)
-    {
-      cout << "\t\t\t\t╠═════════════════════╬══════════════════════╣\n";
-    }
-    else
-    {
-      cout << "\t\t\t\t╚═════════════════════╩══════════════════════╝\n";
-    }
-    j++;
-  }
-}
-
-void danhSachNhanSu::xuatNV(vector<NhanVienThuong *> listNVT)
-{
-  bool flag = true;
-  int chon;
-  HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
-  cout << "\t\t\t\t    ╔═══════════════════════════════════╗\n";
-  cout << "\t\t\t\t╔═══║ ";
-  SetConsoleTextAttribute(color, 11);
-  cout << "     Danh sach nhan vien       📂";
-  SetConsoleTextAttribute(color, 7);
-  cout << " ║════╗\n";
-  cout << "\t\t\t\t║   ╚═════════════════╦═════════════════╝    ║\n";
-
-  int j = 1;
-  NhanVienThuong *lastNV = listNVT.back();
-  for (NhanVienThuong *nvt : listNVT)
-  {
-    cout << "\t\t\t\t║  ";
-    SetConsoleTextAttribute(color, 14);
-    cout << "So thu tu          ";
-    SetConsoleTextAttribute(color, 7);
-    cout << "║ " << std::left << std::setw(20) << j << std::right << " ║" << endl;
-    nvt->xuat();
-    if (nvt != lastNV)
-    {
-      cout << "\t\t\t\t╠═════════════════════╬══════════════════════╣\n";
-    }
-    else
-    {
-      cout << "\t\t\t\t╚═════════════════════╩══════════════════════╝\n";
-    }
-    j++;
   }
 }

@@ -7,8 +7,6 @@
 #include <iomanip>
 #include <fstream>
 #include <windows.h>
-
-class NhanVienThuong;
 class danhSachNhanSu
 {
 private:
@@ -22,8 +20,6 @@ public:
   void inMenu();
   void nhap();
   void xuat();
-  void xuatNV();
-  void xuatNV(vector<NhanVienThuong *> listNV);
   void docFileNVT(string filename);
   void docFileGD(string filename);
   void docFileTP(string filename);
