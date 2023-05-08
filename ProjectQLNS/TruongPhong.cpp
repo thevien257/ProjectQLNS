@@ -109,39 +109,12 @@ void TruongPhong::xuat()
 {
   HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
   NhanSu::xuat();
-  // cout << "\t\t\t\t║  Luong              ║ " << std::left << std::setw(20) << this->luong << std::right << " ║" << endl;
-  // cout << "\t\t\t\t║  So luong nhan vien ║ " << std::left << std::setw(20) << this->soLuongNhanVien << std::right << " ║" << endl;
-  // if (maPhongBan != "")
-  // {
-  //   cout << "\t\t\t\t║  Ma phong ban       ║ " << std::left << std::setw(20) << this->maPhongBan << std::right << " ║" << endl;
-  // }
 
-  // if (soLuongNhanVien > 0)
-  // {
-  //   cout << "\t\t\t\t║";
-  //   SetConsoleTextAttribute(color, 11);
-  //   cout << "             Thong tin nhan vien";
-  //   SetConsoleTextAttribute(color, 7);
-  //   cout << "            ║\n";
-  //   int i = 1;
-  //   for (NhanVienThuong *nv : listNV)
-  //   {
-  //     cout << "\t\t\t\t║";
-  //     SetConsoleTextAttribute(color, 14);
-  //     cout << "              Nhan vien thu " << i;
-  //     SetConsoleTextAttribute(color, 7);
-  //     cout << "               ║\n";
-  //     cout << "\t\t\t\t║  Ten nhan vien      ║ " << std::left << std::setw(20) << nv->getHoTen() << std::right << " ║" << endl;
-  //     cout << "\t\t\t\t║  Ma so nhan vien    ║ " << std::left << std::setw(20) << nv->getMaSo() << std::right << " ║" << endl;
-  //     i++;
-  //   }
-  // }
-
-  cout << "\t\t\t\t║";
-  SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
-  cout << "  Luong              ";
-  SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
-  cout << "║ " << std::left << std::setw(20) << formatLuong(this->luong) << std::right << " ║" << endl;
+  // cout << "\t\t\t\t║";
+  // SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
+  // cout << "  Luong              ";
+  // SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+  // cout << "║ " << std::left << std::setw(20) << formatLuong(this->luong) << std::right << " ║" << endl;
 
   cout << "\t\t\t\t║";
   SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);

@@ -40,11 +40,11 @@ void GiamDoc::xuat()
 {
   NhanSu::xuat();
   HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
-  cout << "\t\t\t\t║";
-  SetConsoleTextAttribute(color, 14);
-  cout << "  Luong";
-  SetConsoleTextAttribute(color, 7);
-  cout << "              ║ " << std::left << std::setw(20) << formatLuong(this->luong) << std::right << " ║" << endl;
+  // cout << "\t\t\t\t║";
+  // SetConsoleTextAttribute(color, 14);
+  // cout << "  Luong";
+  // SetConsoleTextAttribute(color, 7);
+  // cout << "              ║ " << std::left << std::setw(20) << formatLuong(this->luong) << std::right << " ║" << endl;
 
   // cout << "              ║ " << std::left << std::setw(20) << this->luong << std::right << " ║" << endl;
 }

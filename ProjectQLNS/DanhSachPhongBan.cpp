@@ -30,6 +30,9 @@ void DanhSachPhongBan::nhapPB()
     pb->nhapPB();
     dsPhongBan.push_back(pb);
   }
+  SetConsoleTextAttribute(color, 10);
+  cout << "\t\t\t\tDa nhap xong phong ban ✅" << endl;
+  SetConsoleTextAttribute(color, 7);
 }
 
 void DanhSachPhongBan::xuatPB()

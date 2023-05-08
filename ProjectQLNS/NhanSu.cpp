@@ -116,21 +116,6 @@ void NhanSu::nhap()
 
 void NhanSu::xuat()
 {
-  // cout << "\t\t\t\t║  Ma so              ║ " << std::left << std::setw(20) << this->maSo << std::right << " ║" << endl;
-  // cout << "\t\t\t\t║  Ho ten             ║ " << std::left << std::setw(20) << this->hoTen << std::right << " ║" << endl;
-  // if (viTriViecLam == "Nhan vien thuong")
-  // {
-  //   cout << "\t\t\t\t║  Vi tri viec lam    ║ " << std::left << std::setw(20) << viTriViecLam << std::right << " ║" << endl;
-  // }
-  // else if (viTriViecLam == "Truong phong")
-  // {
-  //   cout << "\t\t\t\t║  Vi tri viec lam    ║ " << std::left << std::setw(20) << this->viTriViecLam << std::right << " ║" << endl;
-  // }
-  // else
-  // {
-  //   cout << "\t\t\t\t║  Vi tri viec lam    ║ " << std::left << std::setw(20) << this->viTriViecLam << std::right << " ║" << endl;
-  // }
-  // cout << "\t\t\t\t║  So dien thoai      ║ " << std::left << std::setw(20) << this->soDienThoai << std::right << " ║" << endl;
   HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
   cout << "\t\t\t\t║  ";
   SetConsoleTextAttribute(color, 14);
@@ -143,6 +128,12 @@ void NhanSu::xuat()
   cout << "Ho ten             ";
   SetConsoleTextAttribute(color, 7);
   cout << "║ " << std::left << std::setw(20) << this->hoTen << std::right << " ║" << endl;
+
+  cout << "\t\t\t\t║  ";
+  SetConsoleTextAttribute(color, 14);
+  cout << "So dien thoai      ";
+  SetConsoleTextAttribute(color, 7);
+  cout << "║ " << std::left << std::setw(20) << this->soDienThoai << std::right << " ║" << endl;
 
   if (viTriViecLam == "Nhan vien thuong")
   {
@@ -169,11 +160,11 @@ void NhanSu::xuat()
     cout << "║ " << std::left << std::setw(20) << this->viTriViecLam << std::right << " ║" << endl;
   }
 
-  cout << "\t\t\t\t║  ";
+  cout << "\t\t\t\t║";
   SetConsoleTextAttribute(color, 14);
-  cout << "So dien thoai      ";
+  cout << "  Luong              ";
   SetConsoleTextAttribute(color, 7);
-  cout << "║ " << std::left << std::setw(20) << this->soDienThoai << std::right << " ║" << endl;
+  cout << "║ " << std::left << std::setw(20) << formatLuong(this->luong) + " d" << std::right << " ║" << endl;
 }
 
 void NhanSu::tinhLuong()
