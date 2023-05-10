@@ -9,26 +9,6 @@
 #include <sstream>
 using namespace std;
 
-long NhanSu::luong1NgayNVT = 200000;
-long NhanSu::luong1NgayTP = 300000;
-long NhanSu::luong1NgayGD = 1000000;
-long NhanSu::phuCapNVT = 100000;
-long NhanSu::phuCapTP = 200000;
-
-string NhanSu::formatLuong(double amount)
-{
-  int luong = (int)amount; // cast sang int de khong co dau phay
-  stringstream ss;
-  ss << fixed << setprecision(0) << luong; // set precision to 0 nen se khong co dau phay
-  string str = ss.str();
-  int len = str.length();
-  for (int i = len - 3; i > 0; i -= 3)
-  {
-    str.insert(i, ".");
-  }
-  return str;
-}
-
 string NhanSu::getViTriViecLam()
 {
   return viTriViecLam;

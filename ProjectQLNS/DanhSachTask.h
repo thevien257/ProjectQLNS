@@ -2,9 +2,6 @@
 #include <iostream>
 #include "Task.h"
 #include <vector>
-#include <windows.h>
-#include <iomanip>
-#include <fstream>
 
 class DanhSachTask
 {

@@ -16,10 +16,6 @@ class NhanVienThuong : public NhanSu
 private:
   TruongPhong *tp;
   string maPhongBan;
-  vector<Task *> dsTask;
-  int hoanThanhTask;
-  int chuaHoanThanhTask;
-  int soLuongTask;
 
 public:
   NhanVienThuong();
@@ -28,7 +24,6 @@ public:
   void tinhLuong();
   void setTruongPhong(TruongPhong *tp);
   void setMaPhongBan(string maPhongBan);
-  vector<Task *> &getDSTask();
   string getMaPhongBan();
   TruongPhong *getTruongPhong();
   void nhap();
@@ -36,11 +31,4 @@ public:
   ~NhanVienThuong();
   // friend istream &operator>>(istream &is, NhanVienThuong &nvt);
   friend ostream &operator<<(ostream &os, const NhanVienThuong &nvt);
-  void tangTaskHoanThanh();
-  void tangTaskChuaHoanThanh();
-  int getHoanThanhTask();
-  int getChuaHoanThanhTask();
-  void tangSoLuongTask();
-  void giamSoLuongTask();
-  int getSoLuongTask();
 };

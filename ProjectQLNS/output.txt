@@ -8,8 +8,16 @@ admin admin
 admin admin
 12 12
 0 0
+<<<<<<< HEAD:ProjectQLNS/output.txt
 thevien2507 123123
+<<<<<<< HEAD
 ad ad
 taikhoan taikhoan
 tai tai
 test test
+||||||| 457744a
+ad ad
+=======
+=======
+>>>>>>> origin:ProjectQLNS/ProjectQLNS/output.txt
+>>>>>>> 8643634149765d053045f17711cb8b856c6e7ea5
