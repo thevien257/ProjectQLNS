@@ -49,24 +49,17 @@ public:
   NhanVienThuong *timNVT(string maPhong);
   void chiDinhTruongPhong();
   void XuLyChung();
-<<<<<<< HEAD
   // void inMenuChung();
   // void gotoxy(int x, int y);
-||||||| 457744a
-  void inMenuChung();
-  void gotoxy(int x, int y);
-=======
-  void inMenuChung();
-<<<<<<< HEAD:ProjectQLNS/XuLy.h
-  void gotoxy(int x, int y);
->>>>>>> 8643634149765d053045f17711cb8b856c6e7ea5
   void xoaTPkhoiPB();
   void xoaNVkhoiPB();
   void xoaPB();
   void sapXepSoLuongNhanSuPBGD();
   void sapXepSoLuongNhanSuPBTD();
-=======
-  void coLor(int color);
-  void gotoxy(int x, int y);
->>>>>>> origin:ProjectQLNS/ProjectQLNS/XuLy.h
+  Task *timTask(string maTask);
+  void xoaTask();
+  void xoaTaskKhoiNV();
+  void sapXepSoLuongTaskNV();
+  void sapXepTaskHoanThanh();
+  void danhGiaTask();
 };

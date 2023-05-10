@@ -18,6 +18,5 @@ public:
   void nhap();
   void xuat();
   void tinhLuong();
-  // friend istream &operator>>(istream &is, GiamDoc &gd);
   friend ostream &operator<<(ostream &os, const GiamDoc &gd);
 };

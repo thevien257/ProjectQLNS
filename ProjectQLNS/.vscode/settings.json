@@ -38,6 +38,18 @@
     "tuple": "cpp",
     "typeinfo": "cpp",
     "utility": "cpp",
-    "algorithm": "cpp"
+    "algorithm": "cpp",
+    "set": "cpp",
+    "atomic": "cpp",
+    "bit": "cpp",
+    "cstdarg": "cpp",
+    "cstddef": "cpp",
+    "iterator": "cpp",
+    "memory": "cpp",
+    "memory_resource": "cpp",
+    "numeric": "cpp",
+    "random": "cpp",
+    "bitset": "cpp",
+    "regex": "cpp"
   }
 }

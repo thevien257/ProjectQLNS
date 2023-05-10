@@ -30,41 +30,22 @@ string TruongPhong::getMaPhongBan()
   return maPhongBan;
 }
 
-// ostream &operator<<(ostream &os, const TruongPhong &tp)
-// {
-//   os << "Ho ten: " << tp.hoTen << endl;
-//   os << "Ma so: " << tp.maSo << endl;
-//   os << "So dien thoai: " << tp.soDienThoai << endl;
-//   os << "Ngay lam viec: " << tp.soNgayLamViec << endl;
-//   if (tp.soLuongNhanVien > 0)
-//   {
-//     os << "So luong nhan vien: " << tp.soLuongNhanVien << endl;
-//     os << "___________Dang quan ly cac nhan vien sau:__________" << endl;
-//     for (NhanVienThuong *nvt : tp.listNV)
-//     {
-//       os << "Ho va ten: " << nvt->getHoTen() << endl;
-//       os << "Ma so: " << nvt->getMaSo() << endl;
-//     }
-//   }
-//   os << endl;
-//   return os;
-// }
-
 ostream &operator<<(ostream &os, const TruongPhong &tp)
 
 {
   os << tp.maSo << "\t";
   os << tp.hoTen << "\t";
   os << tp.soDienThoai << "\t";
+  os << tp.viTriViecLam << "\t";
   os << tp.soNgayLamViec << "\t";
   os << tp.luong << "\t";
   if (tp.maPhongBan != "")
   {
-    os << tp.maPhongBan << "\t\t\t";
+    os << tp.maPhongBan << "\t\t\t\t\t\t\t";
   }
   else
   {
-    os << "\t\t\t";
+    os << "\t\t\t\t\t\t\t";
   }
   if (tp.soLuongNhanVien > 0)
   {
@@ -83,7 +64,7 @@ ostream &operator<<(ostream &os, const TruongPhong &tp)
       else if (i != tp.listNV.size() - 1 && !os.fail())
       {
         os << endl;
-        os << "\t\t\t\t\t\t\t\t\t";
+        os << "\t\t\t\t\t\t\t\t\t\t\t\t\t\t";
       }
     }
   }
@@ -129,67 +110,11 @@ void TruongPhong::xuat()
   HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
   NhanSu::xuat();
 
-<<<<<<< HEAD
   // cout << "\t\t\t\t║";
   // SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
   // cout << "  Luong              ";
   // SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
   // cout << "║ " << std::left << std::setw(20) << formatLuong(this->luong) << std::right << " ║" << endl;
-||||||| 457744a
-  // if (soLuongNhanVien > 0)
-  // {
-  //   cout << "\t\t\t\t║";
-  //   SetConsoleTextAttribute(color, 11);
-  //   cout << "             Thong tin nhan vien";
-  //   SetConsoleTextAttribute(color, 7);
-  //   cout << "            ║\n";
-  //   int i = 1;
-  //   for (NhanVienThuong *nv : listNV)
-  //   {
-  //     cout << "\t\t\t\t║";
-  //     SetConsoleTextAttribute(color, 14);
-  //     cout << "              Nhan vien thu " << i;
-  //     SetConsoleTextAttribute(color, 7);
-  //     cout << "               ║\n";
-  //     cout << "\t\t\t\t║  Ten nhan vien      ║ " << std::left << std::setw(20) << nv->getHoTen() << std::right << " ║" << endl;
-  //     cout << "\t\t\t\t║  Ma so nhan vien    ║ " << std::left << std::setw(20) << nv->getMaSo() << std::right << " ║" << endl;
-  //     i++;
-  //   }
-  // }
-
-  cout << "\t\t\t\t║";
-  SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
-  cout << "  Luong              ";
-  SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
-  cout << "║ " << std::left << std::setw(20) << formatLuong(this->luong) << std::right << " ║" << endl;
-=======
-  // if (soLuongNhanVien > 0)
-  // {
-  //   cout << "\t\t\t\t║";
-  //   SetConsoleTextAttribute(color, 11);
-  //   cout << "             Thong tin nhan vien";
-  //   SetConsoleTextAttribute(color, 7);
-  //   cout << "            ║\n";
-  //   int i = 1;
-  //   for (NhanVienThuong *nv : listNV)
-  //   {
-  //     cout << "\t\t\t\t║";
-  //     SetConsoleTextAttribute(color, 14);
-  //     cout << "              Nhan vien thu " << i;
-  //     SetConsoleTextAttribute(color, 7);
-  //     cout << "               ║\n";
-  //     cout << "\t\t\t\t║  Ten nhan vien      ║ " << std::left << std::setw(20) << nv->getHoTen() << std::right << " ║" << endl;
-  //     cout << "\t\t\t\t║  Ma so nhan vien    ║ " << std::left << std::setw(20) << nv->getMaSo() << std::right << " ║" << endl;
-  //     i++;
-  //   }
-  // }
-
-  cout << "\t\t\t\t║";
-  SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
-  cout << "  Luong              ";
-  SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
-  cout << "║ " << std::left << std::setw(20) << this->luong << std::right << " ║" << endl;
->>>>>>> 8643634149765d053045f17711cb8b856c6e7ea5
 
   cout << "\t\t\t\t║";
   SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
@@ -239,5 +164,5 @@ void TruongPhong::giamNhanVien()
 
 void TruongPhong::tinhLuong()
 {
-  this->luong = luong1NgayTP * this->soNgayLamViec + 100 * this->soLuongNhanVien;
+  this->luong = NhanSu::luong1NgayTP * this->soNgayLamViec + NhanSu::phuCapTP * this->soLuongNhanVien;
 }

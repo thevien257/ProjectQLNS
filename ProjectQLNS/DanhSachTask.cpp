@@ -1,6 +1,8 @@
 #include "DanhSachTask.h"
 #include <iostream>
 #include <fstream>
+#include <string>
+#include <limits>
 using namespace std;
 
 vector<Task *> &DanhSachTask::getDSTask()
@@ -17,40 +19,66 @@ void DanhSachTask::xuatTask()
 {
   if (dsTask.size() == 0)
   {
-<<<<<<< HEAD
     cout << endl;
     HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(color, 12);
     cout << "\t\t\t\tChua co task nao trong cong ty ❌" << endl;
     SetConsoleTextAttribute(color, 7);
-||||||| 457744a
-    HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleTextAttribute(color, 12);
-    cout << "\t\t\t\tChua co task nao" << endl;
-    SetConsoleTextAttribute(color, 7);
-=======
-    cout << "\t\t\tChua co task nao" << endl;
->>>>>>> 8643634149765d053045f17711cb8b856c6e7ea5
   }
   else
   {
+    HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+    cout << "\t\t\t\t    ╔═══════════════════════════════════╗\n";
+    cout << "\t\t\t\t╔═══║ ";
+    SetConsoleTextAttribute(color, 11);
+    cout << "       Thong tin Task  📂    ";
+    SetConsoleTextAttribute(color, 7);
+    cout << "     ║════╗\n";
+    cout << "\t\t\t\t║   ╚═════════════════╦═════════════════╝    ║\n";
+
+    Task *lastTask = dsTask.back();
+    int j = 1;
     for (int i = 0; i < dsTask.size(); i++)
     {
-      cout << "\t\tTask thu " << i + 1 << endl;
-      dsTask[i]->xuatTask();
-      cout << endl;
+      if (dsTask[i] != lastTask)
+      {
+        cout << "\t\t\t\t║";
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14); // set color to yellow
+        cout << "     So thu tu       ";
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7); // set color to white
+        cout << "║ " << std::left << std::setw(20) << j << std::right << " ║" << endl;
+        dsTask[i]->xuatTask();
+        cout << "\t\t\t\t╠═════════════════════╬══════════════════════╣\n";
+        j++;
+      }
+      else
+      {
+        cout << "\t\t\t\t║";
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14); // set color to yellow
+        cout << "     So thu tu       ";
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7); // set color to white
+        cout << "║ " << std::left << std::setw(20) << j << std::right << " ║" << endl;
+        dsTask[i]->xuatTask();
+        cout << "\t\t\t\t╚═════════════════════╩══════════════════════╝\n";
+      }
     }
   }
 }
 
 void DanhSachTask::nhapTask()
 {
+  HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
   int n;
   cout << endl;
-  cout << "\t\t\tNhap so task: ";
+  cout << "\t\t\t\tNhap so luong task: ";
   cin >> n;
+  std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // add this line
   for (int i = 0; i < n; i++)
   {
+    cout << endl;
+    SetConsoleTextAttribute(color, 11);
+    cout << "\t\t\t\tNhap task thu " << i + 1 << " ✍️" << endl;
+    SetConsoleTextAttribute(color, 7);
     Task *task = new Task();
     task->nhapTask();
     dsTask.push_back(task);
@@ -59,22 +87,21 @@ void DanhSachTask::nhapTask()
 
 void DanhSachTask::docFileTask(string fileName)
 {
-  ifstream fileIn;
-  fileIn.open(fileName, ios::in);
-  if (fileIn.fail())
+  ifstream file(fileName);
+  if (file.is_open())
   {
-    cout << "Khong mo duoc file" << endl;
+    while (file.good())
+    {
+      Task *task = new Task();
+      file >> *task;
+      dsTask.push_back(task);
+    }
+    file.close();
   }
   else
   {
-    while (!fileIn.good())
-    {
-      Task *task = new Task();
-      fileIn >> *task;
-      dsTask.push_back(task);
-    }
+    cout << "Khong the mo file" << endl;
   }
-  fileIn.close();
 }
 
 DanhSachTask::DanhSachTask()

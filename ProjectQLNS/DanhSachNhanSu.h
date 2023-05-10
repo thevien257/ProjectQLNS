@@ -7,15 +7,9 @@
 #include <iomanip>
 #include <fstream>
 #include <windows.h>
-<<<<<<< HEAD
 
 class NhanVienThuong;
 
-||||||| 457744a
-
-class NhanVienThuong;
-=======
->>>>>>> 8643634149765d053045f17711cb8b856c6e7ea5
 class danhSachNhanSu
 {
 private:
@@ -29,6 +23,8 @@ public:
   void inMenu(int &chon);
   void nhap();
   void xuat();
+  void xuatNV();
+  void xuatNV(vector<NhanVienThuong *> listNV);
   void docFileNVT(string filename);
   void docFileGD(string filename);
   void docFileTP(string filename);
