@@ -222,20 +222,61 @@ vector<NhanSu *> &danhSachNhanSu::getListNS()
   return this->dsNhanSu;
 }
 
-void danhSachNhanSu::inMenu()
+void danhSachNhanSu::inMenu(int &chon)
 {
-  std::system("cls");
-  cout << "\t\t\t\t ___________________________________\n";
-  cout << "\t\t\t\t|                                   |\n";
-  cout << "\t\t\t\t|        Menu Them nhan su          |\n";
-  cout << "\t\t\t\t|                                   |\n";
-  cout << "\t\t\t\t|___________________________________|\n";
+  system("cls");
+  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+  CONSOLE_CURSOR_INFO cursorInfo;
+  GetConsoleCursorInfo(hConsole, &cursorInfo);
+  cursorInfo.bVisible = true; // set the cursor visibility
+  SetConsoleCursorInfo(hConsole, &cursorInfo);
+
   cout << endl;
-  cout << "\t\t\t\t1. Them truong phong " << endl;
-  cout << "\t\t\t\t2. Them nhan vien thuong" << endl;
-  cout << "\t\t\t\t3. Them giam doc" << endl;
-  cout << "\t\t\t\t4. Thoat" << endl;
-  cout << "\t\t\t\t--------------------> Moi chon: ";
+  HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+  SetConsoleTextAttribute(color, 11);
+  cout << endl;
+  cout << "\t\t\t\t    ╔═══════════════════════════════════╗\n";
+  cout << "\t\t\t\t╔═══╟════   Menu them nhan su  🧑‍💻════║═══╗\n";
+  cout << "\t\t\t\t║   ╚═══════════════════════════════════╝   ║\n";
+  cout << "\t\t\t\t║                                           ║\n";
+  cout << "\t\t\t\t║";
+  SetConsoleTextAttribute(color, 7);
+  cout << "     1. Them truong phong";
+  SetConsoleTextAttribute(color, 11);
+  cout << "                  ║\n";
+  cout << "\t\t\t\t║";
+  SetConsoleTextAttribute(color, 7);
+  cout << "     2. Them nhan vien thuong";
+  SetConsoleTextAttribute(color, 11);
+  cout << "              ║\n";
+  cout << "\t\t\t\t║";
+  SetConsoleTextAttribute(color, 7);
+  cout << "     3. Them giam doc";
+  SetConsoleTextAttribute(color, 11);
+  cout << "                      ║\n";
+  cout << "\t\t\t\t║";
+  SetConsoleTextAttribute(color, 7);
+  cout << "     0. Thoat khoi menu them nhan su";
+  SetConsoleTextAttribute(color, 11);
+  cout << "       ║\n";
+  cout << "\t\t\t\t║";
+  SetConsoleTextAttribute(color, 7);
+  cout << "     > Moi chon 👉";
+  SetConsoleTextAttribute(color, 11);
+  cout << "                         ║\n";
+  cout << "\t\t\t\t║                                           ║\n";
+  cout << "\t\t\t\t╚═══════════════════════════════════════════╝\n\n";
+
+  CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
+  GetConsoleScreenBufferInfo(color, &consoleInfo);
+  COORD cursorPosition = consoleInfo.dwCursorPosition;
+  // Move the cursor to the right by incrementing X coordinate
+  cursorPosition.X += 52;
+  cursorPosition.Y -= 4;
+  SetConsoleCursorPosition(color, cursorPosition);
+  cin >> chon;
+
+  SetConsoleTextAttribute(color, 7);
 }
 
 void danhSachNhanSu::nhap()
@@ -244,30 +285,32 @@ void danhSachNhanSu::nhap()
   int chon;
   do
   {
-    inMenu();
-    cin >> chon;
+    inMenu(chon);
     switch (chon)
     {
     case 1:
       ns = new TruongPhong();
+      ns->setViTriViecLam("Truong Phong");
       ns->nhap();
       ns->tinhLuong();
-      ns->setViTriViecLam("Truong Phong");
       this->dsNhanSu.push_back(ns);
+      system("pause >nul");
       break;
     case 2:
       ns = new NhanVienThuong();
+      ns->setViTriViecLam("Nhan Vien Thuong");
       ns->nhap();
       ns->tinhLuong();
-      ns->setViTriViecLam("Nhan Vien Thuong");
       this->dsNhanSu.push_back(ns);
+      system("pause >nul");
       break;
     case 3:
       ns = new GiamDoc();
+      ns->setViTriViecLam("Giam Doc");
       ns->nhap();
       ns->tinhLuong();
-      ns->setViTriViecLam("Giam Doc");
       this->dsNhanSu.push_back(ns);
+      system("pause >nul");
       break;
     case 0:
       flag = false;
@@ -283,43 +326,54 @@ void danhSachNhanSu::xuat()
 {
   bool flag = true;
   int chon;
-  ghiFile("DanhSachNhanSu.txt");
   HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
-  cout << "\t\t\t\t    ╔═══════════════════════════════════╗\n";
-  cout << "\t\t\t\t╔═══║ ";
-  SetConsoleTextAttribute(color, 11);
-  cout << "Thong tin nhan su cua cong ty  📂";
-  SetConsoleTextAttribute(color, 7);
-  cout << " ║════╗\n";
-  cout << "\t\t\t\t║   ╚═════════════════╦═════════════════╝    ║\n";
-
-  int j = 1;
-  NhanSu *lastNS = dsNhanSu.back();
-  for (NhanSu *ns : dsNhanSu)
+  ghiFile("DanhSachNhanSu.txt");
+  if (this->dsNhanSu.size() > 0)
   {
-    if (ns != lastNS)
+
+    cout << "\t\t\t\t    ╔═══════════════════════════════════╗\n";
+    cout << "\t\t\t\t╔═══║ ";
+    SetConsoleTextAttribute(color, 11);
+    cout << "Thong tin nhan su cua cong ty  📂";
+    SetConsoleTextAttribute(color, 7);
+    cout << " ║════╗\n";
+    cout << "\t\t\t\t║   ╚═════════════════╦═════════════════╝    ║\n";
+
+    int j = 1;
+    NhanSu *lastNS = dsNhanSu.back();
+    for (NhanSu *ns : dsNhanSu)
     {
-      cout << "\t\t\t\t║  ";
-      SetConsoleTextAttribute(color, 14);
-      cout << "So thu tu          ";
-      SetConsoleTextAttribute(color, 7);
-      cout << "║ " << std::left << std::setw(20) << j << std::right << " ║" << endl;
-      ns->tinhLuong();
-      ns->xuat();
-      cout << "\t\t\t\t╠═════════════════════╬══════════════════════╣\n";
-      j++;
+      if (ns != lastNS)
+      {
+        cout << "\t\t\t\t║  ";
+        SetConsoleTextAttribute(color, 14);
+        cout << "So thu tu          ";
+        SetConsoleTextAttribute(color, 7);
+        cout << "║ " << std::left << std::setw(20) << j << std::right << " ║" << endl;
+        ns->tinhLuong();
+        ns->xuat();
+        cout << "\t\t\t\t╠═════════════════════╬══════════════════════╣\n";
+        j++;
+      }
+      else
+      {
+        cout << "\t\t\t\t║  ";
+        SetConsoleTextAttribute(color, 14);
+        cout << "So thu tu          ";
+        SetConsoleTextAttribute(color, 7);
+        cout << "║ " << std::left << std::setw(20) << j << std::right << " ║" << endl;
+        ns->tinhLuong();
+        ns->xuat();
+        cout << "\t\t\t\t╚═════════════════════╩══════════════════════╝\n";
+      }
     }
-    else
-    {
-      cout << "\t\t\t\t║  ";
-      SetConsoleTextAttribute(color, 14);
-      cout << "So thu tu          ";
-      SetConsoleTextAttribute(color, 7);
-      cout << "║ " << std::left << std::setw(20) << j << std::right << " ║" << endl;
-      ns->tinhLuong();
-      ns->xuat();
-      cout << "\t\t\t\t╚═════════════════════╩══════════════════════╝\n";
-    }
+  }
+  else
+  {
+    SetConsoleTextAttribute(color, 12);
+    cout << "\t\t\t\tOOPS!!! Chua co nhan vien nao trong cong ty ❌\n";
+    SetConsoleTextAttribute(color, 7);
+    cout << endl;
   }
 }
 

@@ -19,9 +19,10 @@ void DanhSachTask::xuatTask()
 {
   if (dsTask.size() == 0)
   {
+    cout << endl;
     HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(color, 12);
-    cout << "\t\t\t\tChua co task nao" << endl;
+    cout << "\t\t\t\tChua co task nao trong cong ty ❌" << endl;
     SetConsoleTextAttribute(color, 7);
   }
   else

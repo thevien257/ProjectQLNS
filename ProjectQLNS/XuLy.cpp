@@ -142,41 +142,41 @@ void XuLy::xuLyMenuPhongBan()
       {
       case 1:
         dsPB.nhapPB();
-        system("pause");
+        system("pause >nul");
         break;
       case 2:
         dsPB.xuatPB();
-        system("pause");
+        system("pause >nul");
         break;
       case 3:
         phanBoNhanVienThuongVaoPhongBan();
-        system("pause");
+        system("pause >nul");
         break;
       case 4:
         chiDinhTruongPhong();
-        system("pause");
+        system("pause >nul");
         break;
       case 5:
         xoaTPkhoiPB();
         dsPB.xuatPB();
-        system("pause");
+        system("pause >nul");
         break;
       case 6:
         xoaNVkhoiPB();
         dsPB.xuatPB();
-        system("pause");
+        system("pause >nul");
         break;
       case 7:
         xoaPB();
-        system("pause");
+        system("pause >nul");
         break;
       case 8:
         sapXepSoLuongNhanSuPBGD();
-        system("pause");
+        system("pause >nul");
         break;
       case 9:
         sapXepSoLuongNhanSuPBTD();
-        system("pause");
+        system("pause >nul");
         break;
       case 10:
         exitMenu = true;
@@ -942,36 +942,36 @@ void XuLy::xuLyMenuTask()
       {
       case 1:
         dsTask.nhapTask();
-        system("pause");
+        system("pause >nul");
         break;
       case 2:
         dsTask.xuatTask();
-        system("pause");
+        system("pause >nul");
         break;
       case 3:
         xoaTask();
-        system("pause");
+        system("pause >nul");
         break;
       case 4:
         phanBoTask();
-        system("pause");
+        system("pause >nul");
         break;
       case 5:
         sapXepTaskHoanThanh();
-        system("pause");
+        system("pause >nul");
         break;
       case 6:
         sapXepSoLuongTaskNV();
-        system("pause");
+        system("pause >nul");
         break;
       case 7:
         xoaTaskKhoiNV();
         ds.xuatNV();
-        system("pause");
+        system("pause >nul");
         break;
       case 8:
         danhGiaTask();
-        system("pause");
+        system("pause >nul");
         break;
       case 9:
         exitMenu = true;
@@ -1506,16 +1506,30 @@ void XuLy::xoaNhanSu()
   SetConsoleTextAttribute(color, 7);
   ds.xuat();
 
-  cout << endl;
   string maSo;
-  cout << "\t\t\t\tNhap ma so de xoa nhan su: ";
-  cin >> maSo;
-  bool foundNS = found(maSo);
+  bool foundNS;
+  do
+  {
+    cout << endl;
+    cout << "\t\t\t\tNhap ma so de xoa nhan su hoac nhap 0 de thoat: ";
+    cin >> maSo;
+    foundNS = found(maSo);
+    if (maSo == "0")
+    {
+      return;
+    }
+    if (foundNS == false)
+    {
+      SetConsoleTextAttribute(color, 12);
+      cout << "\t\t\t\t❌ Khong tim thay nhan su co ma so nay." << endl;
+      SetConsoleTextAttribute(color, 7);
+    }
+  } while (foundNS == false);
   if (foundNS)
   {
     SetConsoleTextAttribute(color, 10);
     cout << "\t\t\t\tDa tim thay nhan su ✅" << endl;
-    Sleep(1000);
+    SetConsoleTextAttribute(color, 7);
     for (int i = 0; i < ds.getListNS().size(); i++)
     {
       if (TruongPhong *tp = dynamic_cast<TruongPhong *>(ds.getListNS()[i]))
@@ -1527,6 +1541,7 @@ void XuLy::xoaNhanSu()
             xoaTruongPhong(tp);
             SetConsoleTextAttribute(color, 10);
             cout << "\t\t\t\tDa xoa truong phong mang ma so " << tp->getMaSo() << " - co ten " << tp->getHoTen() << " ✅" << endl;
+            SetConsoleTextAttribute(color, 7);
             cout << endl;
           }
         }
@@ -1538,9 +1553,9 @@ void XuLy::xoaNhanSu()
           if (giamDoc->getMaSo() == maSo)
           {
             ds.getListNS().erase(ds.getListNS().begin() + i);
-            giamDoc = nullptr;
-            delete giamDoc;
+            SetConsoleTextAttribute(color, 10);
             cout << "\t\t\t\tDa xoa giam doc mang ma so " << giamDoc->getHoTen() << " - co ten " << giamDoc->getHoTen() << " ✅" << endl;
+            SetConsoleTextAttribute(color, 7);
             cout << endl;
           }
         }
@@ -1552,19 +1567,17 @@ void XuLy::xoaNhanSu()
           if (nvt->getMaSo() == maSo)
           {
             xoaNhanVienThuong(nvt, maSo);
+            SetConsoleTextAttribute(color, 10);
             cout << "\t\t\t\tDa xoa nhan vien thuong mang ma so " << nvt->getMaSo() << " - co ten " << nvt->getHoTen() << " ✅" << endl;
+            SetConsoleTextAttribute(color, 7);
             cout << endl;
           }
         }
       }
     }
   }
-  else
-  {
-    SetConsoleTextAttribute(color, 12);
-    cout << "\t\t\tOOPS! Khong tim thay nhan su voi ma so " << maSo << " 🥲" << endl;
-  }
   SetConsoleTextAttribute(color, 7);
+  ds.xuat();
 }
 
 void XuLy::xoaNhanVienThuong(NhanVienThuong *nvt, string maSo)
@@ -1730,10 +1743,20 @@ void XuLy::suaDoiThongTinNhanSu()
   {
     if (ma == ns->getMaSo())
     {
+      system("cls");
       SetConsoleTextAttribute(color, 10);
-      cout << "\t\t\t\tDa tim thay nhan su voi ma so " << ma << " ✅" << endl;
-      cout << "\t\t\t\tVui long nhap cac thong tin sau de sua doi " << endl;
       cout << endl;
+      cout << endl;
+      cout << endl;
+      cout << endl;
+      cout << endl;
+      cout << endl;
+      cout << endl;
+      cout << endl;
+      cout << endl;
+      cout << "\t\t\t\tDa tim thay nhan su voi ma so " << ma << " ✅" << endl;
+      SetConsoleTextAttribute(color, 11);
+      cout << "\t\t\t\tVui long nhap cac thong tin sau de sua doi " << endl;
       SetConsoleTextAttribute(color, 7);
       ns->nhap();
     }
@@ -1890,6 +1913,11 @@ void XuLy::phanBoNhanVienThuong()
 
 void XuLy::inMenuLogin(int &chon)
 {
+  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+  CONSOLE_CURSOR_INFO cursorInfo;
+  GetConsoleCursorInfo(hConsole, &cursorInfo);
+  cursorInfo.bVisible = true; // set the cursor visibility
+  SetConsoleCursorInfo(hConsole, &cursorInfo);
   system("cls");
   HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
   // cout << "\t\t\t\t    ╔═══════════════════════════════════╗\n";
@@ -1965,10 +1993,11 @@ bool XuLy::login()
   cout << "\t\t\t\t\t╚════════════════════════════════════╝\n\n";
 
   SetConsoleTextAttribute(color, 14);
-  cout << "\033[24;95H";
+  // 27: Là hàng thứ 27, 95: Là cột thứ 95
+  cout << "\033[27;95H";
   cout << "Duoc thuc hien boi nhom 7" << endl;
   SetConsoleTextAttribute(color, 15);
-  cout << "\033[25;95H";
+  cout << "\033[28;95H";
   cout << "The Vien & Xuan Truong 😁" << endl;
 
   SetConsoleTextAttribute(color, 7);
@@ -2035,6 +2064,8 @@ bool XuLy::login()
 
 void XuLy::signUp()
 {
+  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+  CONSOLE_CURSOR_INFO cursorInfo;
   system("cls");
   string tk, mk, itk, imk;
   cout << endl;
@@ -2060,6 +2091,9 @@ void XuLy::signUp()
   cin >> mk;
   do
   {
+    GetConsoleCursorInfo(hConsole, &cursorInfo);
+    cursorInfo.bVisible = true; // set the cursor visibility
+    SetConsoleCursorInfo(hConsole, &cursorInfo);
     cout << "\033[8;63H";
     cin >> imk;
     if (imk != mk)
@@ -2070,6 +2104,9 @@ void XuLy::signUp()
       cout << endl;
       cout << endl;
       HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+      GetConsoleCursorInfo(hConsole, &cursorInfo);
+      cursorInfo.bVisible = false; // set the cursor visibility
+      SetConsoleCursorInfo(hConsole, &cursorInfo);
       SetConsoleTextAttribute(color, 12);
       cout << "\t\t\t\t❌ Mat khau ban da nhap khong giong voi mat khau truoc 😚 " << endl;
       SetConsoleTextAttribute(color, 7);
@@ -2083,6 +2120,9 @@ void XuLy::signUp()
   cout << endl;
   cout << endl;
   cout << "\033[K" << endl;
+  GetConsoleCursorInfo(hConsole, &cursorInfo);
+  cursorInfo.bVisible = false; // set the cursor visibility
+  SetConsoleCursorInfo(hConsole, &cursorInfo);
   SetConsoleTextAttribute(color, 10);
   cout << "\t\t\t\t\t\tDang ky thanh cong ✅" << endl;
   SetConsoleTextAttribute(color, 7);
@@ -2285,7 +2325,6 @@ void XuLy::XuLyMenuNhanSu()
       cout << endl;
       cout << endl;
       xoaNhanSu();
-      ds.xuat();
       break;
     case 0:
       flag = false;
@@ -2402,6 +2441,7 @@ void XuLy::XuLyChung()
         cout << endl;
         SetConsoleTextAttribute(color, 14);
         printGoodBye();
+        Sleep(2000);
         exitMenu = true;
         break;
       }

@@ -9,6 +9,7 @@
 #include <windows.h>
 
 class NhanVienThuong;
+
 class danhSachNhanSu
 {
 private:
@@ -19,7 +20,7 @@ public:
   vector<NhanSu *> &getListNS();
   danhSachNhanSu();
   void setListNS(vector<NhanSu *> listNS);
-  void inMenu();
+  void inMenu(int &chon);
   void nhap();
   void xuat();
   void xuatNV();

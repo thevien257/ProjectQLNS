@@ -22,7 +22,6 @@ protected:
   string viTriViecLam;
   float soNgayLamViec;
   long luong;
-  vector<Task *> dsTask;
   static long luong1NgayNVT;
   static long luong1NgayTP;
   static long luong1NgayGD;
@@ -45,6 +44,5 @@ public:
   virtual void tinhLuong();
   friend istream &operator>>(istream &is, NhanSu &ns);
   friend ostream &operator<<(ostream &os, const NhanSu &ns);
-  vector<Task *> getDSTask();
   string formatLuong(double amount);
 };

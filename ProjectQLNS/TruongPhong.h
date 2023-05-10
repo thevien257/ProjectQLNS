@@ -10,6 +10,7 @@
 #include <windows.h>
 using namespace std;
 class NhanVienThuong;
+
 class TruongPhong : public NhanSu
 {
 private:

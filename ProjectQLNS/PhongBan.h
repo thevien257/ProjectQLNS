@@ -6,6 +6,7 @@ using namespace std;
 
 class NhanVienThuong;
 class TruongPhong;
+
 class PhongBan
 {
 private:

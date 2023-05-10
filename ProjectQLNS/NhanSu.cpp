@@ -39,20 +39,9 @@ void NhanSu::setViTriViecLam(string viTriViecLam)
   this->viTriViecLam = viTriViecLam;
 }
 
-vector<Task *> NhanSu::getDSTask()
-{
-  return dsTask;
-}
-
-// ostream &operator<<(ostream &os, const NhanSu &ns)
+// vector<Task *> NhanSu::getDSTask()
 // {
-//   os << "Ho ten: " << ns.hoTen << endl;
-//   os << "Ma so: " << ns.maSo << endl;
-//   os << "Luong: " << ns.luong << endl;
-//   os << "So dien thoai: " << ns.soDienThoai << endl;
-//   os << "So ngay lam viec: " << ns.soNgayLamViec << endl;
-//   os << endl;
-//   return os;
+//   return dsTask;
 // }
 
 ostream &operator<<(ostream &os, const NhanSu &ns)
@@ -63,7 +52,6 @@ ostream &operator<<(ostream &os, const NhanSu &ns)
 
 istream &operator>>(istream &is, NhanSu &ns)
 {
-  // Read data from the input stream and populate the ns object
   is >> ns.hoTen >> ns.maSo >> ns.soDienThoai >> ns.soNgayLamViec;
   return is;
 }
@@ -100,18 +88,99 @@ NhanSu::NhanSu(string maSo,
 
 void NhanSu::nhap()
 {
+  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+  HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+  CONSOLE_CURSOR_INFO cursorInfo;
+
+  GetConsoleCursorInfo(hConsole, &cursorInfo);
+  cursorInfo.bVisible = true; // set the cursor visibility
+  SetConsoleCursorInfo(hConsole, &cursorInfo);
+
   cout << endl;
-  cout << "\t\t\t\tNhap ma so: ";
+
+  cout << endl;
+  cout << endl;
+  cout << endl;
+  if (viTriViecLam == "Giam Doc")
+  {
+    SetConsoleTextAttribute(color, 11);
+    cout << "\t\t\t\t╔═════════════════════════════════════════════╗\n";
+    cout << "\t\t\t\t║";
+    SetConsoleTextAttribute(color, 7);
+    cout << "          Nhap thong tin giam doc";
+    SetConsoleTextAttribute(color, 11);
+    cout << "            ║\n";
+    cout << "\t\t\t\t╟─────────────────────────────────────────────╢\n";
+  }
+  else if (viTriViecLam == "Truong Phong")
+  {
+    SetConsoleTextAttribute(color, 11);
+    cout << "\t\t\t\t╔═════════════════════════════════════════════╗\n";
+    cout << "\t\t\t\t║        ";
+    SetConsoleTextAttribute(color, 7);
+    cout << "Nhap thong tin truong phong";
+    SetConsoleTextAttribute(color, 11);
+    cout << "          ║\n";
+    cout << "\t\t\t\t╟─────────────────────────────────────────────╢\n";
+  }
+  else
+  {
+    SetConsoleTextAttribute(color, 11);
+    cout << "\t\t\t\t╔═════════════════════════════════════════════╗\n";
+    cout << "\t\t\t\t║      ";
+    SetConsoleTextAttribute(color, 7);
+    cout << "Nhap thong tin nhan vien thuong";
+    SetConsoleTextAttribute(color, 11);
+    cout << "        ║\n";
+    cout << "\t\t\t\t╟─────────────────────────────────────────────╢\n";
+  }
+
+  cout << "\t\t\t\t║";
+  SetConsoleTextAttribute(color, 7);
+  cout << "  Ma so:";
+  SetConsoleTextAttribute(color, 11);
+  cout << "                                     ║\n";
+  cout << "\t\t\t\t║";
+  SetConsoleTextAttribute(color, 7);
+  cout << "  Ho ten:";
+  SetConsoleTextAttribute(color, 11);
+  cout << "                                    ║\n";
+  cout << "\t\t\t\t║";
+  SetConsoleTextAttribute(color, 7);
+  cout << "  So dien thoai:";
+  SetConsoleTextAttribute(color, 11);
+  cout << "                             ║\n";
+  cout << "\t\t\t\t║";
+  SetConsoleTextAttribute(color, 7);
+  cout << "  So ngay lam viec:";
+  SetConsoleTextAttribute(color, 11);
+  cout << "                          ║\n";
+  cout << "\t\t\t\t╚═════════════════════════════════════════════╝\n\n";
+
+  // cout << endl;
+  // cout << "\t\t\t\tNhap ma so: ";
+  cout << "\033[19;55H";
   cin.ignore();
   getline(cin, maSo);
-  cout << "\t\t\t\tNhap ho ten: ";
+  // cout << "\t\t\t\tNhap ho ten: ";
+  cout << "\033[20;55H";
   getline(cin, hoTen);
-  cout << "\t\t\t\tNhap so dien thoai: ";
+  // cout << "\t\t\t\tNhap so dien thoai: ";
+  cout << "\033[21;55H";
   cin >> soDienThoai;
+  cout << "\033[22;55H";
   cin.ignore();
-  cout << "\t\t\t\tSo ngay lam viec ";
+  // cout << "\t\t\t\tSo ngay lam viec ";
   cin >> soNgayLamViec;
   cin.ignore();
+  cout << "\033[25;44H";
+
+  GetConsoleCursorInfo(hConsole, &cursorInfo);
+  cursorInfo.bVisible = false; // set the cursor visibility
+  SetConsoleCursorInfo(hConsole, &cursorInfo);
+  SetConsoleTextAttribute(color, 10);
+  cout << "Nhap thong tin thanh cong ✅" << endl;
+  SetConsoleTextAttribute(color, 7);
 }
 
 void NhanSu::xuat()

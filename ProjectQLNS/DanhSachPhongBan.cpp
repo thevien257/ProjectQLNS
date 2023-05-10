@@ -39,9 +39,10 @@ void DanhSachPhongBan::xuatPB()
 {
   if (dsPhongBan.size() == 0)
   {
+    cout << endl;
     HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(color, 12);
-    cout << "\t\t\t\tChua co phong ban nao" << endl;
+    cout << "\t\t\t\tChua co phong ban nao trong cong ty ❌" << endl;
     SetConsoleTextAttribute(color, 7);
   }
   else

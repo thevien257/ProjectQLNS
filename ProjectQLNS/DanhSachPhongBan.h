@@ -4,6 +4,7 @@
 #include "PhongBan.h"
 
 class PhongBan;
+
 class DanhSachPhongBan
 {
 private:
@@ -15,6 +16,5 @@ public:
   void nhapPB();
   void xuatPB();
   void docFilePB(string fileName);
-  void ghiFilePB(string fileName);
   DanhSachPhongBan();
 };

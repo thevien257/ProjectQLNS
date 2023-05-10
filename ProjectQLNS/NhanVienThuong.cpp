@@ -144,12 +144,6 @@ void NhanVienThuong::xuat()
   HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
   NhanSu::xuat();
 
-  // cout << "\t\t\t\t║";
-  // SetConsoleTextAttribute(color, 14);
-  // cout << "  Luong              ";
-  // SetConsoleTextAttribute(color, 7);
-  // cout << "║ " << std::left << std::setw(20) << formatLuong(this->luong) << std::right << " ║" << endl;
-  // SetConsoleTextAttribute(color, 7);
   cout << "\t\t\t\t║";
   SetConsoleTextAttribute(color, 14);
   cout << "  So luong task      ";

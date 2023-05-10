@@ -10,6 +10,7 @@
 #include <windows.h>
 
 class TruongPhong;
+
 class NhanVienThuong : public NhanSu
 {
 private:
@@ -22,7 +23,8 @@ private:
 
 public:
   NhanVienThuong();
-  NhanVienThuong(string maSo, string hoTen, string soDienThoai, float soNgayLamViec);
+  NhanVienThuong(string maSo, string hoTen,
+                 string soDienThoai, float soNgayLamViec);
   void tinhLuong();
   void setTruongPhong(TruongPhong *tp);
   void setMaPhongBan(string maPhongBan);
