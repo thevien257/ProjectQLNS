@@ -62,4 +62,6 @@ public:
   void sapXepSoLuongTaskNV();
   void sapXepTaskHoanThanh();
   void danhGiaTask();
+  void animationLoading();
+  void tatConTro();
 };

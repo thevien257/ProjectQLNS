@@ -38,6 +38,15 @@ void clearScreen()
   SetConsoleCursorPosition(hConsole, coordScreen);
 }
 
+void XuLy::tatConTro()
+{
+  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+  CONSOLE_CURSOR_INFO cursorInfo;
+  GetConsoleCursorInfo(hConsole, &cursorInfo);
+  cursorInfo.bVisible = false; // set the cursor visibility
+  SetConsoleCursorInfo(hConsole, &cursorInfo);
+}
+
 void XuLy::xuLyMenuPhongBan()
 {
   HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -142,40 +151,49 @@ void XuLy::xuLyMenuPhongBan()
       {
       case 1:
         dsPB.nhapPB();
+        tatConTro();
         system("pause >nul");
         break;
       case 2:
         dsPB.xuatPB();
+        tatConTro();
         system("pause >nul");
         break;
       case 3:
         phanBoNhanVienThuongVaoPhongBan();
+        tatConTro();
         system("pause >nul");
         break;
       case 4:
         chiDinhTruongPhong();
+        tatConTro();
         system("pause >nul");
         break;
       case 5:
         xoaTPkhoiPB();
         dsPB.xuatPB();
+        tatConTro();
         system("pause >nul");
         break;
       case 6:
         xoaNVkhoiPB();
         dsPB.xuatPB();
+        tatConTro();
         system("pause >nul");
         break;
       case 7:
         xoaPB();
+        tatConTro();
         system("pause >nul");
         break;
       case 8:
         sapXepSoLuongNhanSuPBGD();
+        tatConTro();
         system("pause >nul");
         break;
       case 9:
         sapXepSoLuongNhanSuPBTD();
+        tatConTro();
         system("pause >nul");
         break;
       case 10:
@@ -474,8 +492,12 @@ void XuLy::xoaNVkhoiPB()
     cout << "\t\t\t\tDay la danh sach nhan vien trong phong ban 📜 " << endl;
     dsPB.xuatPB();
     cout << endl;
-    cout << "\t\t\t\tNhap ma so nhan vien: ";
+    cout << "\t\t\t\tNhap ma so nhan vien hoac nhap 0 de thoat: ";
     cin >> maNV;
+    if (maNV == "0")
+    {
+      return;
+    }
     nv = timNVT(maNV);
     if (nv == nullptr)
     {
@@ -942,35 +964,43 @@ void XuLy::xuLyMenuTask()
       {
       case 1:
         dsTask.nhapTask();
+        tatConTro();
         system("pause >nul");
         break;
       case 2:
         dsTask.xuatTask();
+        tatConTro();
         system("pause >nul");
         break;
       case 3:
         xoaTask();
+        tatConTro();
         system("pause >nul");
         break;
       case 4:
         phanBoTask();
+        tatConTro();
         system("pause >nul");
         break;
       case 5:
         sapXepTaskHoanThanh();
+        tatConTro();
         system("pause >nul");
         break;
       case 6:
         sapXepSoLuongTaskNV();
+        tatConTro();
         system("pause >nul");
         break;
       case 7:
         xoaTaskKhoiNV();
         ds.xuatNV();
+        tatConTro();
         system("pause >nul");
         break;
       case 8:
         danhGiaTask();
+        tatConTro();
         system("pause >nul");
         break;
       case 9:
@@ -1971,6 +2001,28 @@ void XuLy::inMenuLogin(int &chon)
   SetConsoleTextAttribute(color, 7);
 }
 
+void XuLy::animationLoading()
+{
+  HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+  SetConsoleTextAttribute(color, 11);
+  SetConsoleCP(437);
+  SetConsoleOutputCP(437);
+
+  int bar1 = 177,
+      bar2 = 219;
+  cout << "\n\n\n\t\t\t\t\tDang tai.......";
+  cout << "\n\n\t\t\t\t";
+
+  cout << "\r";
+  cout << "\t\t\t\t\t";
+  for (int i = 0; i < 50; i++)
+  {
+    cout << (char)bar2;
+    Sleep(35);
+  }
+  SetConsoleOutputCP(CP_UTF8);
+}
+
 bool XuLy::login()
 {
   system("cls");
@@ -2027,11 +2079,23 @@ bool XuLy::login()
       cout << endl;
       cout << endl;
       HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+
+      animationLoading();
       SetConsoleTextAttribute(color, 10);
+      cout << endl;
+      cout << endl;
       cout << "\n\t\t\t\t\t\tDang nhap thanh cong ✅" << endl;
       SetConsoleTextAttribute(color, 7);
+      Sleep(500);
       cout << "\t\t\t\t\t\tXin chao " << itk << " 👋 " << endl;
-      Sleep(2000);
+
+      HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+      CONSOLE_CURSOR_INFO cursorInfo;
+      GetConsoleCursorInfo(hConsole, &cursorInfo);
+      cursorInfo.bVisible = false; // set the cursor visibility
+      SetConsoleCursorInfo(hConsole, &cursorInfo);
+
+      system("pause >nul");
       system("cls");
       break;
     }
@@ -2432,6 +2496,7 @@ void XuLy::XuLyChung()
       case 4:
         cout << endl;
         system("cls");
+        tatConTro();
         SetConsoleTextAttribute(color, 3);
         cout << endl;
         cout << endl;
