@@ -49,6 +49,7 @@ void XuLy::tatConTro()
 
 void XuLy::xuLyMenuPhongBan()
 {
+  clearScreen();
   HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
   CONSOLE_CURSOR_INFO cursorInfo;
 
@@ -58,6 +59,7 @@ void XuLy::xuLyMenuPhongBan()
 
   while (!exitMenu)
   {
+    clearScreen();
     GetConsoleCursorInfo(hConsole, &cursorInfo);
     cursorInfo.bVisible = false; // set the cursor visibility
     SetConsoleCursorInfo(hConsole, &cursorInfo);
@@ -200,6 +202,7 @@ void XuLy::xuLyMenuPhongBan()
         exitMenu = true;
         break;
       }
+      system("cls");
     }
   }
 }
@@ -1007,6 +1010,7 @@ void XuLy::xuLyMenuTask()
         exitMenu = true;
         break;
       }
+      system("cls");
     }
   }
 }
