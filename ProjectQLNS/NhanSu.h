@@ -9,10 +9,6 @@
 #include "Task.h"
 using namespace std;
 
-// const int luong1NgayNVT = 100;
-// const int luong1NgayTP = 200;
-// const int luong1NgayGD = 300;
-
 class NhanSu
 {
 protected:

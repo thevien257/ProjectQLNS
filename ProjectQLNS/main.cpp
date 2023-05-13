@@ -11,7 +11,6 @@ int main()
 {
   SetConsoleOutputCP(CP_UTF8);
   XuLy xl;
-  xl.XuLyLogin();
   xl.XuLyChung();
   return 0;
 }
