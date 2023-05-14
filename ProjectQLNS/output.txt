@@ -14,5 +14,10 @@ taikhoan taikhoan
 tai tai
 test test
 thevien123 123123
+<<<<<<< HEAD
 123 test
 thevien@123 123123
+||||||| c82f458
+=======
+123 test
+>>>>>>> df1a07473f4a6e39542903ab31f34a3f9d720939
