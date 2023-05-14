@@ -14,6 +14,7 @@
 #include <fcntl.h>
 #include <io.h>
 using namespace std;
+#define WHITE 15
 
 void clearScreen()
 {
@@ -1090,13 +1091,13 @@ void XuLy::danhGiaTask()
       return;
     }
     task = timTask(maTask);
-    if (task == nullptr || task->getTrangThaiTask() != "")
+    if (task == nullptr || task->getTrangThaiTask() != "" || task->getMaNV() == "")
     {
       SetConsoleTextAttribute(color, 12);
       cout << "\t\t\t\t❌ Khong tim thay ma task phu hop. Vui long nhap lai!" << endl;
       SetConsoleTextAttribute(color, 7);
     }
-  } while (task == nullptr || task->getTrangThaiTask() != "");
+  } while (task == nullptr || task->getTrangThaiTask() != "" || task->getMaNV() == "");
 
   int selectedOption = 1;
   bool exitMenu = false;
@@ -2005,34 +2006,303 @@ void XuLy::inMenuLogin(int &chon)
   SetConsoleTextAttribute(color, 7);
 }
 
-void XuLy::animationLoading()
+// void XuLy::animationLoading(string taiKhoan)
+// {
+//   HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+//   SetConsoleTextAttribute(color, 11);
+
+//   int bar1 = 177,
+//       bar2 = 219;
+//   cout << "\n\n\n\t\t\t\t\tDang tai.......";
+//   cout << "\n\n\t\t\t\t";
+
+//   cout << "\r";
+//   cout << "\t\t\t\t\t";
+//   for (int i = 0; i < 50; i++)
+//   {
+//     SetConsoleOutputCP(CP_UTF8);
+//     cout << "🌟"; // print new star
+
+//     SetConsoleCP(437);
+//     SetConsoleOutputCP(437);
+//     if (i == 15)
+//     {
+//       SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+//       cout << "D";
+//       SetConsoleTextAttribute(color, 11);
+//       SetConsoleOutputCP(CP_UTF8);
+//       Sleep(35);
+//     }
+//     else if (i == 16)
+//     {
+//       SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+//       cout << "A";
+//       SetConsoleTextAttribute(color, 11);
+//       Sleep(35);
+//     }
+//     else if (i == 17)
+//     {
+//       SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+//       cout << "N";
+//       SetConsoleTextAttribute(color, 11);
+//       Sleep(35);
+//     }
+//     else if (i == 18)
+//     {
+//       SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+//       cout << "G";
+//       SetConsoleTextAttribute(color, 11);
+//       Sleep(35);
+//     }
+//     else if (i == 19)
+//     {
+//       SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+//       cout << " ";
+//       SetConsoleTextAttribute(color, 11);
+//       Sleep(35);
+//     }
+//     else if (i == 20)
+//     {
+//       SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+//       cout << "D";
+//       SetConsoleTextAttribute(color, 11);
+//       Sleep(35);
+//     }
+//     else if (i == 21)
+//     {
+//       SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+//       cout << "A";
+//       SetConsoleTextAttribute(color, 11);
+//       Sleep(35);
+//     }
+//     else if (i == 22)
+//     {
+//       SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+//       cout << "N";
+//       SetConsoleTextAttribute(color, 11);
+//       Sleep(35);
+//     }
+//     else if (i == 23)
+//     {
+//       SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+//       cout << "G";
+//       SetConsoleTextAttribute(color, 11);
+//       Sleep(35);
+//     }
+//     else if (i == 24)
+//     {
+//       SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+//       cout << " ";
+//       SetConsoleTextAttribute(color, 11);
+//       Sleep(35);
+//     }
+//     else if (i == 25)
+//     {
+//       SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+//       cout << "N";
+//       SetConsoleTextAttribute(color, 11);
+//       Sleep(35);
+//     }
+//     else if (i == 26)
+//     {
+//       SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+//       cout << "H";
+//       SetConsoleTextAttribute(color, 11);
+//       Sleep(35);
+//     }
+//     else if (i == 27)
+//     {
+//       SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+//       cout << "A";
+//       SetConsoleTextAttribute(color, 11);
+//       Sleep(35);
+//     }
+//     else if (i == 28)
+//     {
+//       SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+//       cout << "P";
+//       SetConsoleTextAttribute(color, 11);
+//       Sleep(35);
+//     }
+//     else if (i == 29)
+//     {
+//       SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+//       cout << " ";
+//       SetConsoleTextAttribute(color, 11);
+//       Sleep(35);
+//     }
+
+//     cout << (char)bar2;
+
+//     Sleep(35);
+//   }
+//   SetConsoleOutputCP(CP_UTF8);
+// }
+
+void XuLy::animationLoading(string taiKhoan)
 {
   HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
   SetConsoleTextAttribute(color, 11);
-  SetConsoleCP(437);
-  SetConsoleOutputCP(437);
+  int animationMovement = 17;
 
   int bar1 = 177,
       bar2 = 219;
-  cout << "\n\n\n\t\t\t\t\tDang tai.......";
-  cout << "\n\n\t\t\t\t";
+  cout << "\n\n\n\t\t\t\tDang tai.......";
+  cout << "\n\n\t\t\t";
 
-  cout << "\r";
-  cout << "\t\t\t\t\t";
   for (int i = 0; i < 50; i++)
   {
-    cout << (char)bar2;
-    Sleep(35);
+    cout << "\r";
+    cout << "\t\t\t\t";
+    for (int j = 0; j < 50; j++)
+    {
+      SetConsoleOutputCP(CP_UTF8);
+
+      if (j == i)
+      {
+        cout << "  🌟";
+      }
+      else if (j <= i - 5)
+      {
+        SetConsoleCP(437);
+        SetConsoleOutputCP(437);
+        SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | 11);
+        cout << (char)bar2;
+        SetConsoleTextAttribute(color, 11);
+        if (j == 10)
+        {
+          SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+          cout << "D";
+          SetConsoleTextAttribute(color, 11);
+          continue;
+        }
+        else if (j == 11)
+        {
+          SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+          cout << "A";
+          SetConsoleTextAttribute(color, 11);
+          continue;
+        }
+        else if (j == 12)
+        {
+          SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+          cout << "N";
+          SetConsoleTextAttribute(color, 11);
+          continue;
+        }
+        else if (j == 13)
+        {
+          SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+          cout << "G";
+          SetConsoleTextAttribute(color, 11);
+          continue;
+        }
+        else if (j == 14)
+        {
+          SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+          cout << " ";
+          SetConsoleTextAttribute(color, 11);
+          continue;
+        }
+        else if (j == 15)
+        {
+          SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+          cout << "D";
+          SetConsoleTextAttribute(color, 11);
+          continue;
+        }
+        else if (j == 16)
+        {
+          SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+          cout << "A";
+          SetConsoleTextAttribute(color, 11);
+          continue;
+        }
+        else if (j == 17)
+        {
+          SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+          cout << "N";
+          SetConsoleTextAttribute(color, 11);
+          continue;
+        }
+        else if (j == 18)
+        {
+          SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+          cout << "G";
+          SetConsoleTextAttribute(color, 11);
+          continue;
+        }
+        else if (j == 19)
+        {
+          SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+          cout << " ";
+          SetConsoleTextAttribute(color, 11);
+          continue;
+        }
+        else if (j == 20)
+        {
+          SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+          cout << "N";
+          SetConsoleTextAttribute(color, 11);
+          continue;
+        }
+        else if (j == 21)
+        {
+          SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+          cout << "H";
+          SetConsoleTextAttribute(color, 11);
+          continue;
+        }
+        else if (j == 22)
+        {
+          SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+          cout << "A";
+          SetConsoleTextAttribute(color, 11);
+          continue;
+        }
+        else if (j == 23)
+        {
+          SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+          cout << "P";
+          SetConsoleTextAttribute(color, 11);
+          continue;
+        }
+        else if (j == 24)
+        {
+          SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+          cout << " ";
+          SetConsoleTextAttribute(color, 11);
+
+          SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+          cout << " ";
+          SetConsoleTextAttribute(color, 11);
+
+          string taiKhoanUppercase = taiKhoan;
+          transform(taiKhoan.begin(), taiKhoan.end(), taiKhoanUppercase.begin(), ::toupper);
+
+          for (int k = 0; k < taiKhoanUppercase.length(); k++)
+          {
+            SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+            cout << taiKhoanUppercase[k] << " ";
+            SetConsoleTextAttribute(color, 11);
+            Sleep(0.8);
+          }
+          continue;
+        }
+      }
+    }
+    Sleep(animationMovement);
   }
   SetConsoleOutputCP(CP_UTF8);
 }
 
-bool XuLy::login()
+bool XuLy::login(string &tk)
 {
   system("cls");
 
-  string tk, mk, itk, imk;
+  string mk, itk, imk;
   bool flag = false;
+  bool printed = false;
 
   ifstream input("output.txt");
 
@@ -2084,14 +2354,13 @@ bool XuLy::login()
       cout << endl;
       HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
 
-      animationLoading();
+      animationLoading(tk);
       SetConsoleTextAttribute(color, 10);
       cout << endl;
-      cout << endl;
-      cout << "\n\t\t\t\t\t\tDang nhap thanh cong ✅" << endl;
-      SetConsoleTextAttribute(color, 7);
-      Sleep(500);
-      cout << "\t\t\t\t\t\tXin chao " << itk << " 👋 " << endl;
+      cout << "\n\t\t\t\tDang nhap thanh cong ✅" << endl;
+      // SetConsoleTextAttribute(color, 7);
+      // Sleep(500);
+      // cout << "\t\t\t\t\t\tXin chao " << itk << " 👋 " << endl;
 
       HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
       CONSOLE_CURSOR_INFO cursorInfo;
@@ -2101,6 +2370,7 @@ bool XuLy::login()
 
       system("pause >nul");
       system("cls");
+
       break;
     }
   }
@@ -2198,7 +2468,7 @@ void XuLy::signUp()
   system("cls");
 }
 
-void XuLy::XuLyLogin()
+void XuLy::XuLyLogin(string &taiKhoan)
 {
   bool flag = true;
   int chon;
@@ -2210,7 +2480,7 @@ void XuLy::XuLyLogin()
     switch (chon)
     {
     case 1:
-      flag = login();
+      flag = login(taiKhoan);
       break;
     case 2:
       signUp();
@@ -2406,6 +2676,9 @@ void XuLy::XuLyMenuNhanSu()
 void XuLy::XuLyChung()
 {
 
+  string taiKhoan;
+  XuLyLogin(taiKhoan);
+
   HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
   string maTask;
   Task *task;
@@ -2414,6 +2687,7 @@ void XuLy::XuLyChung()
   cout << endl;
   int selectedOption = 1;
   bool exitMenu = false;
+  bool printed = false;
 
   while (!exitMenu)
   {
@@ -2423,8 +2697,21 @@ void XuLy::XuLyChung()
     cursorInfo.bVisible = false; // set the cursor visibility
     SetConsoleCursorInfo(hConsole, &cursorInfo);
 
-    SetConsoleTextAttribute(color, 11);
     clearScreen();
+    if (printed == false)
+    {
+      cout << endl;
+      SetConsoleTextAttribute(color, 7);
+      cout << "\t\t\t\t\t\tXin chao " << taiKhoan << " 👋 " << endl;
+    }
+    else
+    {
+      cout << endl;
+      SetConsoleTextAttribute(color, 7);
+      cout << "\t\t\t\t\t\t 🧑‍💼 " << taiKhoan << endl;
+    }
+
+    SetConsoleTextAttribute(color, 11);
     cout << endl;
     cout << "\t\t\t\t        ╔═══════════════════════════════════╗\n";
     cout << "\t\t\t\t╔═══════╟════ ";
@@ -2514,6 +2801,7 @@ void XuLy::XuLyChung()
         exitMenu = true;
         break;
       }
+      printed = true;
     }
   }
 }

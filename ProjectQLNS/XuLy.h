@@ -28,8 +28,8 @@ public:
   void XuLyMenuNhanSu();
   void suaDoiThongTinNhanSu();
   void inMenuLogin(int &chon);
-  void XuLyLogin();
-  bool login();
+  void XuLyLogin(string &taiKhoan);
+  bool login(string &taiKhoan);
   void signUp();
   bool found(string maSo);
   void timNhanSu();
@@ -41,16 +41,12 @@ public:
   void printASCII(string fileName);
   void xuLyMenuPhongBan();
   void xuLyMenuTask();
-  // void inMenuTask();
   void phanBoTask();
-  // void inMenuPhongBan();
   void phanBoNhanVienThuongVaoPhongBan();
   PhongBan *timPhongBan(string maPhong);
   NhanVienThuong *timNVT(string maPhong);
   void chiDinhTruongPhong();
   void XuLyChung();
-  // void inMenuChung();
-  // void gotoxy(int x, int y);
   void xoaTPkhoiPB();
   void xoaNVkhoiPB();
   void xoaPB();
@@ -62,6 +58,6 @@ public:
   void sapXepSoLuongTaskNV();
   void sapXepTaskHoanThanh();
   void danhGiaTask();
-  void animationLoading();
+  void animationLoading(string taiKhoan);
   void tatConTro();
 };

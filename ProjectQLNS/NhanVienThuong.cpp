@@ -131,7 +131,8 @@ NhanVienThuong::NhanVienThuong(string maSo, string hoTen, string soDienThoai, fl
 
 void NhanVienThuong::tinhLuong()
 {
-  this->luong = NhanSu::luong1NgayNVT * this->soNgayLamViec + NhanSu::phuCapNVT * hoanThanhTask - NhanSu::phuCapNVT * chuaHoanThanhTask;
+  this->luong = NhanSu::luong1NgayNVT * this->soNgayLamViec +
+                NhanSu::phuCapNVT * hoanThanhTask - NhanSu::phuCapNVT * chuaHoanThanhTask;
 }
 
 void NhanVienThuong::nhap()
