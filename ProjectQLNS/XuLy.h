@@ -60,4 +60,11 @@ public:
   void danhGiaTask();
   void animationLoading(string taiKhoan);
   void tatConTro();
+  void diChuyenTPDenPBMoi();
+  void diChuyenNVTDenPBMoi();
+  bool checkCoNhanVienHayKhong();
+  bool checkCoTruongPhongHayKhong();
+  void thucHienPhanBoTruongPhong(PhongBan *pb, TruongPhong *tp, string maPB);
+  void thucHienPhanBoNhanVienThuong(PhongBan *pb, NhanVienThuong *nvt, string maPB);
+  // void hienConTro();
 };

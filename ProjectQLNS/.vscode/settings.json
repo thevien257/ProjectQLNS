@@ -50,6 +50,11 @@
     "numeric": "cpp",
     "random": "cpp",
     "bitset": "cpp",
-    "regex": "cpp"
+    "regex": "cpp",
+    "chrono": "cpp",
+    "ratio": "cpp",
+    "semaphore": "cpp",
+    "stop_token": "cpp",
+    "thread": "cpp"
   }
 }

@@ -43,9 +43,9 @@ void DanhSachTask::xuatTask()
       if (dsTask[i] != lastTask)
       {
         cout << "\t\t\t\t║";
-        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14); // set color to yellow
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
         cout << "     So thu tu       ";
-        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7); // set color to white
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
         cout << "║ " << std::left << std::setw(20) << j << std::right << " ║" << endl;
         dsTask[i]->xuatTask();
         cout << "\t\t\t\t╠═════════════════════╬══════════════════════╣\n";
@@ -54,9 +54,9 @@ void DanhSachTask::xuatTask()
       else
       {
         cout << "\t\t\t\t║";
-        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14); // set color to yellow
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
         cout << "     So thu tu       ";
-        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7); // set color to white
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
         cout << "║ " << std::left << std::setw(20) << j << std::right << " ║" << endl;
         dsTask[i]->xuatTask();
         cout << "\t\t\t\t╚═════════════════════╩══════════════════════╝\n";
