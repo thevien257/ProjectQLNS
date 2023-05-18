@@ -1,3 +1,3 @@
 task1 QuanLyGioLam 25/10/2023
-task2 InAn 12/12/2023
+task2 InAn 22/12/2023
 task3 DataBase 24/09/2023

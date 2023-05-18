@@ -66,5 +66,7 @@ public:
   bool checkCoTruongPhongHayKhong();
   void thucHienPhanBoTruongPhong(PhongBan *pb, TruongPhong *tp, string maPB);
   void thucHienPhanBoNhanVienThuong(PhongBan *pb, NhanVienThuong *nvt, string maPB);
-  // void hienConTro();
+  void clearScreen();
+  void danhGiaTrangThaiTask(Task *task, string maTask, bool daDanhGia, string trangThai, HANDLE color);
+  void checkCin();
 };
