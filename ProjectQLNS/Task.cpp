@@ -1,6 +1,8 @@
 #include "Task.h"
 #include <windows.h>
 #include <limits>
+#include <string.h>
+#include <string>
 
 using namespace std;
 
@@ -69,44 +71,63 @@ void Task::nhapTask()
 void Task::xuatTask()
 {
   HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
-  cout << "\t\t\t\t║";
-  SetConsoleTextAttribute(color, 14);
-  cout << "     Ma task         ";
-  SetConsoleTextAttribute(color, 7);
-  cout << "║ " << std::left << std::setw(20) << maTask << std::right << " ║" << endl;
-
-  cout << "\t\t\t\t║";
-  SetConsoleTextAttribute(color, 14);
-  cout << "     Ten task        ";
-  SetConsoleTextAttribute(color, 7);
-  cout << "║ " << std::left << std::setw(20) << tenTask << std::right << " ║" << endl;
-
-  cout << "\t\t\t\t║";
-  SetConsoleTextAttribute(color, 14);
-  cout << "     Deadline        ";
-  SetConsoleTextAttribute(color, 7);
-  cout << "║ " << std::left << std::setw(20) << deadLine << std::right << " ║" << endl;
-
+  int brightYellow = 14;
+  int darkWhite = 7;
+  cout << " " << setw(4 + maTask.size() / 2) << setfill(' ');
+  SetConsoleTextAttribute(color, brightYellow);
+  cout << maTask;
+  SetConsoleTextAttribute(color, darkWhite);
+  cout << setw(4 - maTask.size() / 2) << setfill(' ') << ""
+       << "║";
+  cout << " " << setw(8 + tenTask.size() / 2) << setfill(' ');
+  SetConsoleTextAttribute(color, brightYellow);
+  cout << tenTask;
+  SetConsoleTextAttribute(color, darkWhite);
+  cout << setw(8 - tenTask.size() / 2) << setfill(' ') << ""
+       << " ║";
+  cout << " " << setw(6 + deadLine.size() / 2) << setfill(' ');
+  SetConsoleTextAttribute(color, brightYellow);
+  cout << deadLine;
+  SetConsoleTextAttribute(color, darkWhite);
+  cout << setw(6 - deadLine.size() / 2) << setfill(' ') << ""
+       << " ║";
   if (maNV != "")
   {
-    cout << "\t\t\t\t║";
-    SetConsoleTextAttribute(color, 14);
-    cout << "     Ma nhan vien    ";
-    SetConsoleTextAttribute(color, 7);
-    cout << "║ " << std::left << std::setw(20) << maNV << std::right << " ║" << endl;
+    cout << " " << setw(9 + maNV.size() / 2) << setfill(' ');
+    SetConsoleTextAttribute(color, brightYellow);
+    cout << maNV;
+    SetConsoleTextAttribute(color, darkWhite);
+    cout << setw(9 - maNV.size() / 2) << setfill(' ') << ""
+         << " ║";
   }
   else
   {
-    cout << "\t\t\t\t║   Chua co nhan vien thuc hien Task nay     ║\n";
+    string chuaCoNhanVien = "Chua co";
+    cout << " " << setw(9 + chuaCoNhanVien.size() / 2) << setfill(' ');
+    SetConsoleTextAttribute(color, brightYellow);
+    cout << "Chua co";
+    SetConsoleTextAttribute(color, darkWhite);
+    cout << setw(9 - chuaCoNhanVien.size() / 2) << setfill(' ') << ""
+         << " ║";
   }
-
   if (trangThaiTask != "")
   {
-    cout << "\t\t\t\t║";
-    SetConsoleTextAttribute(color, 14);
-    cout << "     Trang thai task ";
-    SetConsoleTextAttribute(color, 7);
-    cout << "║ " << std::left << std::setw(20) << trangThaiTask << std::right << " ║" << endl;
+    cout << " " << setw(9 + trangThaiTask.size() / 2) << setfill(' ');
+    SetConsoleTextAttribute(color, brightYellow);
+    cout << trangThaiTask;
+    SetConsoleTextAttribute(color, darkWhite);
+    cout << setw(9 - trangThaiTask.size() / 2) << setfill(' ') << ""
+         << "  ║";
+  }
+  else
+  {
+    string chuaDuocDanhGia = "Chua duoc danh gia";
+    cout << " " << setw(7 + chuaDuocDanhGia.size() / 2) << setfill(' ');
+    SetConsoleTextAttribute(color, brightYellow);
+    cout << "Chua duoc danh gia";
+    SetConsoleTextAttribute(color, darkWhite);
+    cout << setw(7 - chuaDuocDanhGia.size() / 2) << setfill(' ') << ""
+         << "  ║";
   }
 }
 

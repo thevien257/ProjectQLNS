@@ -13,40 +13,208 @@
 #include <conio.h>
 #include <fcntl.h>
 #include <io.h>
+#include <limits>
 using namespace std;
+#define WHITE 15
 
-void clearScreen()
+// Menu xử lý chung
+void XuLy::XuLyChung()
 {
-  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-  COORD coordScreen = {0, 0}; // top-left corner
-  DWORD cCharsWritten;
-  CONSOLE_SCREEN_BUFFER_INFO csbi;
-  DWORD dwConSize;
+  string taiKhoan;
+  XuLyLogin(taiKhoan);
 
-  // Get the number of character cells in the current buffer.
-  if (!GetConsoleScreenBufferInfo(hConsole, &csbi))
-    return;
-  dwConSize = csbi.dwSize.X * csbi.dwSize.Y;
+  HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+  string maTask;
+  Task *task;
 
-  // Fill the console screen with blank spaces and reset the text attributes.
-  if (!FillConsoleOutputCharacter(hConsole, (TCHAR)' ', dwConSize, coordScreen, &cCharsWritten))
-    return;
-  if (!FillConsoleOutputAttribute(hConsole, csbi.wAttributes, dwConSize, coordScreen, &cCharsWritten))
-    return;
+  SetConsoleTextAttribute(color, 14);
+  cout << endl;
+  int selectedOption = 1;
+  bool exitMenu = false;
+  bool printed = false;
 
-  // Move the cursor back to the top-left corner.
-  SetConsoleCursorPosition(hConsole, coordScreen);
+  while (!exitMenu)
+  {
+    tatConTro();
+    clearScreen();
+    if (printed == false)
+    {
+      cout << endl;
+      SetConsoleTextAttribute(color, 7);
+      cout << "\t\t\t\t\t\tXin chao " << taiKhoan << " 👋 " << endl;
+    }
+    else
+    {
+      cout << endl;
+      SetConsoleTextAttribute(color, 7);
+      cout << "\t\t\t\t\t\t 🧑‍💼 " << taiKhoan << endl;
+    }
+
+    SetConsoleTextAttribute(color, 11);
+    cout << endl;
+    cout << "\t\t\t\t        ╔═══════════════════════════════════╗\n";
+    cout << "\t\t\t\t╔═══════╟════ ";
+    SetConsoleTextAttribute(color, 7);
+    cout << " Menu Quan Ly Chung 🧑‍💻";
+    SetConsoleTextAttribute(color, 11);
+    cout << " ════║═════════╗\n";
+    cout << "\t\t\t\t║       ╚═══════════════════════════════════╝         ║\n";
+    cout << "\t\t\t\t║                                                     ║\n";
+    for (int i = 1; i <= 4; i++)
+    {
+      if (i == selectedOption)
+      {
+        SetConsoleTextAttribute(color, 11);
+        cout << "\t\t\t\t║";
+        SetConsoleTextAttribute(color, 11);
+        cout << "      👉    ";
+      }
+      else
+      {
+        SetConsoleTextAttribute(color, 11);
+        cout << "\t\t\t\t║            ";
+        SetConsoleTextAttribute(color, 7);
+      }
+
+      switch (i)
+      {
+      case 1:
+        cout << std::left << std::setw(40) << "Quan ly nhan su" << std::right;
+        break;
+      case 2:
+        cout << std::left << std::setw(40) << "Quan ly phong ban" << std::right;
+        break;
+      case 3:
+        cout << std::left << std::setw(40) << "Quan ly task" << std::right;
+        break;
+      case 4:
+        cout << std::left << std::setw(40) << "Thoat chuong trinh" << std::right;
+        break;
+      }
+      SetConsoleTextAttribute(color, 11);
+      cout << " ║\n";
+    }
+    SetConsoleTextAttribute(color, 11);
+    cout << "\t\t\t\t║                                                     ║\n";
+    cout << "\t\t\t\t╚═════════════════════════════════════════════════════╝\n";
+
+    SetConsoleTextAttribute(color, 7);
+    char input = getch();
+
+    switch (input)
+    {
+    case 72:
+      if (selectedOption > 1)
+        selectedOption--;
+      break;
+    case 80:
+      if (selectedOption < 4)
+        selectedOption++;
+      break;
+    case 13:
+      switch (selectedOption)
+      {
+      case 1:
+        XuLyMenuNhanSu();
+        break;
+      case 2:
+        xuLyMenuPhongBan();
+        break;
+      case 3:
+        xuLyMenuTask();
+        break;
+      case 4:
+        cout << endl;
+        system("cls");
+        tatConTro();
+        SetConsoleTextAttribute(color, 3);
+        cout << endl;
+        cout << endl;
+        cout << endl;
+        cout << "\t\t\t\t\t\tSee you next time 😁" << endl;
+        cout << endl;
+        cout << endl;
+        SetConsoleTextAttribute(color, 14);
+        printGoodBye();
+        Sleep(2000);
+        exit(1);
+        break;
+      }
+      printed = true;
+      system("cls");
+    }
+  }
 }
 
-void XuLy::tatConTro()
+// Xử lý menu nhân sự
+void XuLy::XuLyMenuNhanSu()
 {
-  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-  CONSOLE_CURSOR_INFO cursorInfo;
-  GetConsoleCursorInfo(hConsole, &cursorInfo);
-  cursorInfo.bVisible = false; // set the cursor visibility
-  SetConsoleCursorInfo(hConsole, &cursorInfo);
+  bool flag = true;
+  int chon;
+  HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+  system("cls");
+  do
+  {
+    inMenu(chon);
+    switch (chon)
+    {
+    case 1:
+      ds.nhap();
+      break;
+    case 2:
+      cout << endl;
+      cout << endl;
+      cout << endl;
+      ds.xuat();
+      break;
+    case 3:
+      cout << endl;
+      cout << endl;
+      cout << endl;
+      SapXepTheoTen();
+      ds.xuat();
+      break;
+    case 4:
+      cout << endl;
+      cout << endl;
+      cout << endl;
+      sapXepLuongGiamDan();
+      ds.xuat();
+      break;
+    case 5:
+      cout << endl;
+      cout << endl;
+      cout << endl;
+      timNhanSu();
+      break;
+    case 6:
+      cout << endl;
+      cout << endl;
+      cout << endl;
+      timNVLuongCaoNhat();
+      break;
+    case 7:
+      cout << endl;
+      cout << endl;
+      cout << endl;
+      suaDoiThongTinNhanSu();
+      break;
+    case 8:
+      cout << endl;
+      cout << endl;
+      cout << endl;
+      xoaNhanSu();
+      break;
+    case 0:
+      flag = false;
+      break;
+    default:
+      break;
+    }
+  } while (flag);
 }
 
+// Xử lý menu phòng ban
 void XuLy::xuLyMenuPhongBan()
 {
   clearScreen();
@@ -59,11 +227,7 @@ void XuLy::xuLyMenuPhongBan()
 
   while (!exitMenu)
   {
-    clearScreen();
-    GetConsoleCursorInfo(hConsole, &cursorInfo);
-    cursorInfo.bVisible = false; // set the cursor visibility
-    SetConsoleCursorInfo(hConsole, &cursorInfo);
-
+    tatConTro();
     SetConsoleTextAttribute(color, 11);
     clearScreen();
     cout << endl;
@@ -76,7 +240,7 @@ void XuLy::xuLyMenuPhongBan()
     cout << "\t\t\t\t║         ╚═══════════════════════════════════╝           ║\n";
     cout << "\t\t\t\t║                                                         ║\n";
 
-    for (int i = 1; i <= 10; i++)
+    for (int i = 1; i <= 12; i++)
     {
       if (i == selectedOption)
       {
@@ -122,6 +286,12 @@ void XuLy::xuLyMenuPhongBan()
         cout << std::left << std::setw(50) << "Sap xep so luong nhan su theo thu tu tang dan" << std::right;
         break;
       case 10:
+        cout << std::left << std::setw(50) << "Chuyen nhan vien sang phong ban khac" << std::right;
+        break;
+      case 11:
+        cout << std::left << std::setw(50) << "Chuyen truong phong sang phong ban khac" << std::right;
+        break;
+      case 12:
         cout << std::left << std::setw(50) << "Thoat khoi menu quan ly phong ban" << std::right;
         break;
       }
@@ -136,7 +306,7 @@ void XuLy::xuLyMenuPhongBan()
     char input = getch();
 
     GetConsoleCursorInfo(hConsole, &cursorInfo);
-    cursorInfo.bVisible = true; // set the cursor visibility
+    cursorInfo.bVisible = true;
     SetConsoleCursorInfo(hConsole, &cursorInfo);
     switch (input)
     {
@@ -145,7 +315,7 @@ void XuLy::xuLyMenuPhongBan()
         selectedOption--;
       break;
     case 80:
-      if (selectedOption < 10)
+      if (selectedOption < 12)
         selectedOption++;
       break;
     case 13:
@@ -153,57 +323,467 @@ void XuLy::xuLyMenuPhongBan()
       {
       case 1:
         dsPB.nhapPB();
-        tatConTro();
-        system("pause >nul");
         break;
       case 2:
         dsPB.xuatPB();
-        tatConTro();
-        system("pause >nul");
         break;
       case 3:
         phanBoNhanVienThuongVaoPhongBan();
-        tatConTro();
-        system("pause >nul");
         break;
       case 4:
         chiDinhTruongPhong();
-        tatConTro();
-        system("pause >nul");
         break;
       case 5:
         xoaTPkhoiPB();
         dsPB.xuatPB();
-        tatConTro();
-        system("pause >nul");
         break;
       case 6:
         xoaNVkhoiPB();
         dsPB.xuatPB();
-        tatConTro();
-        system("pause >nul");
         break;
       case 7:
         xoaPB();
-        tatConTro();
-        system("pause >nul");
         break;
       case 8:
         sapXepSoLuongNhanSuPBGD();
-        tatConTro();
-        system("pause >nul");
         break;
       case 9:
         sapXepSoLuongNhanSuPBTD();
-        tatConTro();
-        system("pause >nul");
         break;
       case 10:
+        diChuyenNVTDenPBMoi();
+        break;
+      case 11:
+        diChuyenTPDenPBMoi();
+        break;
+      case 12:
         exitMenu = true;
         break;
       }
+      if (selectedOption != 12)
+      {
+        tatConTro();
+        system("pause >nul");
+      }
       system("cls");
     }
+  }
+}
+
+// Xử lý menu Task
+void XuLy::xuLyMenuTask()
+{
+  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+  CONSOLE_CURSOR_INFO cursorInfo;
+
+  int selectedOption = 1;
+  bool exitMenu = false;
+  HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+
+  while (!exitMenu)
+  {
+    GetConsoleCursorInfo(hConsole, &cursorInfo);
+    cursorInfo.bVisible = false;
+    SetConsoleCursorInfo(hConsole, &cursorInfo);
+
+    SetConsoleTextAttribute(color, 11);
+    clearScreen();
+    cout << endl;
+    cout << "\t\t\t\t          ╔═══════════════════════════════════╗\n";
+    cout << "\t\t\t\t╔═════════╟════ ";
+    SetConsoleTextAttribute(color, 7);
+    cout << "   Menu Quan Ly Task📋   ";
+    SetConsoleTextAttribute(color, 11);
+    cout << " ════║═══════════╗\n";
+    cout << "\t\t\t\t║         ╚═══════════════════════════════════╝           ║\n";
+    cout << "\t\t\t\t║                                                         ║\n";
+
+    for (int i = 1; i <= 9; i++)
+    {
+      if (i == selectedOption)
+      {
+        SetConsoleTextAttribute(color, 11);
+        cout << "\t\t\t\t║";
+        SetConsoleTextAttribute(color, 11);
+        cout << " 👉   ";
+      }
+      else
+      {
+        SetConsoleTextAttribute(color, 11);
+        cout << "\t\t\t\t║      ";
+        SetConsoleTextAttribute(color, 7);
+      }
+
+      switch (i)
+      {
+      case 1:
+        cout << std::left << std::setw(50) << "Them Task" << std::right;
+        break;
+      case 2:
+        cout << std::left << std::setw(50) << "Xuat Task" << std::right;
+        break;
+      case 3:
+        cout << std::left << std::setw(50) << "Xoa task" << std::right;
+        break;
+      case 4:
+        cout << std::left << std::setw(50) << "Phan bo task cho nhan vien" << std::right;
+        break;
+      case 5:
+        cout << std::left << std::setw(50) << "Sap xep nhan vien hoan thanh nhieu task nhat" << std::right;
+        break;
+      case 6:
+        cout << std::left << std::setw(50) << "Sap xep nhan vien co nhieu task nhat" << std::right;
+        break;
+      case 7:
+        cout << std::left << std::setw(50) << "Xoa Task khoi nhan vien" << std::right;
+        break;
+      case 8:
+        cout << std::left << std::setw(50) << "Danh gia task" << std::right;
+        break;
+      case 9:
+        cout << std::left << std::setw(50) << "Thoat khoi menu quan ly task" << std::right;
+        break;
+      }
+      SetConsoleTextAttribute(color, 11);
+      cout << " ║\n";
+    }
+    SetConsoleTextAttribute(color, 11);
+    cout << "\t\t\t\t║                                                         ║\n";
+    cout << "\t\t\t\t╚═════════════════════════════════════════════════════════╝\n";
+
+    SetConsoleTextAttribute(color, 7);
+    char input = getch();
+
+    GetConsoleCursorInfo(hConsole, &cursorInfo);
+    cursorInfo.bVisible = true;
+    SetConsoleCursorInfo(hConsole, &cursorInfo);
+
+    switch (input)
+    {
+    case 72:
+      if (selectedOption > 1)
+        selectedOption--;
+      break;
+    case 80:
+      if (selectedOption < 9)
+        selectedOption++;
+      break;
+    case 13:
+      switch (selectedOption)
+      {
+      case 1:
+        dsTask.nhapTask();
+        break;
+      case 2:
+        dsTask.xuatTask();
+        break;
+      case 3:
+        xoaTask();
+        break;
+      case 4:
+        phanBoTask();
+        break;
+      case 5:
+        sapXepTaskHoanThanh();
+        break;
+      case 6:
+        sapXepSoLuongTaskNV();
+        break;
+      case 7:
+        xoaTaskKhoiNV();
+        ds.xuatNV();
+        break;
+      case 8:
+        danhGiaTask();
+        break;
+      case 9:
+        exitMenu = true;
+        break;
+      }
+      if (selectedOption != 9)
+      {
+        tatConTro();
+        system("pause >nul");
+      }
+      system("cls");
+    }
+  }
+}
+
+void XuLy::thucHienPhanBoTruongPhong(PhongBan *pb, TruongPhong *tp, string maPB)
+{
+  if (pb != nullptr)
+  {
+    if (tp->getMaPhongBan() != "" && tp->getMaPhongBan() != pb->getMaPhongBan())
+    {
+      for (PhongBan *pb : dsPB.getDsPhongBan())
+      {
+        if (tp->getMaPhongBan() != "")
+        {
+          if (tp->getMaPhongBan() == pb->getMaPhongBan())
+          {
+            pb->setTruongPhong(nullptr);
+            pb->giamSoLuongNhanSu();
+            if (pb->getDsNV().size() > 0)
+            {
+              for (NhanVienThuong *nv : pb->getDsNV())
+              {
+                if (nv != nullptr)
+                {
+                  if (nv->getMaPhongBan() == tp->getMaPhongBan())
+                  {
+                    nv->setTruongPhong(nullptr);
+                    tp->giamNhanVien();
+                    tp->getListNV().erase(remove(tp->getListNV().begin(), tp->getListNV().end(), nv), tp->getListNV().end());
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    tp->setMaPhongBan(maPB);
+    pb->setTruongPhong(tp);
+    pb->tangSoLuongNhanSu();
+
+    if (pb->getDsNV().size() > 0)
+    {
+      for (NhanSu *ns : ds.getListNS())
+      {
+        if (NhanVienThuong *nvt = dynamic_cast<NhanVienThuong *>(ns))
+        {
+          if (nvt != nullptr)
+          {
+            if (nvt->getMaPhongBan() == pb->getMaPhongBan())
+            {
+              tp->getListNV().push_back(nvt);
+              tp->tangNhanVien();
+              nvt->setTruongPhong(tp);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+void XuLy::diChuyenTPDenPBMoi()
+{
+  HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+  bool check = checkCoTruongPhongHayKhong();
+  if (check)
+  {
+    string maTP;
+    string maPB;
+    cout << endl;
+    cout << "\t\t\t\t\tDay la danh sach phong ban 📜 " << endl;
+    dsPB.xuatPB();
+    TruongPhong *tp = nullptr;
+    PhongBan *pb = nullptr;
+    do
+    {
+      cout << "\t\t\t\t📝 Chuyen truong phong mang ma so:        den phong ban mang ma so:        ";
+      cout << "\033[30;68H";
+      SetConsoleTextAttribute(color, 11);
+      cin >> maTP;
+      tp = timTruongPhongTheoMa(maTP);
+      if (tp == nullptr)
+      {
+        SetConsoleTextAttribute(color, 12);
+        cout << "\t\t\t\t❌ Ma truong phong khong ton tai. Moi nhap lai!" << endl;
+        SetConsoleTextAttribute(color, 7);
+      }
+      else
+      {
+        cout << "\033[29;101H";
+        SetConsoleTextAttribute(color, 11);
+        cin >> maPB;
+        pb = timPhongBan(maPB);
+        if (pb == nullptr || pb->getTruongPhong() != nullptr)
+        {
+          SetConsoleTextAttribute(color, 12);
+          cout << "\t\t\t\t❌ Ma phong ban khong ton tai hoac phong ban nay da co truong phong. Moi nhap lai!" << endl;
+          SetConsoleTextAttribute(color, 7);
+        }
+      }
+    } while (pb == nullptr || tp == nullptr || pb->getTruongPhong() != nullptr);
+
+    thucHienPhanBoTruongPhong(pb, tp, maPB);
+
+    cout << endl;
+    SetConsoleTextAttribute(color, 10);
+    cout << "\t\t\t✅ Da chuyen truong phong ";
+    SetConsoleTextAttribute(color, 7);
+    cout << tp->getHoTen();
+    SetConsoleTextAttribute(color, 10);
+    cout << " mang ma so ";
+    SetConsoleTextAttribute(color, 7);
+    cout << tp->getMaSo();
+    SetConsoleTextAttribute(color, 10);
+    cout << " den ";
+    SetConsoleTextAttribute(color, 7);
+    cout << pb->getTenPhongBan();
+    SetConsoleTextAttribute(color, 10);
+    cout << " mang ma so ";
+    SetConsoleTextAttribute(color, 7);
+    cout << pb->getMaPhongBan();
+    cout << endl;
+  }
+
+  else
+  {
+    SetConsoleTextAttribute(color, 12);
+    cout << "\t\t\t\t❌ Cac phong ban chua duoc phan bo truong phong. Khong the thuc hien chuc nang nay!" << endl;
+    SetConsoleTextAttribute(color, 7);
+  }
+}
+
+bool XuLy::checkCoNhanVienHayKhong()
+{
+  for (PhongBan *pb : dsPB.getDsPhongBan())
+  {
+    if (pb->getDsNV().size() > 0)
+    {
+      return true;
+    }
+  }
+  return false;
+}
+
+bool XuLy::checkCoTruongPhongHayKhong()
+{
+  for (PhongBan *pb : dsPB.getDsPhongBan())
+  {
+    if (pb->getTruongPhong() != nullptr)
+    {
+      return true;
+    }
+  }
+  return false;
+}
+
+void XuLy::thucHienPhanBoNhanVienThuong(PhongBan *pb, NhanVienThuong *nvt, string maPB)
+{
+  // Nếu nhân viên đang ở trong phòng ban nào đó, xóa nhân viên này khỏi phòng ban đó
+  if (nvt->getMaPhongBan() != "")
+  {
+    for (PhongBan *pb : dsPB.getDsPhongBan())
+    {
+      if (nvt->getMaPhongBan() != "")
+      {
+        if (nvt->getMaPhongBan() == pb->getMaPhongBan())
+        {
+          pb->getDsNV().erase(remove(pb->getDsNV().begin(), pb->getDsNV().end(), nvt), pb->getDsNV().end());
+          pb->giamSoLuongNhanSu();
+        }
+      }
+      else
+      {
+        break;
+      }
+    }
+  }
+
+  // Nếu nhân viên đang được quản lý bởi trưởng phòng nào đó thì xóa nhân viên này khỏi danh sách nhân viên của trưởng phòng đó và setTP của nhân viên này thành nullptr
+  if (nvt->getTruongPhong() != nullptr)
+  {
+    nvt->setTruongPhong(nullptr);
+    for (NhanSu *ns : ds.getListNS())
+    {
+      if (TruongPhong *tp = dynamic_cast<TruongPhong *>(ns))
+      {
+        if (tp != nullptr)
+        {
+          if (tp->getMaPhongBan() == nvt->getMaPhongBan())
+          {
+            tp->getListNV().erase(remove(tp->getListNV().begin(), tp->getListNV().end(), nvt), tp->getListNV().end());
+            tp->giamNhanVien();
+          }
+        }
+      }
+    }
+  }
+
+  // Thực hiện phân bổ lại nhân viên này vào phòng ban mới
+  nvt->setMaPhongBan(maPB);
+  pb->getDsNV().push_back(nvt);
+  pb->tangSoLuongNhanSu();
+  if (pb->getTruongPhong() != nullptr)
+  {
+    pb->getTruongPhong()->getListNV().push_back(nvt);
+    pb->getTruongPhong()->tangNhanVien();
+    nvt->setTruongPhong(pb->getTruongPhong());
+  }
+}
+
+void XuLy::diChuyenNVTDenPBMoi()
+{
+  bool check = checkCoNhanVienHayKhong();
+  HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+  if (check)
+  {
+    string maNV;
+    string maPB;
+    cout << endl;
+    cout << "\t\t\t\t\tDay la danh sach phong ban 📜 " << endl;
+    dsPB.xuatPB();
+    NhanVienThuong *nvt;
+    PhongBan *pb = nullptr;
+    do
+    {
+      cout << "\t\t\t\t📝 Chuyen nhan vien mang ma so:        den phong ban mang ma so:        ";
+      cout << "\033[30;65H";
+      SetConsoleTextAttribute(color, 11);
+      cin >> maNV;
+      nvt = timNVT(maNV);
+      if (nvt == nullptr)
+      {
+        SetConsoleTextAttribute(color, 12);
+        cout << "\t\t\t\t❌ Ma nhan vien khong ton tai. Moi nhap lai!" << endl;
+        SetConsoleTextAttribute(color, 7);
+      }
+      else
+      {
+        cout << "\033[29;98H";
+        SetConsoleTextAttribute(color, 11);
+        cin >> maPB;
+        pb = timPhongBan(maPB);
+        if (pb == nullptr || nvt->getMaPhongBan() == pb->getMaPhongBan())
+        {
+          SetConsoleTextAttribute(color, 12);
+          cout << "\t\t\t\t❌ Ma phong ban khong ton tai hoac nhan vien da o trong phong ban nay. Moi nhap lai!" << endl;
+          SetConsoleTextAttribute(color, 7);
+        }
+      }
+    } while (nvt == nullptr || pb == nullptr || nvt->getMaPhongBan() == pb->getMaPhongBan());
+
+    thucHienPhanBoNhanVienThuong(pb, nvt, maPB);
+
+    cout << endl;
+    SetConsoleTextAttribute(color, 10);
+    cout << "\t\t\t✅ Da chuyen nhan vien ";
+    SetConsoleTextAttribute(color, 7);
+    cout << nvt->getHoTen();
+    SetConsoleTextAttribute(color, 10);
+    cout << " mang ma so ";
+    SetConsoleTextAttribute(color, 7);
+    cout << nvt->getMaSo();
+    SetConsoleTextAttribute(color, 10);
+    cout << " den ";
+    SetConsoleTextAttribute(color, 7);
+    cout << pb->getTenPhongBan();
+    SetConsoleTextAttribute(color, 10);
+    cout << " mang ma so ";
+    SetConsoleTextAttribute(color, 7);
+    cout << pb->getMaPhongBan();
+    cout << endl;
+  }
+  else
+  {
+    SetConsoleTextAttribute(color, 12);
+    cout << "\t\t\t\t❌ Cac phong ban chua duoc phan bo nhan vien. Khong the thuc hien chuc nang nay!" << endl;
+    SetConsoleTextAttribute(color, 7);
   }
 }
 
@@ -422,7 +1002,6 @@ void XuLy::xoaPB()
 void XuLy::xoaTPkhoiPB()
 {
   HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
-  // Get Truong Phong ID from user
   TruongPhong *tp;
   string maTP;
   do
@@ -566,23 +1145,15 @@ NhanVienThuong *XuLy::timNVT(string maNV)
   return nullptr;
 }
 
-// TruongPhong *XuLy::timTP(string maTP)
-// {
-//   for (NhanSu *ns : ds.getListNS())
-//   {
-//     if (TruongPhong *tp = dynamic_cast<TruongPhong *>(tp))
-//     {
-//       if (tp != nullptr)
-//       {
-//         if (tp->getMaSo() == maTP)
-//         {
-//           return tp;
-//         }
-//       }
-//     }
-//   }
-//   return nullptr;
-// }
+void XuLy::checkCin()
+{
+  HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+  cin.clear();
+  cin.ignore(numeric_limits<streamsize>::max(), '\n');
+  SetConsoleTextAttribute(color, 12);
+  cout << "\t\t\t\t❌ Chi duoc chon 1 hoac 2" << endl;
+  SetConsoleTextAttribute(color, 7);
+}
 
 void XuLy::chiDinhTruongPhong()
 {
@@ -607,81 +1178,37 @@ void XuLy::chiDinhTruongPhong()
           string maPB;
           PhongBan *pb = nullptr;
           cin >> chon;
-          switch (chon)
+          if (cin.fail())
           {
-          case 1:
-            cout << endl;
-            cout << "\t\t\t\t\tDay la danh sach phong ban 📜 " << endl;
-            dsPB.xuatPB();
-            do
+            checkCin();
+          }
+          else
+          {
+            switch (chon)
             {
-              cout << "\t\t\t\tMoi chon ma phong hoac nhap 0 de thoat: ";
-              cin >> maPB;
-              if (maPB == "0")
+            case 1:
+              cout << endl;
+              cout << "\t\t\t\t\tDay la danh sach phong ban 📜 " << endl;
+              dsPB.xuatPB();
+              do
               {
-                return;
-              }
-              pb = timPhongBan(maPB);
-              if (pb == nullptr || pb->getTruongPhong() != nullptr)
-              {
-                SetConsoleTextAttribute(color, 12);
-                cout << "\t\t\t\t❌ Ma phong ban khong ton tai hoac phong ban nay da co truong phong. Moi nhap lai!" << endl;
-                SetConsoleTextAttribute(color, 7);
-              }
-            } while (pb == nullptr || pb->getTruongPhong() != nullptr);
-            if (pb != nullptr)
-            {
-              if (tp->getMaPhongBan() != "" && tp->getMaPhongBan() != pb->getMaPhongBan())
-              {
-                for (PhongBan *pb : dsPB.getDsPhongBan())
+                cout << "\t\t\t\tMoi chon ma phong hoac nhap 0 de thoat: ";
+                cin >> maPB;
+                if (maPB == "0")
                 {
-                  if (tp->getMaPhongBan() != "")
-                  {
-                    if (tp->getMaPhongBan() == pb->getMaPhongBan())
-                    {
-                      pb->setTruongPhong(nullptr);
-                      pb->giamSoLuongNhanSu();
-                      if (pb->getDsNV().size() > 0)
-                      {
-                        for (NhanVienThuong *nv : pb->getDsNV())
-                        {
-                          if (nv != nullptr)
-                          {
-                            if (nv->getMaPhongBan() == tp->getMaPhongBan())
-                            {
-                              nv->setTruongPhong(nullptr);
-                              tp->giamNhanVien();
-                              tp->getListNV().erase(remove(tp->getListNV().begin(), tp->getListNV().end(), nv), tp->getListNV().end());
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
+                  return;
                 }
-              }
-              tp->setMaPhongBan(maPB);
-              pb->setTruongPhong(tp);
-              pb->tangSoLuongNhanSu();
+                pb = timPhongBan(maPB);
+                if (pb == nullptr || pb->getTruongPhong() != nullptr)
+                {
+                  SetConsoleTextAttribute(color, 12);
+                  cout << "\t\t\t\t❌ Ma phong ban khong ton tai hoac phong ban nay da co truong phong. Moi nhap lai!" << endl;
+                  SetConsoleTextAttribute(color, 7);
+                }
+              } while (pb == nullptr || pb->getTruongPhong() != nullptr);
 
-              if (pb->getDsNV().size() > 0)
-              {
-                for (NhanSu *ns : ds.getListNS())
-                {
-                  if (NhanVienThuong *nvt = dynamic_cast<NhanVienThuong *>(ns))
-                  {
-                    if (nvt != nullptr)
-                    {
-                      if (nvt->getMaPhongBan() == pb->getMaPhongBan())
-                      {
-                        tp->getListNV().push_back(nvt);
-                        tp->tangNhanVien();
-                        nvt->setTruongPhong(tp);
-                      }
-                    }
-                  }
-                }
-              }
+              thucHienPhanBoTruongPhong(pb, tp, maPB);
+
               SetConsoleTextAttribute(color, 10);
               cout << "\t\t\t\tPhan bo ";
               SetConsoleTextAttribute(color, 7);
@@ -696,24 +1223,17 @@ void XuLy::chiDinhTruongPhong()
               cout << endl;
               flag = false;
               break;
-            }
-            else
-            {
+
+            case 2:
+              flag = false;
+              break;
+
+            default:
               SetConsoleTextAttribute(color, 12);
-              cout << "\t\t\t\t❌ Ma phong ban khong ton tai hoac phong ban nay da co truong phong. Moi nhap lai!" << endl;
+              cout << "\t\t\t\t🤬 Chi duoc chon 1 hoac 2" << endl;
               SetConsoleTextAttribute(color, 7);
-              flag = true;
+              break;
             }
-
-          case 2:
-            flag = false;
-            break;
-
-          default:
-            SetConsoleTextAttribute(color, 12);
-            cout << "\t\t\t\t🤬 Chi duoc chon 1 hoac 2" << endl;
-            SetConsoleTextAttribute(color, 7);
-            break;
           }
         } while (flag);
       }
@@ -740,81 +1260,42 @@ void XuLy::phanBoNhanVienThuongVaoPhongBan()
           cout << "\t\t\t\tMa so: " << nvt->getMaSo() << "\t"
                << "Ho ten: " << nvt->getHoTen() << endl;
           SetConsoleTextAttribute(color, 7);
-          cout << "\t\t\t\tChon 1. de phan bo hoac chon 2. de di tiep 👉 ";
           int chon;
+          cout << "\t\t\t\tChon 1. de phan bo hoac chon 2. de di tiep 👉 ";
           string maPhong;
           PhongBan *pb = nullptr;
           cin >> chon;
-          switch (chon)
+          if (cin.fail())
           {
-          case 1:
-            cout << endl;
-            cout << "\t\t\t\t\tDay la danh sach phong ban 📜 " << endl;
-            dsPB.xuatPB();
-            do
+            checkCin();
+          }
+          else
+          {
+            switch (chon)
             {
-              cout << "\t\t\t\tMoi chon ma phong hoac nhap 0 de thoat: ";
-              cin >> maPhong;
-              if (maPhong == "0")
+            case 1:
+              cout << endl;
+              cout << "\t\t\t\t\tDay la danh sach phong ban 📜 " << endl;
+              dsPB.xuatPB();
+              do
               {
-                return;
-              }
-              pb = timPhongBan(maPhong);
-              if (pb == nullptr || nvt->getMaPhongBan() == pb->getMaPhongBan())
-              {
-                SetConsoleTextAttribute(color, 12);
-                cout << "\t\t\t\t❌ Ma phong ban khong ton tai hoac nhan vien da o trong phong ban nay. Moi nhap lai!" << endl;
-                SetConsoleTextAttribute(color, 7);
-              }
-            } while (pb == nullptr || nvt->getMaPhongBan() == pb->getMaPhongBan());
-            if (pb != nullptr)
-            {
-              if (nvt->getMaPhongBan() != "")
-              {
-                for (PhongBan *pb : dsPB.getDsPhongBan())
+                cout << "\t\t\t\tMoi chon ma phong hoac nhap 0 de thoat: ";
+                cin >> maPhong;
+                if (maPhong == "0")
                 {
-                  if (nvt->getMaPhongBan() != "")
-                  {
-                    if (nvt->getMaPhongBan() == pb->getMaPhongBan())
-                    {
-                      pb->getDsNV().erase(remove(pb->getDsNV().begin(), pb->getDsNV().end(), nvt), pb->getDsNV().end());
-                      pb->giamSoLuongNhanSu();
-                    }
-                  }
-                  else
-                  {
-                    break;
-                  }
+                  return;
                 }
-              }
-              if (nvt->getTruongPhong() != nullptr)
-              {
-                nvt->setTruongPhong(nullptr);
-                for (NhanSu *ns : ds.getListNS())
+                pb = timPhongBan(maPhong);
+                if (pb == nullptr || nvt->getMaPhongBan() == pb->getMaPhongBan())
                 {
-                  if (TruongPhong *tp = dynamic_cast<TruongPhong *>(ns))
-                  {
-                    if (tp != nullptr)
-                    {
-                      if (tp->getMaPhongBan() == nvt->getMaPhongBan())
-                      {
-                        tp->getListNV().erase(remove(tp->getListNV().begin(), tp->getListNV().end(), nvt), tp->getListNV().end());
-                        tp->giamNhanVien();
-                      }
-                    }
-                  }
+                  SetConsoleTextAttribute(color, 12);
+                  cout << "\t\t\t\t❌ Ma phong ban khong ton tai hoac nhan vien da o trong phong ban nay. Moi nhap lai!" << endl;
+                  SetConsoleTextAttribute(color, 7);
                 }
-              }
+              } while (pb == nullptr || nvt->getMaPhongBan() == pb->getMaPhongBan());
 
-              nvt->setMaPhongBan(maPhong);
-              pb->getDsNV().push_back(nvt);
-              pb->tangSoLuongNhanSu();
-              if (pb->getTruongPhong() != nullptr)
-              {
-                pb->getTruongPhong()->getListNV().push_back(nvt);
-                pb->getTruongPhong()->tangNhanVien();
-                nvt->setTruongPhong(pb->getTruongPhong());
-              }
+              thucHienPhanBoNhanVienThuong(pb, nvt, maPhong);
+
               SetConsoleTextAttribute(color, 10);
               cout << "\t\t\t\tPhan bo ";
               SetConsoleTextAttribute(color, 7);
@@ -829,23 +1310,16 @@ void XuLy::phanBoNhanVienThuongVaoPhongBan()
               cout << endl;
               flag = false;
               break;
-            }
-            else
-            {
+
+            case 2:
+              flag = false;
+              break;
+
+            default:
               SetConsoleTextAttribute(color, 12);
-              cout << "\t\t\t\t ❌ Ma phong khong ton tai! Vui long nhap lai" << endl;
+              cout << "\t\t\t\t🤬 Chi duoc chon 1 hoac 2" << endl;
               SetConsoleTextAttribute(color, 7);
-              flag = true;
             }
-
-          case 2:
-            flag = false;
-            break;
-
-          default:
-            SetConsoleTextAttribute(color, 12);
-            cout << "\t\t\t\t🤬 Chi duoc chon 1 hoac 2" << endl;
-            SetConsoleTextAttribute(color, 7);
           }
         } while (flag == true);
       }
@@ -863,156 +1337,6 @@ PhongBan *XuLy::timPhongBan(string maPhong)
     }
   }
   return nullptr;
-}
-
-void XuLy::xuLyMenuTask()
-{
-  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-  CONSOLE_CURSOR_INFO cursorInfo;
-
-  int selectedOption = 1;
-  bool exitMenu = false;
-  HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
-
-  while (!exitMenu)
-  {
-    GetConsoleCursorInfo(hConsole, &cursorInfo);
-    cursorInfo.bVisible = false; // set the cursor visibility
-    SetConsoleCursorInfo(hConsole, &cursorInfo);
-
-    SetConsoleTextAttribute(color, 11);
-    clearScreen();
-    cout << endl;
-    cout << "\t\t\t\t          ╔═══════════════════════════════════╗\n";
-    cout << "\t\t\t\t╔═════════╟════ ";
-    SetConsoleTextAttribute(color, 7);
-    cout << "   Menu Quan Ly Task📋   ";
-    SetConsoleTextAttribute(color, 11);
-    cout << " ════║═══════════╗\n";
-    cout << "\t\t\t\t║         ╚═══════════════════════════════════╝           ║\n";
-    cout << "\t\t\t\t║                                                         ║\n";
-
-    for (int i = 1; i <= 9; i++)
-    {
-      if (i == selectedOption)
-      {
-        SetConsoleTextAttribute(color, 11);
-        cout << "\t\t\t\t║";
-        SetConsoleTextAttribute(color, 11);
-        cout << " 👉   ";
-      }
-      else
-      {
-        SetConsoleTextAttribute(color, 11);
-        cout << "\t\t\t\t║      ";
-        SetConsoleTextAttribute(color, 7);
-      }
-
-      switch (i)
-      {
-      case 1:
-        cout << std::left << std::setw(50) << "Them Task" << std::right;
-        break;
-      case 2:
-        cout << std::left << std::setw(50) << "Xuat Task" << std::right;
-        break;
-      case 3:
-        cout << std::left << std::setw(50) << "Xoa task" << std::right;
-        break;
-      case 4:
-        cout << std::left << std::setw(50) << "Phan bo task cho nhan vien" << std::right;
-        break;
-      case 5:
-        cout << std::left << std::setw(50) << "Sap xep nhan vien hoan thanh nhieu task nhat" << std::right;
-        break;
-      case 6:
-        cout << std::left << std::setw(50) << "Sap xep nhan vien co nhieu task nhat" << std::right;
-        break;
-      case 7:
-        cout << std::left << std::setw(50) << "Xoa Task khoi nhan vien" << std::right;
-        break;
-      case 8:
-        cout << std::left << std::setw(50) << "Danh gia task" << std::right;
-        break;
-      case 9:
-        cout << std::left << std::setw(50) << "Thoat khoi menu quan ly task" << std::right;
-        break;
-      }
-      SetConsoleTextAttribute(color, 11);
-      cout << " ║\n";
-    }
-    SetConsoleTextAttribute(color, 11);
-    cout << "\t\t\t\t║                                                         ║\n";
-    cout << "\t\t\t\t╚═════════════════════════════════════════════════════════╝\n";
-
-    SetConsoleTextAttribute(color, 7);
-    char input = getch();
-
-    GetConsoleCursorInfo(hConsole, &cursorInfo);
-    cursorInfo.bVisible = true; // set the cursor visibility
-    SetConsoleCursorInfo(hConsole, &cursorInfo);
-
-    switch (input)
-    {
-    case 72:
-      if (selectedOption > 1)
-        selectedOption--;
-      break;
-    case 80:
-      if (selectedOption < 9)
-        selectedOption++;
-      break;
-    case 13:
-      switch (selectedOption)
-      {
-      case 1:
-        dsTask.nhapTask();
-        tatConTro();
-        system("pause >nul");
-        break;
-      case 2:
-        dsTask.xuatTask();
-        tatConTro();
-        system("pause >nul");
-        break;
-      case 3:
-        xoaTask();
-        tatConTro();
-        system("pause >nul");
-        break;
-      case 4:
-        phanBoTask();
-        tatConTro();
-        system("pause >nul");
-        break;
-      case 5:
-        sapXepTaskHoanThanh();
-        tatConTro();
-        system("pause >nul");
-        break;
-      case 6:
-        sapXepSoLuongTaskNV();
-        tatConTro();
-        system("pause >nul");
-        break;
-      case 7:
-        xoaTaskKhoiNV();
-        ds.xuatNV();
-        tatConTro();
-        system("pause >nul");
-        break;
-      case 8:
-        danhGiaTask();
-        tatConTro();
-        system("pause >nul");
-        break;
-      case 9:
-        exitMenu = true;
-        break;
-      }
-      system("cls");
-    }
-  }
 }
 
 void XuLy::sapXepTaskHoanThanh()
@@ -1090,16 +1414,17 @@ void XuLy::danhGiaTask()
       return;
     }
     task = timTask(maTask);
-    if (task == nullptr || task->getTrangThaiTask() != "")
+    if (task == nullptr || task->getTrangThaiTask() != "" || task->getMaNV() == "")
     {
       SetConsoleTextAttribute(color, 12);
       cout << "\t\t\t\t❌ Khong tim thay ma task phu hop. Vui long nhap lai!" << endl;
       SetConsoleTextAttribute(color, 7);
     }
-  } while (task == nullptr || task->getTrangThaiTask() != "");
+  } while (task == nullptr || task->getTrangThaiTask() != "" || task->getMaNV() == "");
 
   int selectedOption = 1;
   bool exitMenu = false;
+  tatConTro();
 
   while (!exitMenu)
   {
@@ -1168,59 +1493,11 @@ void XuLy::danhGiaTask()
       switch (selectedOption)
       {
       case 1:
-        for (int i = 0; i < ds.getListNS().size(); i++)
-        {
-          if (NhanVienThuong *nvt = dynamic_cast<NhanVienThuong *>(ds.getListNS()[i]))
-          {
-            if (nvt != nullptr)
-            {
-              for (int j = 0; j < nvt->getDSTask().size(); j++)
-              {
-                if (nvt->getDSTask()[j]->getMaTask() == maTask)
-                {
-                  task->setTrangThaiTask("Hoan thanh");
-                  nvt->tangTaskHoanThanh();
-                  daDanhGia = true;
-                  SetConsoleTextAttribute(color, 10);
-                  cout << "\t\t\t\tDanh gia thanh cong ✅" << endl;
-                  SetConsoleTextAttribute(color, 7);
-                  break;
-                }
-              }
-            }
-          }
-        }
-        if (!daDanhGia)
-        {
-          cout << "\t\t\t\tKhong tim thay nhan vien nao co ma task " << maTask << endl;
-        }
+        danhGiaTrangThaiTask(task, maTask, daDanhGia, "Hoan thanh", color);
         exitMenu = true;
         break;
       case 2:
-        for (int i = 0; i < ds.getListNS().size(); i++)
-        {
-          if (NhanVienThuong *nvt = dynamic_cast<NhanVienThuong *>(ds.getListNS()[i]))
-          {
-            if (nvt != nullptr)
-            {
-              for (int j = 0; j < nvt->getDSTask().size(); j++)
-              {
-                if (nvt->getDSTask()[j]->getMaTask() == maTask)
-                {
-                  task->setTrangThaiTask("Khong hoan thanh");
-                  nvt->tangTaskChuaHoanThanh();
-                  daDanhGia = true;
-                  cout << "\t\t\t\tDanh gia thanh cong!" << endl;
-                  break;
-                }
-              }
-            }
-          }
-        }
-        if (!daDanhGia)
-        {
-          cout << "\t\t\t\tKhong tim thay nhan vien nao co ma task " << maTask << endl;
-        }
+        danhGiaTrangThaiTask(task, maTask, daDanhGia, "Khong hoan thanh", color);
         exitMenu = true;
         break;
       case 3:
@@ -1228,6 +1505,43 @@ void XuLy::danhGiaTask()
         break;
       }
     }
+  }
+}
+
+void XuLy::danhGiaTrangThaiTask(Task *task, string maTask, bool daDanhGia, string trangThai, HANDLE color)
+{
+  for (int i = 0; i < ds.getListNS().size(); i++)
+  {
+    if (NhanVienThuong *nvt = dynamic_cast<NhanVienThuong *>(ds.getListNS()[i]))
+    {
+      if (nvt != nullptr)
+      {
+        for (int j = 0; j < nvt->getDSTask().size(); j++)
+        {
+          if (nvt->getDSTask()[j]->getMaTask() == maTask)
+          {
+            task->setTrangThaiTask(trangThai);
+            if (trangThai == "Hoan thanh")
+            {
+              nvt->tangTaskHoanThanh();
+            }
+            else
+            {
+              nvt->tangTaskChuaHoanThanh();
+            }
+            daDanhGia = true;
+            SetConsoleTextAttribute(color, 10);
+            cout << "\t\t\t\tDanh gia thanh cong ✅" << endl;
+            SetConsoleTextAttribute(color, 7);
+            break;
+          }
+        }
+      }
+    }
+  }
+  if (!daDanhGia)
+  {
+    cout << "\t\t\t\tKhong tim thay nhan vien nao co ma task " << maTask << endl;
   }
 }
 
@@ -1344,7 +1658,8 @@ void XuLy::sapXepSoLuongTaskNV()
   else
   {
     SetConsoleTextAttribute(color, 12);
-    cout << "\t\t\t\tDanh sach chua duoc sap xep ❌" << endl;
+    cout << endl;
+    cout << "\t\t\t\t\tDanh sach chua duoc sap xep ❌" << endl;
     SetConsoleTextAttribute(color, 7);
   }
 }
@@ -1432,75 +1747,82 @@ void XuLy::phanBoTask()
         SetConsoleTextAttribute(color, 7);
         cout << "\t\t\t\tChon 1. de phan bo hoac chon 2. de di tiep: ";
         cin >> chon;
-        switch (chon)
+        if (cin.fail())
         {
-        case 1:
-          cout << endl;
-          SetConsoleTextAttribute(color, 14);
-          cout << "\t\t\t\t\tDay la danh sach task " << endl;
-          SetConsoleTextAttribute(color, 7);
-          dsTask.xuatTask();
-          do
+          checkCin();
+        }
+        else
+        {
+          switch (chon)
           {
+          case 1:
             cout << endl;
-            cout << "\t\t\t\tNhap ma task can phan bo hoac nhap 0 de thoat: ";
-            cin >> maTask;
-            if (maTask == "0")
+            SetConsoleTextAttribute(color, 14);
+            cout << "\t\t\t\t\tDay la danh sach task " << endl;
+            SetConsoleTextAttribute(color, 7);
+            dsTask.xuatTask();
+            do
             {
-              return;
-            }
-            task = timTask(maTask);
-            if (task == nullptr || task->getMaNV() != "")
-            {
-              SetConsoleTextAttribute(color, 12);
-              cout << "\t\t\t\t❌ Khong tim thay task co ma so nay hoac task nay da co nhan vien thuc hien." << endl;
-              SetConsoleTextAttribute(color, 7);
-            }
-          } while (task == nullptr || task->getMaNV() != "");
+              cout << endl;
+              cout << "\t\t\t\tNhap ma task can phan bo hoac nhap 0 de thoat: ";
+              cin >> maTask;
+              if (maTask == "0")
+              {
+                return;
+              }
+              task = timTask(maTask);
+              if (task == nullptr || task->getMaNV() != "")
+              {
+                SetConsoleTextAttribute(color, 12);
+                cout << "\t\t\t\t❌ Khong tim thay task co ma so nay hoac task nay da co nhan vien thuc hien." << endl;
+                SetConsoleTextAttribute(color, 7);
+              }
+            } while (task == nullptr || task->getMaNV() != "");
 
-          for (int i = 0; i < nvt->getDSTask().size(); i++)
-          {
-            Task *taskNV = nvt->getDSTask().at(i);
-            if (taskNV->getMaTask() == maTask)
+            for (int i = 0; i < nvt->getDSTask().size(); i++)
             {
-              SetConsoleTextAttribute(color, 12);
-              cout << "\t\t\t\t❌ Task nay da duoc phan bo cho nhan vien nay roi." << endl;
-              SetConsoleTextAttribute(color, 7);
-              flag = true;
-              break;
+              Task *taskNV = nvt->getDSTask().at(i);
+              if (taskNV->getMaTask() == maTask)
+              {
+                SetConsoleTextAttribute(color, 12);
+                cout << "\t\t\t\t❌ Task nay da duoc phan bo cho nhan vien nay roi." << endl;
+                SetConsoleTextAttribute(color, 7);
+                flag = true;
+                break;
+              }
             }
-          }
 
-          if (task != nullptr)
-          {
-            task->setMaNV(nvt->getMaSo());
-            nvt->getDSTask().push_back(task);
-            nvt->tangSoLuongTask();
+            if (task != nullptr)
+            {
+              task->setMaNV(nvt->getMaSo());
+              nvt->getDSTask().push_back(task);
+              nvt->tangSoLuongTask();
+              flag = false;
+            }
+            SetConsoleTextAttribute(color, 10);
+            cout << "\t\t\t\tPhan bo ";
+            SetConsoleTextAttribute(color, 7);
+            cout << nvt->getHoTen();
+            SetConsoleTextAttribute(color, 10);
+            cout << " mang ma so ";
+            SetConsoleTextAttribute(color, 7);
+            cout << nvt->getMaSo();
+            SetConsoleTextAttribute(color, 10);
+            cout << " thanh cong ✅ ";
+            SetConsoleTextAttribute(color, 7);
+            cout << endl;
+
+            break;
+          case 2:
             flag = false;
+            break;
+          default:
+            SetConsoleTextAttribute(color, 12);
+            cout << "\t\t\t\tChi duoc chon 1 hoac 2 ❌" << endl;
+            SetConsoleTextAttribute(color, 7);
+            flag = true;
+            break;
           }
-          SetConsoleTextAttribute(color, 10);
-          cout << "\t\t\t\tPhan bo ";
-          SetConsoleTextAttribute(color, 7);
-          cout << nvt->getHoTen();
-          SetConsoleTextAttribute(color, 10);
-          cout << " mang ma so ";
-          SetConsoleTextAttribute(color, 7);
-          cout << nvt->getMaSo();
-          SetConsoleTextAttribute(color, 10);
-          cout << " thanh cong ✅ ";
-          SetConsoleTextAttribute(color, 7);
-          cout << endl;
-
-          break;
-        case 2:
-          flag = false;
-          break;
-        default:
-          SetConsoleTextAttribute(color, 12);
-          cout << "\t\t\t\tChi duoc chon 1 hoac 2 ❌" << endl;
-          SetConsoleTextAttribute(color, 7);
-          flag = true;
-          break;
         }
       } while (flag);
     }
@@ -1723,7 +2045,6 @@ void XuLy::timNhanSu()
   CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
   GetConsoleScreenBufferInfo(color, &consoleInfo);
   COORD cursorPosition = consoleInfo.dwCursorPosition;
-  // Move the cursor to the right by incrementing X coordinate
   cursorPosition.X -= 15;
   cursorPosition.Y += 0;
   SetConsoleCursorPosition(color, cursorPosition);
@@ -1811,11 +2132,11 @@ void XuLy::SapXepTheoTen()
   sort(
       nsList.begin(), nsList.end(), [](NhanSu *ns1, NhanSu *ns2)
       {
-  string ten1 = ns1->getHoTen();
-  string ten2 = ns2->getHoTen();
-  string lastName1 = ten1.substr(ten1.find_last_of(' ') + 1);
-  string lastName2 = ten2.substr(ten2.find_last_of(' ') + 1);
-  return lastName1 < lastName2; });
+    string ten1 = ns1->getHoTen();
+    string ten2 = ns2->getHoTen();
+    string lastName1 = ten1.substr(ten1.find_last_of(' ') + 1);
+    string lastName2 = ten2.substr(ten2.find_last_of(' ') + 1);
+    return lastName1 < lastName2; });
   ds.setListNS(nsList);
 }
 
@@ -1908,37 +2229,43 @@ void XuLy::phanBoNhanVienThuong()
         cout << "\t\t\tDang phan bo: " << ns->getHoTen() << endl;
         cout << "\t\t\tChon 1. de phan bo hoac chon 2. de di tiep: ";
         cin >> chon;
-
-        if (chon == 1 || chon == 2)
+        if (cin.fail())
         {
-          if (chon == 1)
-          {
-
-            do
-            {
-              string chonMa;
-              cout << "\t\t\tNhap ma de tim truong phong hoac nhap 0 de thoat 🔍 ";
-              cin >> chonMa;
-              if (chonMa == "0")
-              {
-                return;
-              }
-              tp = timTruongPhongTheoMa(chonMa);
-            } while (tp == nullptr);
-            newNV->setTruongPhong(tp);
-            tp->tangNhanVien();
-            tp->getListNV().push_back(newNV);
-            cout << "\t\t\tDa phan bo " << newNV->getHoTen() << " cho " << tp->getHoTen() << " ✅ " << endl;
-            cout << endl;
-          }
-
-          flag = false;
+          checkCin();
         }
         else
         {
-          cout << "\t\t\t👀 Chi duoc chon 1 hoac 2❗ " << endl;
-          cout << endl;
-          flag = true;
+          if (chon == 1 || chon == 2)
+          {
+            if (chon == 1)
+            {
+
+              do
+              {
+                string chonMa;
+                cout << "\t\t\tNhap ma de tim truong phong hoac nhap 0 de thoat 🔍 ";
+                cin >> chonMa;
+                if (chonMa == "0")
+                {
+                  return;
+                }
+                tp = timTruongPhongTheoMa(chonMa);
+              } while (tp == nullptr);
+              newNV->setTruongPhong(tp);
+              tp->tangNhanVien();
+              tp->getListNV().push_back(newNV);
+              cout << "\t\t\tDa phan bo " << newNV->getHoTen() << " cho " << tp->getHoTen() << " ✅ " << endl;
+              cout << endl;
+            }
+
+            flag = false;
+          }
+          else
+          {
+            cout << "\t\t\t👀 Chi duoc chon 1 hoac 2❗ " << endl;
+            cout << endl;
+            flag = true;
+          }
         }
       } while (flag);
     }
@@ -1950,15 +2277,10 @@ void XuLy::inMenuLogin(int &chon)
   HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
   CONSOLE_CURSOR_INFO cursorInfo;
   GetConsoleCursorInfo(hConsole, &cursorInfo);
-  cursorInfo.bVisible = true; // set the cursor visibility
+  cursorInfo.bVisible = true;
   SetConsoleCursorInfo(hConsole, &cursorInfo);
   system("cls");
   HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
-  // cout << "\t\t\t\t    ╔═══════════════════════════════════╗\n";
-  // cout << "\t\t\t\t╔═══╟════ Menu Quan Ly Nhan Su 🧑‍💻════║═══╗\n";
-  // cout << "\t\t\t\t║   ╚═══════════════════════════════════╝   ║\n";
-  // cout << "\t\t\t\t║                                           ║\n";
-  // cout << "\t\t\t\t║";
   SetConsoleTextAttribute(color, 14);
   printWelcome();
   SetConsoleTextAttribute(color, 11);
@@ -1990,13 +2312,9 @@ void XuLy::inMenuLogin(int &chon)
   cout << "\t\t\t\t\t║                                           ║\n";
   cout << "\t\t\t\t\t╚═══════════════════════════════════════════╝\n\n";
 
-  // cout << "\033[17;55H";
-  // cin >> chon;
-  // Get the current cursor position
   CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
   GetConsoleScreenBufferInfo(color, &consoleInfo);
   COORD cursorPosition = consoleInfo.dwCursorPosition;
-  // Move the cursor to the right by incrementing X coordinate
   cursorPosition.X += 67;
   cursorPosition.Y -= 4;
   SetConsoleCursorPosition(color, cursorPosition);
@@ -2005,34 +2323,170 @@ void XuLy::inMenuLogin(int &chon)
   SetConsoleTextAttribute(color, 7);
 }
 
-void XuLy::animationLoading()
+void XuLy::animationLoading(string taiKhoan)
 {
   HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
   SetConsoleTextAttribute(color, 11);
-  SetConsoleCP(437);
-  SetConsoleOutputCP(437);
+  int animationMovement = 17;
 
   int bar1 = 177,
       bar2 = 219;
-  cout << "\n\n\n\t\t\t\t\tDang tai.......";
-  cout << "\n\n\t\t\t\t";
+  cout << "\n\n\n\t\t\t\tDang tai.......";
+  cout << "\n\n\t\t\t";
 
-  cout << "\r";
-  cout << "\t\t\t\t\t";
   for (int i = 0; i < 50; i++)
   {
-    cout << (char)bar2;
-    Sleep(35);
+    cout << "\r";
+    cout << "\t\t\t\t";
+    for (int j = 0; j < 50; j++)
+    {
+      SetConsoleOutputCP(CP_UTF8);
+
+      if (j == i)
+      {
+        cout << "  🌟";
+      }
+      else if (j <= i - 5)
+      {
+        SetConsoleCP(437);
+        SetConsoleOutputCP(437);
+        SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | 11);
+        cout << (char)bar2;
+        SetConsoleTextAttribute(color, 11);
+        if (j == 10)
+        {
+          SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+          cout << "D";
+          SetConsoleTextAttribute(color, 11);
+          continue;
+        }
+        else if (j == 11)
+        {
+          SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+          cout << "A";
+          SetConsoleTextAttribute(color, 11);
+          continue;
+        }
+        else if (j == 12)
+        {
+          SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+          cout << "N";
+          SetConsoleTextAttribute(color, 11);
+          continue;
+        }
+        else if (j == 13)
+        {
+          SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+          cout << "G";
+          SetConsoleTextAttribute(color, 11);
+          continue;
+        }
+        else if (j == 14)
+        {
+          SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+          cout << " ";
+          SetConsoleTextAttribute(color, 11);
+          continue;
+        }
+        else if (j == 15)
+        {
+          SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+          cout << "D";
+          SetConsoleTextAttribute(color, 11);
+          continue;
+        }
+        else if (j == 16)
+        {
+          SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+          cout << "A";
+          SetConsoleTextAttribute(color, 11);
+          continue;
+        }
+        else if (j == 17)
+        {
+          SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+          cout << "N";
+          SetConsoleTextAttribute(color, 11);
+          continue;
+        }
+        else if (j == 18)
+        {
+          SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+          cout << "G";
+          SetConsoleTextAttribute(color, 11);
+          continue;
+        }
+        else if (j == 19)
+        {
+          SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+          cout << " ";
+          SetConsoleTextAttribute(color, 11);
+          continue;
+        }
+        else if (j == 20)
+        {
+          SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+          cout << "N";
+          SetConsoleTextAttribute(color, 11);
+          continue;
+        }
+        else if (j == 21)
+        {
+          SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+          cout << "H";
+          SetConsoleTextAttribute(color, 11);
+          continue;
+        }
+        else if (j == 22)
+        {
+          SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+          cout << "A";
+          SetConsoleTextAttribute(color, 11);
+          continue;
+        }
+        else if (j == 23)
+        {
+          SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+          cout << "P";
+          SetConsoleTextAttribute(color, 11);
+          continue;
+        }
+        else if (j == 24)
+        {
+          SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+          cout << " ";
+          SetConsoleTextAttribute(color, 11);
+
+          SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+          cout << " ";
+          SetConsoleTextAttribute(color, 11);
+
+          string taiKhoanUppercase = taiKhoan;
+          transform(taiKhoan.begin(), taiKhoan.end(), taiKhoanUppercase.begin(), ::toupper);
+
+          for (int k = 0; k < taiKhoanUppercase.length(); k++)
+          {
+            SetConsoleTextAttribute(color, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_INTENSITY | WHITE);
+            cout << taiKhoanUppercase[k] << " ";
+            SetConsoleTextAttribute(color, 11);
+            Sleep(0.8);
+          }
+          continue;
+        }
+      }
+    }
+    Sleep(animationMovement);
   }
   SetConsoleOutputCP(CP_UTF8);
 }
 
-bool XuLy::login()
+bool XuLy::login(string &tk)
 {
   system("cls");
 
-  string tk, mk, itk, imk;
+  string mk, itk, imk;
   bool flag = false;
+  bool printed = false;
 
   ifstream input("output.txt");
 
@@ -2057,20 +2511,16 @@ bool XuLy::login()
   cout << "The Vien & Xuan Truong 😁" << endl;
 
   SetConsoleTextAttribute(color, 7);
-  cout << "\033[6;55H"; // Move the cursor to the position after "Tai khoan:"
-
-  // get user input for tai khoan
+  cout << "\033[6;55H";
   cin >> tk;
 
-  cout << "\033[7;55H"; // Move the cursor to the position after "Mat khau:"
-
-  // get user input for mat khau
+  cout << "\033[7;55H";
   cin >> mk;
 
   HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
   CONSOLE_CURSOR_INFO cursorInfo;
   GetConsoleCursorInfo(hConsole, &cursorInfo);
-  cursorInfo.bVisible = false; // set the cursor visibility
+  cursorInfo.bVisible = false;
   SetConsoleCursorInfo(hConsole, &cursorInfo);
 
   while (input >> itk >> imk)
@@ -2084,23 +2534,16 @@ bool XuLy::login()
       cout << endl;
       HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
 
-      animationLoading();
+      animationLoading(tk);
       SetConsoleTextAttribute(color, 10);
       cout << endl;
-      cout << endl;
-      cout << "\n\t\t\t\t\t\tDang nhap thanh cong ✅" << endl;
-      SetConsoleTextAttribute(color, 7);
-      Sleep(500);
-      cout << "\t\t\t\t\t\tXin chao " << itk << " 👋 " << endl;
+      cout << "\n\t\t\t\tDang nhap thanh cong ✅" << endl;
 
-      HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-      CONSOLE_CURSOR_INFO cursorInfo;
-      GetConsoleCursorInfo(hConsole, &cursorInfo);
-      cursorInfo.bVisible = false; // set the cursor visibility
-      SetConsoleCursorInfo(hConsole, &cursorInfo);
+      tatConTro();
 
-      system("pause >nul");
+      system("pause > nul");
       system("cls");
+
       break;
     }
   }
@@ -2115,8 +2558,7 @@ bool XuLy::login()
     HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(color, 12);
     cout << "\t\t\t\t❌ Sai tai khoan hoac mat khau! Vui long nhap lai 😚 " << endl;
-    Sleep(1500);
-    // cout << "\t\t\tHoac ban chua dang ky tai khoan, vui long dang ky truoc khi dang nhap 🧐" << endl;
+    system("pause >nul");
     SetConsoleTextAttribute(color, 7);
   }
 
@@ -2149,18 +2591,16 @@ void XuLy::signUp()
   cout << "\t\t\t\t\t║                                    ║\n";
   cout << "\t\t\t\t\t╚════════════════════════════════════╝\n\n";
 
-  cout << "\033[6;55H"; // Move the cursor to the position after "Tai khoan:"
+  cout << "\033[6;55H";
   SetConsoleTextAttribute(color, 7);
-  // get user input for tai khoan
   cin >> itk;
-  cout << "\033[7;55H"; // Move the cursor to the position after "Mat khau:"
 
-  // get user input for mat khau
+  cout << "\033[7;55H";
   cin >> mk;
   do
   {
     GetConsoleCursorInfo(hConsole, &cursorInfo);
-    cursorInfo.bVisible = true; // set the cursor visibility
+    cursorInfo.bVisible = true;
     SetConsoleCursorInfo(hConsole, &cursorInfo);
     cout << "\033[8;63H";
     cin >> imk;
@@ -2173,7 +2613,7 @@ void XuLy::signUp()
       cout << endl;
       HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
       GetConsoleCursorInfo(hConsole, &cursorInfo);
-      cursorInfo.bVisible = false; // set the cursor visibility
+      cursorInfo.bVisible = false;
       SetConsoleCursorInfo(hConsole, &cursorInfo);
       SetConsoleTextAttribute(color, 12);
       cout << "\t\t\t\t❌ Mat khau ban da nhap khong giong voi mat khau truoc 😚 " << endl;
@@ -2189,16 +2629,16 @@ void XuLy::signUp()
   cout << endl;
   cout << "\033[K" << endl;
   GetConsoleCursorInfo(hConsole, &cursorInfo);
-  cursorInfo.bVisible = false; // set the cursor visibility
+  cursorInfo.bVisible = false;
   SetConsoleCursorInfo(hConsole, &cursorInfo);
   SetConsoleTextAttribute(color, 10);
   cout << "\t\t\t\t\t\tDang ky thanh cong ✅" << endl;
   SetConsoleTextAttribute(color, 7);
-  Sleep(1500);
+  system("pause >nul");
   system("cls");
 }
 
-void XuLy::XuLyLogin()
+void XuLy::XuLyLogin(string &taiKhoan)
 {
   bool flag = true;
   int chon;
@@ -2210,10 +2650,25 @@ void XuLy::XuLyLogin()
     switch (chon)
     {
     case 1:
-      flag = login();
+      flag = login(taiKhoan);
       break;
     case 2:
       signUp();
+      break;
+    case 0:
+      system("cls");
+      tatConTro();
+      SetConsoleTextAttribute(color, 3);
+      cout << endl;
+      cout << endl;
+      cout << endl;
+      cout << "\t\t\t\t\t\tSee you next time 😁" << endl;
+      cout << endl;
+      cout << endl;
+      SetConsoleTextAttribute(color, 14);
+      printGoodBye();
+      Sleep(2000);
+      exit(1);
       break;
 
     default:
@@ -2227,7 +2682,7 @@ void XuLy::inMenu(int &chon)
   HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
   CONSOLE_CURSOR_INFO cursorInfo;
   GetConsoleCursorInfo(hConsole, &cursorInfo);
-  cursorInfo.bVisible = true; // set the cursor visibility
+  cursorInfo.bVisible = true;
   SetConsoleCursorInfo(hConsole, &cursorInfo);
 
   cout << endl;
@@ -2336,184 +2791,31 @@ void XuLy::printWelcome()
   printASCII(fileName);
 }
 
-void XuLy::XuLyMenuNhanSu()
+void XuLy::clearScreen()
 {
-  bool flag = true;
-  int chon;
-  HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
-  system("cls");
-  do
-  {
-    inMenu(chon);
-    switch (chon)
-    {
-    case 1:
-      ds.nhap();
-      break;
-    case 2:
-      cout << endl;
-      cout << endl;
-      cout << endl;
-      ds.xuat();
-      break;
-    case 3:
-      cout << endl;
-      cout << endl;
-      cout << endl;
-      SapXepTheoTen();
-      ds.xuat();
-      break;
-    case 4:
-      cout << endl;
-      cout << endl;
-      cout << endl;
-      sapXepLuongGiamDan();
-      ds.xuat();
-      break;
-    case 5:
-      cout << endl;
-      cout << endl;
-      cout << endl;
-      timNhanSu();
-      break;
-    case 6:
-      cout << endl;
-      cout << endl;
-      cout << endl;
-      timNVLuongCaoNhat();
-      break;
-    case 7:
-      cout << endl;
-      cout << endl;
-      cout << endl;
-      suaDoiThongTinNhanSu();
-      break;
-    case 8:
-      cout << endl;
-      cout << endl;
-      cout << endl;
-      xoaNhanSu();
-      break;
-    case 0:
-      flag = false;
-      break;
-    default:
-      break;
-    }
-  } while (flag);
+  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+  COORD coordScreen = {0, 0};
+  DWORD cCharsWritten;
+  CONSOLE_SCREEN_BUFFER_INFO csbi;
+  DWORD dwConSize;
+
+  if (!GetConsoleScreenBufferInfo(hConsole, &csbi))
+    return;
+  dwConSize = csbi.dwSize.X * csbi.dwSize.Y;
+
+  if (!FillConsoleOutputCharacter(hConsole, (TCHAR)' ', dwConSize, coordScreen, &cCharsWritten))
+    return;
+  if (!FillConsoleOutputAttribute(hConsole, csbi.wAttributes, dwConSize, coordScreen, &cCharsWritten))
+    return;
+
+  SetConsoleCursorPosition(hConsole, coordScreen);
 }
 
-void XuLy::XuLyChung()
+void XuLy::tatConTro()
 {
-
-  HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
-  string maTask;
-  Task *task;
-
-  SetConsoleTextAttribute(color, 14);
-  cout << endl;
-  int selectedOption = 1;
-  bool exitMenu = false;
-
-  while (!exitMenu)
-  {
-    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    CONSOLE_CURSOR_INFO cursorInfo;
-    GetConsoleCursorInfo(hConsole, &cursorInfo);
-    cursorInfo.bVisible = false; // set the cursor visibility
-    SetConsoleCursorInfo(hConsole, &cursorInfo);
-
-    SetConsoleTextAttribute(color, 11);
-    clearScreen();
-    cout << endl;
-    cout << "\t\t\t\t        ╔═══════════════════════════════════╗\n";
-    cout << "\t\t\t\t╔═══════╟════ ";
-    SetConsoleTextAttribute(color, 7);
-    cout << " Menu Quan Ly Chung 🧑‍💻";
-    SetConsoleTextAttribute(color, 11);
-    cout << " ════║═════════╗\n";
-    cout << "\t\t\t\t║       ╚═══════════════════════════════════╝         ║\n";
-    cout << "\t\t\t\t║                                                     ║\n";
-    for (int i = 1; i <= 4; i++)
-    {
-      if (i == selectedOption)
-      {
-        SetConsoleTextAttribute(color, 11);
-        cout << "\t\t\t\t║";
-        SetConsoleTextAttribute(color, 11);
-        cout << "      👉    ";
-      }
-      else
-      {
-        SetConsoleTextAttribute(color, 11);
-        cout << "\t\t\t\t║            ";
-        SetConsoleTextAttribute(color, 7);
-      }
-
-      switch (i)
-      {
-      case 1:
-        cout << std::left << std::setw(40) << "Quan ly nhan su" << std::right;
-        break;
-      case 2:
-        cout << std::left << std::setw(40) << "Quan ly phong ban" << std::right;
-        break;
-      case 3:
-        cout << std::left << std::setw(40) << "Quan ly task" << std::right;
-        break;
-      case 4:
-        cout << std::left << std::setw(40) << "Thoat chuong trinh" << std::right;
-        break;
-      }
-      SetConsoleTextAttribute(color, 11);
-      cout << " ║\n";
-    }
-    SetConsoleTextAttribute(color, 11);
-    cout << "\t\t\t\t║                                                     ║\n";
-    cout << "\t\t\t\t╚═════════════════════════════════════════════════════╝\n";
-
-    SetConsoleTextAttribute(color, 7);
-    char input = getch();
-
-    switch (input)
-    {
-    case 72:
-      if (selectedOption > 1)
-        selectedOption--;
-      break;
-    case 80:
-      if (selectedOption < 4)
-        selectedOption++;
-      break;
-    case 13:
-      switch (selectedOption)
-      {
-      case 1:
-        XuLyMenuNhanSu();
-        break;
-      case 2:
-        xuLyMenuPhongBan();
-        break;
-      case 3:
-        xuLyMenuTask();
-        break;
-      case 4:
-        cout << endl;
-        system("cls");
-        tatConTro();
-        SetConsoleTextAttribute(color, 3);
-        cout << endl;
-        cout << endl;
-        cout << endl;
-        cout << "\t\t\t\t\t\tSee you next time 😁" << endl;
-        cout << endl;
-        cout << endl;
-        SetConsoleTextAttribute(color, 14);
-        printGoodBye();
-        Sleep(2000);
-        exitMenu = true;
-        break;
-      }
-    }
-  }
+  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+  CONSOLE_CURSOR_INFO cursorInfo;
+  GetConsoleCursorInfo(hConsole, &cursorInfo);
+  cursorInfo.bVisible = false;
+  SetConsoleCursorInfo(hConsole, &cursorInfo);
 }

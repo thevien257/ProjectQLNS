@@ -17,49 +17,73 @@ void DanhSachTask::setDSTask(vector<Task *> task)
 
 void DanhSachTask::xuatTask()
 {
+  HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
   if (dsTask.size() == 0)
   {
     cout << endl;
-    HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(color, 12);
     cout << "\t\t\t\tChua co task nao trong cong ty ❌" << endl;
     SetConsoleTextAttribute(color, 7);
   }
   else
   {
-    HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
-    cout << "\t\t\t\t    ╔═══════════════════════════════════╗\n";
-    cout << "\t\t\t\t╔═══║ ";
-    SetConsoleTextAttribute(color, 11);
+    int cyan = 11;
+    int brightYellow = 14;
+    int darkWhite = 7;
+    cout << "\t\t                      ╔═════════════════════════════════╗\n";
+    cout << "\t\t                      ║ ";
+    SetConsoleTextAttribute(color, cyan);
     cout << "       Thong tin Task  📂    ";
     SetConsoleTextAttribute(color, 7);
-    cout << "     ║════╗\n";
-    cout << "\t\t\t\t║   ╚═════════════════╦═════════════════╝    ║\n";
+    cout << "   ║                \n";
+    cout << "\t\t╔═══════════╦═════════╬══════════════════╦══════════════╬════════════════════╦═════════════════════╗\n";
+    cout << "\t\t║ ";
+    SetConsoleTextAttribute(color, cyan);
+    cout << "So thu tu ";
+    SetConsoleTextAttribute(color, darkWhite);
+    cout << "║ ";
+    SetConsoleTextAttribute(color, cyan);
+    cout << "Ma task ";
+    SetConsoleTextAttribute(color, darkWhite);
+    cout << "║    ";
+    SetConsoleTextAttribute(color, cyan);
+    cout << "Ten task      ";
+    SetConsoleTextAttribute(color, darkWhite);
+    cout << "║   ";
+    SetConsoleTextAttribute(color, cyan);
+    cout << "Deadline   ";
+    SetConsoleTextAttribute(color, darkWhite);
+    cout << "║    ";
+    SetConsoleTextAttribute(color, cyan);
+    cout << "Ma nhan vien    ";
+    SetConsoleTextAttribute(color, darkWhite);
+    cout << "║   ";
+    SetConsoleTextAttribute(color, cyan);
+    cout << "Trang thai task   ";
+    SetConsoleTextAttribute(color, darkWhite);
+    cout << "║\n";
+    cout << "\t\t╠═══════════╬═════════╬══════════════════╬══════════════╬════════════════════╬═════════════════════╣\n";
 
     Task *lastTask = dsTask.back();
     int j = 1;
     for (int i = 0; i < dsTask.size(); i++)
     {
+      cout << "\t\t║ " << std::setw(5) << std::setfill(' ');
+      SetConsoleTextAttribute(color, cyan);
+      cout << j;
+      SetConsoleTextAttribute(color, darkWhite);
+      cout << std::setw(4) << std::setfill(' ') << ""
+           << " ║";
+      dsTask[i]->xuatTask();
+      cout << endl;
       if (dsTask[i] != lastTask)
       {
-        cout << "\t\t\t\t║";
-        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14); // set color to yellow
-        cout << "     So thu tu       ";
-        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7); // set color to white
-        cout << "║ " << std::left << std::setw(20) << j << std::right << " ║" << endl;
-        dsTask[i]->xuatTask();
-        cout << "\t\t\t\t╠═════════════════════╬══════════════════════╣\n";
+        cout << "\t\t╠═══════════╬═════════╬══════════════════╬══════════════╬════════════════════╬═════════════════════╣\n";
         j++;
       }
       else
       {
-        cout << "\t\t\t\t║";
-        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14); // set color to yellow
-        cout << "     So thu tu       ";
-        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7); // set color to white
-        cout << "║ " << std::left << std::setw(20) << j << std::right << " ║" << endl;
-        dsTask[i]->xuatTask();
-        cout << "\t\t\t\t╚═════════════════════╩══════════════════════╝\n";
+        cout << "\t\t╚═══════════╩═════════╩══════════════════╩══════════════╩════════════════════╩═════════════════════╝\n";
       }
     }
   }
