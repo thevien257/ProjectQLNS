@@ -33,6 +33,7 @@ void XuLy::XuLyChung()
   bool exitMenu = false;
   bool printed = false;
 
+<<<<<<< HEAD
   while (!exitMenu)
   {
     tatConTro();
@@ -144,6 +145,121 @@ void XuLy::XuLyChung()
       system("cls");
     }
   }
+||||||| c82f458
+  // Move the cursor back to the top-left corner.
+  SetConsoleCursorPosition(hConsole, coordScreen);
+=======
+  while (!exitMenu)
+  {
+    tatConTro();
+    clearScreen();
+    if (printed == false)
+    {
+      cout << endl;
+      SetConsoleTextAttribute(color, 7);
+      cout << "\t\t\t\t\t\tXin chao " << taiKhoan << " 👋 " << endl;
+    }
+    else
+    {
+      cout << endl;
+      SetConsoleTextAttribute(color, 7);
+      cout << "\t\t\t\t\t\t 🧑‍💼 " << taiKhoan << endl;
+    }
+
+    SetConsoleTextAttribute(color, 11);
+    cout << endl;
+    cout << "\t\t\t\t        ╔═══════════════════════════════════╗\n";
+    cout << "\t\t\t\t╔═══════╟════ ";
+    SetConsoleTextAttribute(color, 7);
+    cout << " Menu Quan Ly Chung 🧑‍💻";
+    SetConsoleTextAttribute(color, 11);
+    cout << " ════║═════════╗\n";
+    cout << "\t\t\t\t║       ╚═══════════════════════════════════╝         ║\n";
+    cout << "\t\t\t\t║                                                     ║\n";
+    for (int i = 1; i <= 4; i++)
+    {
+      if (i == selectedOption)
+      {
+        SetConsoleTextAttribute(color, 11);
+        cout << "\t\t\t\t║";
+        SetConsoleTextAttribute(color, 11);
+        cout << "      👉    ";
+      }
+      else
+      {
+        SetConsoleTextAttribute(color, 11);
+        cout << "\t\t\t\t║            ";
+        SetConsoleTextAttribute(color, 7);
+      }
+
+      switch (i)
+      {
+      case 1:
+        cout << std::left << std::setw(40) << "Quan ly nhan su" << std::right;
+        break;
+      case 2:
+        cout << std::left << std::setw(40) << "Quan ly phong ban" << std::right;
+        break;
+      case 3:
+        cout << std::left << std::setw(40) << "Quan ly task" << std::right;
+        break;
+      case 4:
+        cout << std::left << std::setw(40) << "Thoat chuong trinh" << std::right;
+        break;
+      }
+      SetConsoleTextAttribute(color, 11);
+      cout << " ║\n";
+    }
+    SetConsoleTextAttribute(color, 11);
+    cout << "\t\t\t\t║                                                     ║\n";
+    cout << "\t\t\t\t╚═════════════════════════════════════════════════════╝\n";
+
+    SetConsoleTextAttribute(color, 7);
+    char input = getch();
+
+    switch (input)
+    {
+    case 72:
+      if (selectedOption > 1)
+        selectedOption--;
+      break;
+    case 80:
+      if (selectedOption < 4)
+        selectedOption++;
+      break;
+    case 13:
+      switch (selectedOption)
+      {
+      case 1:
+        XuLyMenuNhanSu();
+        break;
+      case 2:
+        xuLyMenuPhongBan();
+        break;
+      case 3:
+        xuLyMenuTask();
+        break;
+      case 4:
+        cout << endl;
+        system("cls");
+        tatConTro();
+        SetConsoleTextAttribute(color, 3);
+        cout << endl;
+        cout << endl;
+        cout << endl;
+        cout << "\t\t\t\t\t\tSee you next time 😁" << endl;
+        cout << endl;
+        cout << endl;
+        SetConsoleTextAttribute(color, 14);
+        printGoodBye();
+        Sleep(2000);
+        exit(1);
+        break;
+      }
+      printed = true;
+    }
+  }
+>>>>>>> e7d433c80b750568709153137ba315da9d482b0f
 }
 
 // Xử lý menu nhân sự
