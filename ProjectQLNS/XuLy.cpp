@@ -33,122 +33,6 @@ void XuLy::XuLyChung()
   bool exitMenu = false;
   bool printed = false;
 
-<<<<<<< HEAD
-  while (!exitMenu)
-  {
-    tatConTro();
-    clearScreen();
-    if (printed == false)
-    {
-      cout << endl;
-      SetConsoleTextAttribute(color, 7);
-      cout << "\t\t\t\t\t\tXin chao " << taiKhoan << " 👋 " << endl;
-    }
-    else
-    {
-      cout << endl;
-      SetConsoleTextAttribute(color, 7);
-      cout << "\t\t\t\t\t\t 🧑‍💼 " << taiKhoan << endl;
-    }
-
-    SetConsoleTextAttribute(color, 11);
-    cout << endl;
-    cout << "\t\t\t\t        ╔═══════════════════════════════════╗\n";
-    cout << "\t\t\t\t╔═══════╟════ ";
-    SetConsoleTextAttribute(color, 7);
-    cout << " Menu Quan Ly Chung 🧑‍💻";
-    SetConsoleTextAttribute(color, 11);
-    cout << " ════║═════════╗\n";
-    cout << "\t\t\t\t║       ╚═══════════════════════════════════╝         ║\n";
-    cout << "\t\t\t\t║                                                     ║\n";
-    for (int i = 1; i <= 4; i++)
-    {
-      if (i == selectedOption)
-      {
-        SetConsoleTextAttribute(color, 11);
-        cout << "\t\t\t\t║";
-        SetConsoleTextAttribute(color, 11);
-        cout << "      👉    ";
-      }
-      else
-      {
-        SetConsoleTextAttribute(color, 11);
-        cout << "\t\t\t\t║            ";
-        SetConsoleTextAttribute(color, 7);
-      }
-
-      switch (i)
-      {
-      case 1:
-        cout << std::left << std::setw(40) << "Quan ly nhan su" << std::right;
-        break;
-      case 2:
-        cout << std::left << std::setw(40) << "Quan ly phong ban" << std::right;
-        break;
-      case 3:
-        cout << std::left << std::setw(40) << "Quan ly task" << std::right;
-        break;
-      case 4:
-        cout << std::left << std::setw(40) << "Thoat chuong trinh" << std::right;
-        break;
-      }
-      SetConsoleTextAttribute(color, 11);
-      cout << " ║\n";
-    }
-    SetConsoleTextAttribute(color, 11);
-    cout << "\t\t\t\t║                                                     ║\n";
-    cout << "\t\t\t\t╚═════════════════════════════════════════════════════╝\n";
-
-    SetConsoleTextAttribute(color, 7);
-    char input = getch();
-
-    switch (input)
-    {
-    case 72:
-      if (selectedOption > 1)
-        selectedOption--;
-      break;
-    case 80:
-      if (selectedOption < 4)
-        selectedOption++;
-      break;
-    case 13:
-      switch (selectedOption)
-      {
-      case 1:
-        XuLyMenuNhanSu();
-        break;
-      case 2:
-        xuLyMenuPhongBan();
-        break;
-      case 3:
-        xuLyMenuTask();
-        break;
-      case 4:
-        cout << endl;
-        system("cls");
-        tatConTro();
-        SetConsoleTextAttribute(color, 3);
-        cout << endl;
-        cout << endl;
-        cout << endl;
-        cout << "\t\t\t\t\t\tSee you next time 😁" << endl;
-        cout << endl;
-        cout << endl;
-        SetConsoleTextAttribute(color, 14);
-        printGoodBye();
-        Sleep(2000);
-        exit(1);
-        break;
-      }
-      printed = true;
-      system("cls");
-    }
-  }
-||||||| c82f458
-  // Move the cursor back to the top-left corner.
-  SetConsoleCursorPosition(hConsole, coordScreen);
-=======
   while (!exitMenu)
   {
     tatConTro();
@@ -259,7 +143,6 @@ void XuLy::XuLyChung()
       printed = true;
     }
   }
->>>>>>> e7d433c80b750568709153137ba315da9d482b0f
 }
 
 // Xử lý menu nhân sự
@@ -320,6 +203,13 @@ void XuLy::XuLyMenuNhanSu()
       cout << endl;
       cout << endl;
       xoaNhanSu();
+      break;
+    case 9:
+      cout << endl;
+      cout << endl;
+      cout << endl;
+      timNhanVienTheoKiTu();
+      system("pause");
       break;
     case 0:
       flag = false;
@@ -485,7 +375,6 @@ void XuLy::xuLyMenuPhongBan()
     }
   }
 }
-
 // Xử lý menu Task
 void XuLy::xuLyMenuTask()
 {
@@ -2198,6 +2087,66 @@ void XuLy::timNhanSu()
   }
   SetConsoleTextAttribute(color, 7);
 }
+// bool XuLy::stringCheck(string &str1, string &str2)
+// {
+//   if (str1.find(str2) != string::npos)
+//     return true;
+//   return false;
+// }
+// bool XuLy::existedCheck(string kitu)
+// {
+//   for (NhanSu *ns : ds.getListNS())
+//   {
+//     if (ns->getHoTen().find(kitu) != string::npos)
+//     {
+//       return true;
+//     }
+//   }
+//   return false;
+// }
+
+void XuLy::timNhanVienTheoKiTu()
+{
+  HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+  SetConsoleTextAttribute(color, 11);
+  string kitu;
+  cout << "\t\t\t\tNhap ki tu: ";
+  // HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+  // SetConsoleTextAttribute(color, 11);
+  CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
+  GetConsoleScreenBufferInfo(color, &consoleInfo);
+  COORD cursorPosition = consoleInfo.dwCursorPosition;
+  cursorPosition.X -= 0;
+  cursorPosition.Y += 20;
+  SetConsoleCursorPosition(color, cursorPosition);
+  cin.ignore();
+  getline(cin, kitu);
+
+  bool found = false;
+  for (NhanSu *ns : ds.getListNS())
+  { 
+    if (kitu == ns->getHoTen().substr(ns->getHoTen().find_last_of(' ') + 1))
+    { SetConsoleTextAttribute(color, 7);
+    HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+    cout << "\t\t\t\t    ╔═══════════════════════════════════╗\n";
+    cout << "\t\t\t\t╔═══║ ";
+    SetConsoleTextAttribute(color, 11);
+    cout << "       Thong tin nhan su  📂";
+    SetConsoleTextAttribute(color, 7);
+    cout << "      ║════╗\n";
+    cout << "\t\t\t\t║   ╚═══════════════════════════════════╝    ║\n";
+    SetConsoleTextAttribute(color, 7);
+      ns->xuat();
+      found = true;
+     cout << "\t\t\t\t╚═════════════════════╩══════════════════════╝\n";
+    }
+  }
+  
+  if (!found)
+  {
+    cout << "\t\t\t\tKhong tim thay ket qua cho " << kitu << endl;
+  }
+}
 
 void XuLy::suaDoiThongTinNhanSu()
 {
@@ -2248,11 +2197,11 @@ void XuLy::SapXepTheoTen()
   sort(
       nsList.begin(), nsList.end(), [](NhanSu *ns1, NhanSu *ns2)
       {
-    string ten1 = ns1->getHoTen();
-    string ten2 = ns2->getHoTen();
-    string lastName1 = ten1.substr(ten1.find_last_of(' ') + 1);
-    string lastName2 = ten2.substr(ten2.find_last_of(' ') + 1);
-    return lastName1 < lastName2; });
+  string ten1 = ns1->getHoTen();
+  string ten2 = ns2->getHoTen();
+  string lastName1 = ten1.substr(ten1.find_last_of(' ') + 1);
+  string lastName2 = ten2.substr(ten2.find_last_of(' ') + 1);
+  return lastName1 < lastName2; });
   ds.setListNS(nsList);
 }
 
@@ -2850,6 +2799,11 @@ void XuLy::inMenu(int &chon)
   cout << "     8. Xoa nhan su";
   SetConsoleTextAttribute(color, 11);
   cout << "                        ║\n";
+  cout << "\t\t\t\t║";
+  SetConsoleTextAttribute(color, 7);
+  cout << "     9. Tim Kiem Theo Ki Tu";
+  SetConsoleTextAttribute(color, 11);
+  cout << "                ║\n";
   cout << "\t\t\t\t║";
   SetConsoleTextAttribute(color, 7);
   cout << "     0. Thoat khoi menu QLNS";

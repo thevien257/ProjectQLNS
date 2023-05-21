@@ -34,6 +34,9 @@ public:
   bool found(string maSo);
   void timNhanSu();
   void xoaNhanSu();
+  void timNhanVienTheoKiTu();
+  bool stringCheck(string &, string &);
+  bool existedCheck(string);
   void xoaTruongPhong(TruongPhong *truongPhong);
   void xoaNhanVienThuong(NhanVienThuong *nvt, string maSo);
   void printWelcome();

@@ -67,104 +67,93 @@ void PhongBan::xuatPB()
 {
 
   HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
-  int brightYellow = 14;
-  int darkWhite = 7;
-  cout << " " << setw(6 + maPhongBan.size() / 2) << setfill(' ');
-  SetConsoleTextAttribute(color, brightYellow);
-  cout << maPhongBan;
-  SetConsoleTextAttribute(color, darkWhite);
-  cout << setw(6 - maPhongBan.size() / 2) << setfill(' ') << ""
-       << " ║";
+  cout << "\t\t\t\t║  ";
+  SetConsoleTextAttribute(color, 14);
+  cout << "Ma phong ban    ";
+  SetConsoleTextAttribute(color, 7);
+  cout << "   ║ " << std::left << std::setw(20) << this->maPhongBan << std::right << " ║" << endl;
 
-  cout << " " << setw(8 + tenPhongBan.size() / 2) << setfill(' ');
-  SetConsoleTextAttribute(color, brightYellow);
-  cout << tenPhongBan;
-  SetConsoleTextAttribute(color, darkWhite);
-  cout << setw(8 - tenPhongBan.size() / 2) << setfill(' ') << ""
-       << " ║";
+  cout << "\t\t\t\t║  ";
+  SetConsoleTextAttribute(color, 14);
+  cout << "Ten phong ban   ";
+  SetConsoleTextAttribute(color, 7);
+  cout << "   ║ " << std::left << std::setw(20) << this->tenPhongBan << std::right << " ║" << endl;
 
-  cout << " " << setw(10 + 1 / 2) << setfill(' ');
-  SetConsoleTextAttribute(color, brightYellow);
-  cout << soLuongNhanSu;
-  SetConsoleTextAttribute(color, darkWhite);
-  cout << setw(10 - 1 / 2) << setfill(' ') << ""
-       << " ║";
+  cout << "\t\t\t\t║  ";
+  SetConsoleTextAttribute(color, 14);
+  cout << "So luong nhan su";
+  SetConsoleTextAttribute(color, 7);
+  cout << "   ║ " << std::left << std::setw(20) << this->soLuongNhanSu << std::right << " ║" << endl;
 
   if (tp != nullptr)
   {
-    cout << " " << setw(5 + tp->getMaSo().size() / 2) << setfill(' ');
-    SetConsoleTextAttribute(color, brightYellow);
-    cout << tp->getMaSo();
-    SetConsoleTextAttribute(color, darkWhite);
-    cout << setw(5 - tp->getMaSo().size() / 2) << setfill(' ') << ""
-         << " ║";
-
-    cout << " " << setw(10 + tp->getHoTen().size() / 2) << setfill(' ');
-    SetConsoleTextAttribute(color, brightYellow);
-    cout << tp->getHoTen();
-    SetConsoleTextAttribute(color, darkWhite);
-    cout << setw(10 - tp->getHoTen().size() / 2) << setfill(' ') << ""
-         << "  ║";
+    cout << "\t\t\t\t║";
+    cout << "──────────";
+    SetConsoleTextAttribute(color, 3);
+    cout << "Thong tin nguoi quan ly";
+    SetConsoleTextAttribute(color, 7);
+    cout << "───────────║\n";
+    cout << "\t\t\t\t║";
+    SetConsoleTextAttribute(color, 14);
+    cout << "  Ma truong phong    ";
+    SetConsoleTextAttribute(color, 7);
+    cout << "║ " << std::left << std::setw(20) << tp->getMaSo() << std::right << " ║" << endl;
+    cout << "\t\t\t\t║";
+    SetConsoleTextAttribute(color, 14);
+    cout << "  Ten truong phong   ";
+    SetConsoleTextAttribute(color, 7);
+    cout << "║ " << std::left << std::setw(20) << tp->getHoTen() << std::right << " ║" << endl;
+    SetConsoleTextAttribute(color, 7);
+    SetConsoleTextAttribute(color, 7);
   }
   else
   {
-    string chuaCoTP = "Chua co truong phong";
-    cout << " " << setw(17 + chuaCoTP.size() / 2) << setfill(' ');
-    SetConsoleTextAttribute(color, brightYellow);
-    cout << chuaCoTP;
-    SetConsoleTextAttribute(color, darkWhite);
-    cout << setw(17 - chuaCoTP.size() / 2) << setfill(' ') << ""
-         << " ║";
+    cout << "\t\t\t\t║";
+    SetConsoleTextAttribute(color, 14);
+    cout << "             Chua co truong phong";
+    SetConsoleTextAttribute(color, 7);
+    cout << "           ║\n";
   }
   if (dsNV.size() <= 0)
   {
-    string chuaCoNV = "Chua co nhan vien";
-    cout << " " << setw(22 + chuaCoNV.size() / 2) << setfill(' ');
-    SetConsoleTextAttribute(color, brightYellow);
-    cout << chuaCoNV;
-    SetConsoleTextAttribute(color, darkWhite);
-    cout << setw(22 - chuaCoNV.size() / 2) << setfill(' ') << ""
-         << " ║";
+    cout << "\t\t\t\t║";
+    SetConsoleTextAttribute(color, 14);
+    cout << "             Chua co nhan vien";
+    SetConsoleTextAttribute(color, 7);
+    cout << "              ║\n";
   }
   else
   {
-    for (int i = 0; i < dsNV.size(); i++)
+    // cout << "\t\t\t\t║";
+    // cout << "             ";
+    // cout << "                   ";
+    // SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7); // set color to white
+    // cout << "            ║\n";
+    cout << "\t\t\t\t║";
+    cout << "─────────────";
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 3); // set color to bright cyan
+    cout << "Thong tin nhan vien";
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7); // set color to white
+    cout << "────────────║\n";
+    int i = 1;
+    for (NhanVienThuong *nv : dsNV)
     {
-      if (i >= 1)
-      {
-        if (tp != nullptr)
-        {
-          cout << "\n";
-          cout << "║           ║              ║                  ║                      ║            ║                       ╠═════════╬════════════╬═══════════════════════╣\n";
-          cout << "║           ║              ║                  ║                      ║            ║                       ║";
-        }
-        else
-        {
-          cout << "\n";
-          cout << "║           ║              ║                  ║                      ║                                    ╠═════════╬════════════╬═══════════════════════╣\n";
-          cout << "║           ║              ║                  ║                      ║                                    ║";
-        }
-      }
-      cout << " " << setw(4 + 1.0 / 2) << setfill(' ');
-      SetConsoleTextAttribute(color, brightYellow);
-      cout << i + 1;
-      SetConsoleTextAttribute(color, darkWhite);
-      cout << setw(4 - 1.0 / 2) << setfill(' ') << ""
-           << " ║";
-
-      cout << " " << setw(5 + dsNV[i]->getMaSo().size() / 2) << setfill(' ');
-      SetConsoleTextAttribute(color, brightYellow);
-      cout << dsNV[i]->getMaSo();
-      SetConsoleTextAttribute(color, darkWhite);
-      cout << setw(5 - dsNV[i]->getMaSo().size() / 2) << setfill(' ') << ""
-           << " ║";
-
-      cout << " " << setw(10 + dsNV[i]->getHoTen().size() / 2) << setfill(' ');
-      SetConsoleTextAttribute(color, brightYellow);
-      cout << dsNV[i]->getHoTen();
-      SetConsoleTextAttribute(color, darkWhite);
-      cout << setw(10 - dsNV[i]->getHoTen().size() / 2) << setfill(' ') << ""
-           << "  ║";
+      cout << "\t\t\t\t║";
+      SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 3); // set color to yellow
+      cout << "              Nhan vien thu " << i;
+      SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7); // set color to white
+      cout << "               ║\n";
+      cout << "\t\t\t\t║";
+      SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14); // set color to yellow
+      cout << "  Ten nhan vien      ";
+      SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7); // set color to white
+      cout << "║ " << std::left << std::setw(20) << nv->getHoTen() << std::right << " ║" << endl;
+      cout << "\t\t\t\t║";
+      SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14); // set color to yellow
+      cout << "  Ma so nhan vien    ";
+      SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7); // set color to white
+      cout << "║ " << std::left << std::setw(20) << nv->getMaSo() << std::right << " ║" << endl;
+      i++;
     }
   }
 }

@@ -14,16 +14,7 @@ taikhoan taikhoan
 tai tai
 test test
 thevien123 123123
-<<<<<<< HEAD
 123 test
 thevien@123 123123
 admin admin
 0 0
-admin admin
-||||||| c82f458
-=======
-123 test
-thevien@123 123123
-admin admin
-0 0
->>>>>>> e7d433c80b750568709153137ba315da9d482b0f
