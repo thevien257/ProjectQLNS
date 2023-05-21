@@ -10,6 +10,7 @@
 #include <iomanip>
 #include <fstream>
 #include <windows.h>
+
 class XuLy
 {
 private:
@@ -18,58 +19,66 @@ private:
   DanhSachTask dsTask;
 
 public:
-  void lietKeDanhSachTruongPhong();
-  TruongPhong *timTruongPhongTheoMa(string ma);
+  // Phần xử lý chung
+  void XuLyChung();
+
+  // Phần nhân sự
+  void XuLyMenuNhanSu();
   void phanBoNhanVienThuong();
+  void lietKeDanhSachTruongPhong();
   void SapXepTheoTen();
   void sapXepLuongGiamDan();
   void timNVLuongCaoNhat();
-  void inMenu(int &chon);
-  void XuLyMenuNhanSu();
+  void InMenuQuanLyNhanSu(int &chon);
   void suaDoiThongTinNhanSu();
-  void inMenuLogin(int &chon);
-  void XuLyLogin(string &taiKhoan);
-  bool login(string &taiKhoan);
-  void signUp();
   bool found(string maSo);
-  void timNhanSu();
+  void timNhanSuTheoMaSo();
   void xoaNhanSu();
-  void timNhanVienTheoKiTu();
-  bool stringCheck(string &, string &);
-  bool existedCheck(string);
   void xoaTruongPhong(TruongPhong *truongPhong);
   void xoaNhanVienThuong(NhanVienThuong *nvt, string maSo);
-  void printWelcome();
-  void printGoodBye();
-  void printASCII(string fileName);
+  void timNhanSuTheoTen();
+  bool existedCheck(string &);
+
+  // Phần phòng ban
   void xuLyMenuPhongBan();
-  void xuLyMenuTask();
-  void phanBoTask();
   void phanBoNhanVienThuongVaoPhongBan();
   PhongBan *timPhongBan(string maPhong);
   NhanVienThuong *timNVT(string maPhong);
+  TruongPhong *timTruongPhongTheoMa(string ma);
   void chiDinhTruongPhong();
-  void XuLyChung();
   void xoaTPkhoiPB();
   void xoaNVkhoiPB();
   void xoaPB();
   void sapXepSoLuongNhanSuPBGD();
   void sapXepSoLuongNhanSuPBTD();
-  Task *timTask(string maTask);
-  void xoaTask();
-  void xoaTaskKhoiNV();
-  void sapXepSoLuongTaskNV();
-  void sapXepTaskHoanThanh();
-  void danhGiaTask();
-  void animationLoading(string taiKhoan);
-  void tatConTro();
   void diChuyenTPDenPBMoi();
   void diChuyenNVTDenPBMoi();
   bool checkCoNhanVienHayKhong();
   bool checkCoTruongPhongHayKhong();
   void thucHienPhanBoTruongPhong(PhongBan *pb, TruongPhong *tp, string maPB);
   void thucHienPhanBoNhanVienThuong(PhongBan *pb, NhanVienThuong *nvt, string maPB);
-  void clearScreen();
+
+  // Phần task
+  void xuLyMenuTask();
+  void phanBoTask();
+  Task *timTask(string maTask);
+  void xoaTask();
+  void xoaTaskKhoiNV();
+  void sapXepSoLuongTaskNV();
+  void sapXepTaskHoanThanh();
+  void danhGiaTask();
   void danhGiaTrangThaiTask(Task *task, string maTask, bool daDanhGia, string trangThai, HANDLE color);
+
+  // Phần login và một số chức năng khác
+  void inMenuLogin(int &chon);
+  void XuLyLogin(string &taiKhoan);
+  bool login(string &taiKhoan);
+  void signUp();
+  void printWelcome();
+  void printGoodBye();
+  void printASCII(string fileName);
+  void animationLoading(string taiKhoan);
+  void tatConTro();
+  void clearScreen();
   void checkCin();
 };

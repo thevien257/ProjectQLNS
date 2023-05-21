@@ -17,17 +17,16 @@ void DanhSachTask::setDSTask(vector<Task *> task)
 
 void DanhSachTask::xuatTask()
 {
+  HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
   if (dsTask.size() == 0)
   {
     cout << endl;
-    HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(color, 12);
     cout << "\t\t\t\tChua co task nao trong cong ty ❌" << endl;
     SetConsoleTextAttribute(color, 7);
   }
   else
   {
-    HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
     int cyan = 11;
     int brightYellow = 14;
     int darkWhite = 7;

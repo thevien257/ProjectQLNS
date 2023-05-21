@@ -17,4 +17,8 @@ public:
   void xuatPB();
   void docFilePB(string fileName);
   DanhSachPhongBan();
+  void checkNextAllNull(PhongBan *nextPB);
+  void checkNextTPNull(PhongBan *nextPB);
+  void checkNextNVNull(PhongBan *nextPB);
+  void checkNextAllKhongNull(PhongBan *nextPB);
 };

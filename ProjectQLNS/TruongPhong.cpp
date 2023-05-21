@@ -115,6 +115,15 @@ void TruongPhong::xuat()
   // cout << "  Luong              ";
   // SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
   // cout << "║ " << std::left << std::setw(20) << formatLuong(this->luong) << std::right << " ║" << endl;
+  if (maPhongBan != "")
+  {
+    cout << "\t\t\t\t║";
+    SetConsoleTextAttribute(color, 14);
+    cout << "  Ma phong ban       ";
+    SetConsoleTextAttribute(color, 7);
+    cout << "║ " << std::left << std::setw(20) << this->maPhongBan << std::right << " ║" << endl;
+    SetConsoleTextAttribute(color, 7);
+  }
 
   cout << "\t\t\t\t║";
   SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
