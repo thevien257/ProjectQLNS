@@ -68,6 +68,7 @@ public:
   void sapXepTaskHoanThanh();
   void danhGiaTask();
   void danhGiaTrangThaiTask(Task *task, string maTask, bool daDanhGia, string trangThai, HANDLE color);
+  bool checkCoTaskHayKhong();
 
   // Phần login và một số chức năng khác
   void inMenuLogin(int &chon);
@@ -81,4 +82,10 @@ public:
   void tatConTro();
   void clearScreen();
   void checkCin();
+  bool checkCoNhanSuHayKhong();
+  bool checkCoPhongBanHayKhong();
+  bool checkCoTPTrongListNSHayKhong();
+  bool checkCoNVTrongListNSHayKhong();
+  bool checkTaskDaDuocPhanBoChua();
+  bool checkCoTaskTrongListTaskHayKhong();
 };

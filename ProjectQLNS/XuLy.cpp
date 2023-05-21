@@ -341,11 +341,9 @@ void XuLy::xuLyMenuPhongBan()
         break;
       case 5:
         xoaTPkhoiPB();
-        dsPB.xuatPB();
         break;
       case 6:
         xoaNVkhoiPB();
-        dsPB.xuatPB();
         break;
       case 7:
         xoaPB();
@@ -497,7 +495,6 @@ void XuLy::xuLyMenuTask()
         break;
       case 7:
         xoaTaskKhoiNV();
-        ds.xuatNV();
         break;
       case 8:
         danhGiaTask();
@@ -530,11 +527,16 @@ bool XuLy::existedCheck(string &kitu)
 
 void XuLy::timNhanSuTheoTen()
 {
+  HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+  if (checkCoNhanSuHayKhong() == false)
+  {
+    return;
+  }
+
   string kitu;
   vector<NhanSu *> listNSFound;
   cout << "\t\t\t\t 👉 Nhap ten muon tim kiem: ";
 
-  HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
   SetConsoleTextAttribute(color, 11);
   cin.ignore();
   getline(cin, kitu);
@@ -657,8 +659,12 @@ void XuLy::diChuyenTPDenPBMoi()
     do
     {
       cout << "\t\t\t\t📝 Chuyen truong phong mang ma so:        den phong ban mang ma so:        ";
-      cout << "\033[30;68H";
       SetConsoleTextAttribute(color, 11);
+      CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
+      GetConsoleScreenBufferInfo(color, &consoleInfo);
+      COORD cursorPosition = consoleInfo.dwCursorPosition;
+      cursorPosition.X -= 40;
+      SetConsoleCursorPosition(color, cursorPosition);
       cin >> maTP;
       tp = timTruongPhongTheoMa(maTP);
       if (tp == nullptr)
@@ -669,8 +675,12 @@ void XuLy::diChuyenTPDenPBMoi()
       }
       else
       {
-        cout << "\033[29;101H";
         SetConsoleTextAttribute(color, 11);
+        CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
+        GetConsoleScreenBufferInfo(color, &consoleInfo);
+        COORD cursorPosition = consoleInfo.dwCursorPosition;
+        cursorPosition.X += 97;
+        cursorPosition.Y -= 1;
         cin >> maPB;
         pb = timPhongBan(maPB);
         if (pb == nullptr || pb->getTruongPhong() != nullptr)
@@ -729,6 +739,19 @@ bool XuLy::checkCoTruongPhongHayKhong()
   for (PhongBan *pb : dsPB.getDsPhongBan())
   {
     if (pb->getTruongPhong() != nullptr)
+    {
+      return true;
+    }
+  }
+  return false;
+}
+
+bool XuLy::checkCoTaskHayKhong()
+{
+
+  for (Task *task : dsTask.getDSTask())
+  {
+    if (task->getMaNV() != "")
     {
       return true;
     }
@@ -806,9 +829,14 @@ void XuLy::diChuyenNVTDenPBMoi()
     do
     {
       cout << "\t\t\t\t📝 Chuyen nhan vien mang ma so:        den phong ban mang ma so:        ";
-      cout << "\033[30;65H";
       SetConsoleTextAttribute(color, 11);
+      CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
+      GetConsoleScreenBufferInfo(color, &consoleInfo);
+      COORD cursorPosition = consoleInfo.dwCursorPosition;
+      cursorPosition.X -= 40;
+      SetConsoleCursorPosition(color, cursorPosition);
       cin >> maNV;
+
       nvt = timNVT(maNV);
       if (nvt == nullptr)
       {
@@ -818,8 +846,14 @@ void XuLy::diChuyenNVTDenPBMoi()
       }
       else
       {
-        cout << "\033[29;98H";
         SetConsoleTextAttribute(color, 11);
+        CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
+        GetConsoleScreenBufferInfo(color, &consoleInfo);
+        COORD cursorPosition = consoleInfo.dwCursorPosition;
+        cursorPosition.X += 97;
+        cursorPosition.Y -= 1;
+        SetConsoleCursorPosition(color, cursorPosition);
+
         cin >> maPB;
         pb = timPhongBan(maPB);
         if (pb == nullptr || nvt->getMaPhongBan() == pb->getMaPhongBan())
@@ -863,6 +897,11 @@ void XuLy::diChuyenNVTDenPBMoi()
 void XuLy::sapXepSoLuongNhanSuPBGD()
 {
   HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+  if (checkCoNhanSuHayKhong() == false)
+  {
+    return;
+  }
+
   vector<PhongBan *> sortedPB = dsPB.getDsPhongBan();
 
   if (dsPB.getDsPhongBan().size() > 0)
@@ -919,6 +958,10 @@ void XuLy::sapXepSoLuongNhanSuPBGD()
 void XuLy::sapXepSoLuongNhanSuPBTD()
 {
   HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+  if (checkCoNhanSuHayKhong() == false)
+  {
+    return;
+  }
   vector<PhongBan *> sortedPB = dsPB.getDsPhongBan();
   if (dsPB.getDsPhongBan().size() > 0)
   {
@@ -974,6 +1017,14 @@ void XuLy::sapXepSoLuongNhanSuPBTD()
 void XuLy::xoaPB()
 {
   HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+  if (checkCoPhongBanHayKhong() == false)
+  {
+    SetConsoleTextAttribute(color, 12);
+    cout << "\t\t\t\tDanh sach phong ban rong ❌" << endl;
+    SetConsoleTextAttribute(color, 7);
+    return;
+  }
+
   cout << endl;
   SetConsoleTextAttribute(color, 14);
   cout << "\t\t\t\t\tDay la danh sach phong ban 📜 " << endl;
@@ -1072,132 +1123,180 @@ void XuLy::xoaPB()
   SetConsoleTextAttribute(color, 7);
 }
 
+bool XuLy::checkCoPhongBanHayKhong()
+{
+
+  if (dsPB.getDsPhongBan().size() == 0)
+  {
+    return false;
+  }
+  return true;
+}
+
+bool XuLy::checkCoNVTrongListNSHayKhong()
+{
+  for (NhanSu *ns : ds.getListNS())
+  {
+    if (NhanVienThuong *nv = dynamic_cast<NhanVienThuong *>(ns))
+    {
+      if (nv != nullptr)
+      {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
 void XuLy::xoaTPkhoiPB()
 {
   HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
   TruongPhong *tp;
   string maTP;
-  do
+  bool check = checkCoTruongPhongHayKhong();
+
+  if (check)
   {
     cout << "\t\t\t\tDay la danh sach truong phong trong phong ban 📜 " << endl;
     dsPB.xuatPB();
-    cout << endl;
 
-    cout << "\t\t\t\tNhap ma so truong phong: ";
-    cin >> maTP;
-
-    tp = timTruongPhongTheoMa(maTP);
-    if (tp == nullptr)
+    do
     {
-      SetConsoleTextAttribute(color, FOREGROUND_RED | FOREGROUND_INTENSITY);
-      cout << "\t\t\t\tKhong tim thay Truong Phong co ma " << maTP << endl;
-      SetConsoleTextAttribute(color, 7);
-    }
+      cout << endl;
 
-  } while (tp == nullptr);
+      cout << "\t\t\t\tNhap ma so truong phong: ";
+      cin >> maTP;
 
-  for (PhongBan *pb : dsPB.getDsPhongBan())
-  {
-    if (pb != nullptr && pb->getMaPhongBan() == tp->getMaPhongBan())
-    {
-      pb->setTruongPhong(nullptr);
-      pb->giamSoLuongNhanSu();
-    }
-  }
-
-  for (NhanSu *ns : ds.getListNS())
-  {
-    if (NhanVienThuong *nv = dynamic_cast<NhanVienThuong *>(ns))
-    {
-      if (nv != nullptr && nv->getMaPhongBan() == tp->getMaPhongBan())
+      tp = timTruongPhongTheoMa(maTP);
+      if (tp == nullptr)
       {
-        nv->setTruongPhong(nullptr);
+        SetConsoleTextAttribute(color, FOREGROUND_RED | FOREGROUND_INTENSITY);
+        cout << "\t\t\t\tKhong tim thay Truong Phong co ma " << maTP << endl;
+        SetConsoleTextAttribute(color, 7);
+      }
+
+    } while (tp == nullptr);
+
+    for (PhongBan *pb : dsPB.getDsPhongBan())
+    {
+      if (pb != nullptr && pb->getMaPhongBan() == tp->getMaPhongBan())
+      {
+        pb->setTruongPhong(nullptr);
+        pb->giamSoLuongNhanSu();
       }
     }
-  }
 
-  for (auto it = tp->getListNV().begin(); it != tp->getListNV().end();)
+    for (NhanSu *ns : ds.getListNS())
+    {
+      if (NhanVienThuong *nv = dynamic_cast<NhanVienThuong *>(ns))
+      {
+        if (nv != nullptr && nv->getMaPhongBan() == tp->getMaPhongBan())
+        {
+          nv->setTruongPhong(nullptr);
+        }
+      }
+    }
+
+    for (auto it = tp->getListNV().begin(); it != tp->getListNV().end();)
+    {
+      if ((*it)->getMaPhongBan() == tp->getMaPhongBan())
+      {
+        it = tp->getListNV().erase(it);
+        tp->giamNhanVien();
+      }
+      else
+      {
+        ++it;
+      }
+    }
+
+    tp->setMaPhongBan("");
+    SetConsoleTextAttribute(color, 10);
+    cout << "\t\t\t\tDa xoa " << tp->getHoTen() << " mang ma so " << tp->getMaSo() << " thanh cong ✅ ";
+    SetConsoleTextAttribute(color, 7);
+    cout << endl;
+  }
+  else
   {
-    if ((*it)->getMaPhongBan() == tp->getMaPhongBan())
-    {
-      it = tp->getListNV().erase(it);
-      tp->giamNhanVien();
-    }
-    else
-    {
-      ++it;
-    }
+    SetConsoleTextAttribute(color, FOREGROUND_RED | FOREGROUND_INTENSITY);
+    cout << "\t\t\t\tCac truong phong chua duoc phan bo de thuc hien chuc nang nay!" << endl;
+    SetConsoleTextAttribute(color, 7);
   }
-
-  tp->setMaPhongBan("");
-  SetConsoleTextAttribute(color, 10);
-  cout << "\t\t\t\tDa xoa " << tp->getHoTen() << " mang ma so " << tp->getMaSo() << " thanh cong ✅ ";
-  SetConsoleTextAttribute(color, 7);
-  cout << endl;
 }
 
 void XuLy::xoaNVkhoiPB()
 {
   HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
   string maNV;
-  NhanVienThuong *nv;
-  do
+  NhanVienThuong *nv = nullptr;
+  bool check = checkCoNhanVienHayKhong();
+
+  if (check)
   {
     cout << endl;
     cout << "\t\t\t\tDay la danh sach nhan vien trong phong ban 📜 " << endl;
     dsPB.xuatPB();
-    cout << endl;
-    cout << "\t\t\t\tNhap ma so nhan vien hoac nhap 0 de thoat: ";
-    cin >> maNV;
-    if (maNV == "0")
+    do
     {
-      return;
-    }
-    nv = timNVT(maNV);
-    if (nv == nullptr)
-    {
-      SetConsoleTextAttribute(color, FOREGROUND_RED | FOREGROUND_INTENSITY);
-      cout << "\t\t\t\tKhong tim thay nhan vien co ma " << maNV << endl;
-      SetConsoleTextAttribute(color, 7);
-    }
-  } while (nv == nullptr);
-  for (PhongBan *pb : dsPB.getDsPhongBan())
-  {
-    if (nv != nullptr)
-    {
-      if (pb->getMaPhongBan() == nv->getMaPhongBan())
+      cout << endl;
+      cout << "\t\t\t\tNhap ma so nhan vien hoac nhap 0 de thoat: ";
+      cin >> maNV;
+      if (maNV == "0")
       {
-        nv->setMaPhongBan("");
-        nv->setTruongPhong(nullptr);
-        pb->getDsNV().erase(remove(pb->getDsNV().begin(), pb->getDsNV().end(), nv), pb->getDsNV().end());
-        pb->giamSoLuongNhanSu();
+        return;
+      }
+      nv = timNVT(maNV);
+      if (nv == nullptr)
+      {
+        SetConsoleTextAttribute(color, FOREGROUND_RED | FOREGROUND_INTENSITY);
+        cout << "\t\t\t\tKhong tim thay nhan vien co ma " << maNV << endl;
+        SetConsoleTextAttribute(color, 7);
+      }
+    } while (nv == nullptr);
+    for (PhongBan *pb : dsPB.getDsPhongBan())
+    {
+      if (nv != nullptr)
+      {
+        if (pb->getMaPhongBan() == nv->getMaPhongBan())
+        {
+          nv->setMaPhongBan("");
+          nv->setTruongPhong(nullptr);
+          pb->getDsNV().erase(remove(pb->getDsNV().begin(), pb->getDsNV().end(), nv), pb->getDsNV().end());
+          pb->giamSoLuongNhanSu();
+        }
       }
     }
-  }
-  for (NhanSu *ns : ds.getListNS())
-  {
-    if (TruongPhong *tp = dynamic_cast<TruongPhong *>(ns))
+    for (NhanSu *ns : ds.getListNS())
     {
-      if (tp != nullptr)
+      if (TruongPhong *tp = dynamic_cast<TruongPhong *>(ns))
       {
-        for (NhanVienThuong *nv : tp->getListNV())
+        if (tp != nullptr)
         {
-          if (nv != nullptr)
+          for (NhanVienThuong *nv : tp->getListNV())
           {
-            if (nv->getMaSo() == maNV)
+            if (nv != nullptr)
             {
-              tp->getListNV().erase(remove(tp->getListNV().begin(), tp->getListNV().end(), nv), tp->getListNV().end());
-              tp->giamNhanVien();
+              if (nv->getMaSo() == maNV)
+              {
+                tp->getListNV().erase(remove(tp->getListNV().begin(), tp->getListNV().end(), nv), tp->getListNV().end());
+                tp->giamNhanVien();
+              }
             }
           }
         }
       }
     }
+    SetConsoleTextAttribute(color, 10);
+    cout << "\t\t\t\tDa xoa " << nv->getHoTen() << " mang ma so " << nv->getMaSo() << " thanh cong ✅ " << endl;
+    SetConsoleTextAttribute(color, 7);
+    cout << endl;
   }
-  SetConsoleTextAttribute(color, 10);
-  cout << "\t\t\t\tDa xoa " << nv->getHoTen() << " mang ma so " << nv->getMaSo() << " thanh cong ✅ " << endl;
-  SetConsoleTextAttribute(color, 7);
-  cout << endl;
+  else
+  {
+    SetConsoleTextAttribute(color, FOREGROUND_RED | FOREGROUND_INTENSITY);
+    cout << "\t\t\t\tCac nhan vien chua duoc phan bo de thuc hien chuc nang nay!" << endl;
+    SetConsoleTextAttribute(color, 7);
+  }
 }
 
 NhanVienThuong *XuLy::timNVT(string maNV)
@@ -1228,8 +1327,38 @@ void XuLy::checkCin()
   SetConsoleTextAttribute(color, 7);
 }
 
+bool XuLy::checkCoTPTrongListNSHayKhong()
+{
+  for (NhanSu *ns : ds.getListNS())
+  {
+    if (TruongPhong *tp = dynamic_cast<TruongPhong *>(ns))
+    {
+      if (tp != nullptr)
+      {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
 void XuLy::chiDinhTruongPhong()
 {
+  HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+  if (checkCoTPTrongListNSHayKhong() == false)
+  {
+    SetConsoleTextAttribute(color, FOREGROUND_RED | FOREGROUND_INTENSITY);
+    cout << "\t\t\t\tHien tai khong co truong phong nao trong he thong de thuc hien chuc nang nay!" << endl;
+    SetConsoleTextAttribute(color, 7);
+    return;
+  }
+  if (checkCoPhongBanHayKhong() == false)
+  {
+    SetConsoleTextAttribute(color, FOREGROUND_RED | FOREGROUND_INTENSITY);
+    cout << "\t\t\t\tHien tai khong co phong ban nao trong he thong de thuc hien chuc nang nay!" << endl;
+    SetConsoleTextAttribute(color, 7);
+    return;
+  }
   for (NhanSu *ns : ds.getListNS())
   {
     if (TruongPhong *tp = dynamic_cast<TruongPhong *>(ns))
@@ -1239,7 +1368,6 @@ void XuLy::chiDinhTruongPhong()
         bool flag = true;
         do
         {
-          HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
           cout << endl;
           SetConsoleTextAttribute(color, 11);
           cout << "\t\t\t\t📝 Dang phan bo truong phong: " << endl;
@@ -1317,6 +1445,20 @@ void XuLy::chiDinhTruongPhong()
 void XuLy::phanBoNhanVienThuongVaoPhongBan()
 {
   HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+  if (checkCoNVTrongListNSHayKhong() == false)
+  {
+    SetConsoleTextAttribute(color, FOREGROUND_RED | FOREGROUND_INTENSITY);
+    cout << "\t\t\t\tHien tai khong co nhan vien nao trong he thong de thuc hien chuc nang nay!" << endl;
+    SetConsoleTextAttribute(color, 7);
+    return;
+  }
+  if (checkCoPhongBanHayKhong() == false)
+  {
+    SetConsoleTextAttribute(color, FOREGROUND_RED | FOREGROUND_INTENSITY);
+    cout << "\t\t\t\tHien tai khong co phong ban nao trong he thong de thuc hien chuc nang nay!" << endl;
+    SetConsoleTextAttribute(color, 7);
+    return;
+  }
   for (NhanSu *ns : ds.getListNS())
   {
     if (NhanVienThuong *nvt = dynamic_cast<NhanVienThuong *>(ns))
@@ -1415,6 +1557,20 @@ PhongBan *XuLy::timPhongBan(string maPhong)
 void XuLy::sapXepTaskHoanThanh()
 {
   HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+  if (checkCoNVTrongListNSHayKhong() == false)
+  {
+    SetConsoleTextAttribute(color, FOREGROUND_RED | FOREGROUND_INTENSITY);
+    cout << "\t\t\t\tHien tai khong co nhan vien nao trong he thong de thuc hien chuc nang nay!" << endl;
+    SetConsoleTextAttribute(color, 7);
+    return;
+  }
+  if (checkCoTaskTrongListTaskHayKhong() == false)
+  {
+    SetConsoleTextAttribute(color, 12);
+    cout << "\t\t\t\t❌ Hien tai khong co task nao trong he thong. Khong the thuc hien chuc nang nay!" << endl;
+    SetConsoleTextAttribute(color, 7);
+    return;
+  }
   vector<NhanVienThuong *> sortedNS;
   for (NhanSu *ns : ds.getListNS())
   {
@@ -1466,9 +1622,52 @@ void XuLy::sapXepTaskHoanThanh()
   }
 }
 
+bool XuLy::checkCoNhanSuHayKhong()
+{
+  HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+  if (ds.getListNS().size() == 0)
+  {
+    SetConsoleTextAttribute(color, 12);
+    cout << "\t\t\t\t\tHien tai khong co nhan su nao trong he thong ❌" << endl;
+    SetConsoleTextAttribute(color, 7);
+    return false;
+  }
+  return true;
+}
+
+bool XuLy::checkTaskDaDuocPhanBoChua()
+{
+  for (NhanSu *ns : ds.getListNS())
+  {
+    if (NhanVienThuong *nvt = dynamic_cast<NhanVienThuong *>(ns))
+    {
+      if (nvt->getDSTask().size() > 0)
+      {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
 void XuLy::danhGiaTask()
 {
   HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+  if (checkTaskDaDuocPhanBoChua() == false)
+  {
+    SetConsoleTextAttribute(color, FOREGROUND_RED | FOREGROUND_INTENSITY);
+    cout << "\t\t\t\tChua co task nao duoc phan bo de danh gia. Khong the thuc hien chuc nang nay!" << endl;
+    SetConsoleTextAttribute(color, 7);
+    return;
+  }
+  if (checkCoTaskTrongListTaskHayKhong() == false)
+  {
+    SetConsoleTextAttribute(color, 12);
+    cout << "\t\t\t\t❌ Hien tai khong co task nao trong he thong. Khong the thuc hien chuc nang nay!" << endl;
+    SetConsoleTextAttribute(color, 7);
+    return;
+  }
+
   string maTask;
   Task *task;
 
@@ -1620,73 +1819,99 @@ void XuLy::danhGiaTrangThaiTask(Task *task, string maTask, bool daDanhGia, strin
 
 void XuLy::xoaTaskKhoiNV()
 {
-  string maNV;
-  NhanVienThuong *nvt;
-  Task *task;
-  string maTask;
-  bool hopLy = true;
-  HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
-
-  SetConsoleTextAttribute(color, 14);
-  cout << endl;
-  cout << "\t\t\t\t\tDay la danh sach nhan vien: " << endl;
-  SetConsoleTextAttribute(color, 7);
-  ds.xuatNV();
-  do
+  bool check = checkCoTaskHayKhong();
+  if (check)
   {
+    string maNV;
+    NhanVienThuong *nvt;
+    Task *task;
+    string maTask;
+    bool hopLy = true;
+    HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+
+    SetConsoleTextAttribute(color, 14);
     cout << endl;
-    cout << "\t\t\t\tNhap ma nhan vien hoac nhap 0 de thoat: ";
-    SetConsoleTextAttribute(color, 11);
-    cin >> maNV;
+    cout << "\t\t\t\t\tDay la danh sach nhan vien: " << endl;
     SetConsoleTextAttribute(color, 7);
-    nvt = timNVT(maNV);
-    if (maNV == "0")
+    ds.xuatNV();
+    do
     {
-      return;
-    }
-    if (nvt == nullptr || nvt->getDSTask().size() == 0)
-    {
-      SetConsoleTextAttribute(color, 12);
-      cout << "\t\t\t\t❌ Khong tim thay ma nhan vien phu hop. Vui long nhap lai!" << endl;
+      cout << endl;
+      cout << "\t\t\t\tNhap ma nhan vien hoac nhap 0 de thoat: ";
+      SetConsoleTextAttribute(color, 11);
+      cin >> maNV;
       SetConsoleTextAttribute(color, 7);
-    }
-  } while (nvt == nullptr || nvt->getDSTask().size() == 0);
-
-  do
-  {
-    cout << endl;
-    cout << "\t\t\t\tNhap ma task: ";
-    SetConsoleTextAttribute(color, 11);
-    cin >> maTask;
-    SetConsoleTextAttribute(color, 7);
-    task = timTask(maTask);
-    for (int i = 0; i < nvt->getDSTask().size(); i++)
-    {
-      if (nvt->getDSTask()[i]->getMaTask() == maTask)
+      nvt = timNVT(maNV);
+      if (maNV == "0")
       {
-        hopLy = false;
+        return;
       }
-    }
-    if (task == nullptr || hopLy)
+      if (nvt == nullptr || nvt->getDSTask().size() == 0)
+      {
+        SetConsoleTextAttribute(color, 12);
+        cout << "\t\t\t\t❌ Khong tim thay ma nhan vien phu hop. Vui long nhap lai!" << endl;
+        SetConsoleTextAttribute(color, 7);
+      }
+    } while (nvt == nullptr || nvt->getDSTask().size() == 0);
+
+    do
     {
-      SetConsoleTextAttribute(color, 12);
-      cout << "\t\t\t\t❌ Khong tim thay ma task phu hop. Vui long nhap lai!" << endl;
+      cout << endl;
+      cout << "\t\t\t\tNhap ma task: ";
+      SetConsoleTextAttribute(color, 11);
+      cin >> maTask;
       SetConsoleTextAttribute(color, 7);
-    }
+      task = timTask(maTask);
+      for (int i = 0; i < nvt->getDSTask().size(); i++)
+      {
+        if (nvt->getDSTask()[i]->getMaTask() == maTask)
+        {
+          hopLy = false;
+        }
+      }
+      if (task == nullptr || hopLy)
+      {
+        SetConsoleTextAttribute(color, 12);
+        cout << "\t\t\t\t❌ Khong tim thay ma task phu hop. Vui long nhap lai!" << endl;
+        SetConsoleTextAttribute(color, 7);
+      }
 
-  } while (task == nullptr || hopLy);
+    } while (task == nullptr || hopLy);
 
-  nvt->getDSTask().erase(remove(nvt->getDSTask().begin(), nvt->getDSTask().end(), task), nvt->getDSTask().end());
-  nvt->giamSoLuongTask();
-  task->setMaNV("");
-  SetConsoleTextAttribute(color, 10);
-  cout << "\t\t\t\tXoa task khoi nhan vien thanh cong ✅" << endl;
-  SetConsoleTextAttribute(color, 7);
+    nvt->getDSTask().erase(remove(nvt->getDSTask().begin(), nvt->getDSTask().end(), task), nvt->getDSTask().end());
+    nvt->giamSoLuongTask();
+    task->setMaNV("");
+    SetConsoleTextAttribute(color, 10);
+    cout << "\t\t\t\tXoa task khoi nhan vien thanh cong ✅" << endl;
+    SetConsoleTextAttribute(color, 7);
+    ds.xuatNV();
+  }
+  else
+  {
+    HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(color, 12);
+    cout << "\t\t\t\t❌ Chua co task nao duoc phan bo cho nhan vien. Khong the thuc hien chuc nang nay!" << endl;
+    SetConsoleTextAttribute(color, 7);
+  }
 }
 
 void XuLy::sapXepSoLuongTaskNV()
 {
   HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+  if (checkCoNVTrongListNSHayKhong() == false)
+  {
+    SetConsoleTextAttribute(color, 12);
+    cout << "\t\t\t\t❌ Hien tai khong co nhan vien nao trong he thong. Khong the thuc hien chuc nang nay!" << endl;
+    SetConsoleTextAttribute(color, 7);
+    return;
+  }
+  if (checkCoTaskTrongListTaskHayKhong() == false)
+  {
+    SetConsoleTextAttribute(color, 12);
+    cout << "\t\t\t\t❌ Hien tai khong co task nao trong he thong. Khong the thuc hien chuc nang nay!" << endl;
+    SetConsoleTextAttribute(color, 7);
+    return;
+  }
   vector<NhanVienThuong *> sortedNS;
   for (NhanSu *ns : ds.getListNS())
   {
@@ -1737,9 +1962,27 @@ void XuLy::sapXepSoLuongTaskNV()
   }
 }
 
+bool XuLy::checkCoTaskTrongListTaskHayKhong()
+{
+  if (dsTask.getDSTask().size() == 0)
+  {
+    return false;
+  }
+  return true;
+}
+
 void XuLy::xoaTask()
 {
   HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+
+  if (checkCoTaskTrongListTaskHayKhong() == false)
+  {
+    SetConsoleTextAttribute(color, 12);
+    cout << "\t\t\t\t❌ Hien tai khong co task nao trong he thong. Khong the thuc hien chuc nang nay!" << endl;
+    SetConsoleTextAttribute(color, 7);
+    return;
+  }
+
   Task *task;
   string maTask;
 
@@ -1802,103 +2045,113 @@ void XuLy::xoaTask()
 
 void XuLy::phanBoTask()
 {
-  bool flag = true;
-  string maTask;
-  Task *task;
-  int chon;
-  HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
-  for (NhanSu *ns : ds.getListNS())
+  if (ds.getListNS().size() > 0)
   {
-    if (NhanVienThuong *nvt = dynamic_cast<NhanVienThuong *>(ns))
+    bool flag = true;
+    string maTask;
+    Task *task;
+    int chon;
+    HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+    for (NhanSu *ns : ds.getListNS())
     {
-      do
+      if (NhanVienThuong *nvt = dynamic_cast<NhanVienThuong *>(ns))
       {
-        cout << endl;
-        SetConsoleTextAttribute(color, 11);
-        cout << "\t\t\t\tDang phan bo task cho nhan vien: " << endl;
-        cout << "\t\t\t\t" << nvt->getMaSo() << "\t" << nvt->getHoTen() << endl;
-        SetConsoleTextAttribute(color, 7);
-        cout << "\t\t\t\tChon 1. de phan bo hoac chon 2. de di tiep: ";
-        cin >> chon;
-        if (cin.fail())
+        do
         {
-          checkCin();
-        }
-        else
-        {
-          switch (chon)
+          cout << endl;
+          SetConsoleTextAttribute(color, 11);
+          cout << "\t\t\t\tDang phan bo task cho nhan vien: " << endl;
+          cout << "\t\t\t\t" << nvt->getMaSo() << "\t" << nvt->getHoTen() << endl;
+          SetConsoleTextAttribute(color, 7);
+          cout << "\t\t\t\tChon 1. de phan bo hoac chon 2. de di tiep: ";
+          cin >> chon;
+          if (cin.fail())
           {
-          case 1:
-            cout << endl;
-            SetConsoleTextAttribute(color, 14);
-            cout << "\t\t\t\t\tDay la danh sach task " << endl;
-            SetConsoleTextAttribute(color, 7);
-            dsTask.xuatTask();
-            do
-            {
-              cout << endl;
-              cout << "\t\t\t\tNhap ma task can phan bo hoac nhap 0 de thoat: ";
-              cin >> maTask;
-              if (maTask == "0")
-              {
-                return;
-              }
-              task = timTask(maTask);
-              if (task == nullptr || task->getMaNV() != "")
-              {
-                SetConsoleTextAttribute(color, 12);
-                cout << "\t\t\t\t❌ Khong tim thay task co ma so nay hoac task nay da co nhan vien thuc hien." << endl;
-                SetConsoleTextAttribute(color, 7);
-              }
-            } while (task == nullptr || task->getMaNV() != "");
-
-            for (int i = 0; i < nvt->getDSTask().size(); i++)
-            {
-              Task *taskNV = nvt->getDSTask().at(i);
-              if (taskNV->getMaTask() == maTask)
-              {
-                SetConsoleTextAttribute(color, 12);
-                cout << "\t\t\t\t❌ Task nay da duoc phan bo cho nhan vien nay roi." << endl;
-                SetConsoleTextAttribute(color, 7);
-                flag = true;
-                break;
-              }
-            }
-
-            if (task != nullptr)
-            {
-              task->setMaNV(nvt->getMaSo());
-              nvt->getDSTask().push_back(task);
-              nvt->tangSoLuongTask();
-              flag = false;
-            }
-            SetConsoleTextAttribute(color, 10);
-            cout << "\t\t\t\tPhan bo ";
-            SetConsoleTextAttribute(color, 7);
-            cout << nvt->getHoTen();
-            SetConsoleTextAttribute(color, 10);
-            cout << " mang ma so ";
-            SetConsoleTextAttribute(color, 7);
-            cout << nvt->getMaSo();
-            SetConsoleTextAttribute(color, 10);
-            cout << " thanh cong ✅ ";
-            SetConsoleTextAttribute(color, 7);
-            cout << endl;
-
-            break;
-          case 2:
-            flag = false;
-            break;
-          default:
-            SetConsoleTextAttribute(color, 12);
-            cout << "\t\t\t\tChi duoc chon 1 hoac 2 ❌" << endl;
-            SetConsoleTextAttribute(color, 7);
-            flag = true;
-            break;
+            checkCin();
           }
-        }
-      } while (flag);
+          else
+          {
+            switch (chon)
+            {
+            case 1:
+              cout << endl;
+              SetConsoleTextAttribute(color, 14);
+              cout << "\t\t\t\t\tDay la danh sach task " << endl;
+              SetConsoleTextAttribute(color, 7);
+              dsTask.xuatTask();
+              do
+              {
+                cout << endl;
+                cout << "\t\t\t\tNhap ma task can phan bo hoac nhap 0 de thoat: ";
+                cin >> maTask;
+                if (maTask == "0")
+                {
+                  return;
+                }
+                task = timTask(maTask);
+                if (task == nullptr || task->getMaNV() != "")
+                {
+                  SetConsoleTextAttribute(color, 12);
+                  cout << "\t\t\t\t❌ Khong tim thay task co ma so nay hoac task nay da co nhan vien thuc hien." << endl;
+                  SetConsoleTextAttribute(color, 7);
+                }
+              } while (task == nullptr || task->getMaNV() != "");
+
+              for (int i = 0; i < nvt->getDSTask().size(); i++)
+              {
+                Task *taskNV = nvt->getDSTask().at(i);
+                if (taskNV->getMaTask() == maTask)
+                {
+                  SetConsoleTextAttribute(color, 12);
+                  cout << "\t\t\t\t❌ Task nay da duoc phan bo cho nhan vien nay roi." << endl;
+                  SetConsoleTextAttribute(color, 7);
+                  flag = true;
+                  break;
+                }
+              }
+
+              if (task != nullptr)
+              {
+                task->setMaNV(nvt->getMaSo());
+                nvt->getDSTask().push_back(task);
+                nvt->tangSoLuongTask();
+                flag = false;
+              }
+              SetConsoleTextAttribute(color, 10);
+              cout << "\t\t\t\tPhan bo ";
+              SetConsoleTextAttribute(color, 7);
+              cout << nvt->getHoTen();
+              SetConsoleTextAttribute(color, 10);
+              cout << " mang ma so ";
+              SetConsoleTextAttribute(color, 7);
+              cout << nvt->getMaSo();
+              SetConsoleTextAttribute(color, 10);
+              cout << " thanh cong ✅ ";
+              SetConsoleTextAttribute(color, 7);
+              cout << endl;
+
+              break;
+            case 2:
+              flag = false;
+              break;
+            default:
+              SetConsoleTextAttribute(color, 12);
+              cout << "\t\t\t\tChi duoc chon 1 hoac 2 ❌" << endl;
+              SetConsoleTextAttribute(color, 7);
+              flag = true;
+              break;
+            }
+          }
+        } while (flag);
+      }
     }
+  }
+  else
+  {
+    HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(color, 12);
+    cout << "\t\t\t\t❌ Danh sach nhan su hien dang rong." << endl;
+    SetConsoleTextAttribute(color, 7);
   }
 }
 
@@ -1928,6 +2181,11 @@ bool XuLy::found(string maSo)
 
 void XuLy::xoaNhanSu()
 {
+
+  if (checkCoNhanSuHayKhong() == false)
+  {
+    return;
+  }
 
   HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
   SetConsoleTextAttribute(color, 14);
@@ -2111,9 +2369,13 @@ void XuLy::xoaTruongPhong(TruongPhong *truongPhong)
 
 void XuLy::timNhanSuTheoMaSo()
 {
+  HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+  if (checkCoNhanSuHayKhong() == false)
+  {
+    return;
+  }
   string maSo;
   cout << "\t\t\t\tNhap ma so nhan su can tim               🔎";
-  HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
   SetConsoleTextAttribute(color, 11);
   CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
   GetConsoleScreenBufferInfo(color, &consoleInfo);
@@ -2158,6 +2420,11 @@ void XuLy::timNhanSuTheoMaSo()
 
 void XuLy::suaDoiThongTinNhanSu()
 {
+  if (checkCoNhanSuHayKhong() == false)
+  {
+    return;
+  }
+
   HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
   SetConsoleTextAttribute(color, 14);
   cout << "\t\t\t\t\tDay la danh sach nhan su hien co 📜 " << endl;
@@ -2215,6 +2482,10 @@ void XuLy::SapXepTheoTen()
 
 void XuLy::timNVLuongCaoNhat()
 {
+  if (checkCoNhanSuHayKhong() == false)
+  {
+    return;
+  }
   vector<NhanSu *> listMax;
   HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
   cout << "\t\t\t\t    ╔═══════════════════════════════════╗\n";
@@ -2740,7 +3011,7 @@ void XuLy::XuLyLogin(string &taiKhoan)
       cout << endl;
       SetConsoleTextAttribute(color, 14);
       printGoodBye();
-      Sleep(2000);
+      system("pause >nul");
       exit(1);
       break;
 

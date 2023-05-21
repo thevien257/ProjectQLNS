@@ -97,10 +97,10 @@ void NhanSu::nhap()
   SetConsoleCursorInfo(hConsole, &cursorInfo);
 
   cout << endl;
+  cout << endl;
+  cout << endl;
+  cout << endl;
 
-  cout << endl;
-  cout << endl;
-  cout << endl;
   if (viTriViecLam == "Giam Doc")
   {
     SetConsoleTextAttribute(color, 11);
