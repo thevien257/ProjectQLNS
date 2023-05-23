@@ -2,7 +2,7 @@ Ma so	Ho ten	So dien thoai	Vi tri viec lam	So ngay lam viec	Luong	Ma phong ban	S
 MSgd1	GD	1243123	Giam doc	28	28000000	
 MSnv1	Chuoi	1231232	Nhan vien thuong	25	5000000	pb1					Vien	MStp1	
 MSnv2	Cam	123156752	Nhan vien thuong	28	5600000	pb1					Vien	MStp1	
-MStp1	Vien	1231232	Truong phong	25	7500000	pb1							2	Chuoi	MSnv1	
+MStp1	Vien	1231232	Truong phong	30	9400000	pb1							2	Chuoi	MSnv1	
 														Cam	MSnv2	
-MStp2	Truong	123156752	Truong phong	28	8400000	pb2							
-TPTest	Test Test Test	123123132	Truong Phong	25	7500000	pb3							
+MStp2	Truong	123156752	Truong phong	28	8600000	pb2							1	Test Test Test	Test	
+Test	Test Test Test	123	Nhan Vien Thuong	123	24600000	pb2					Truong	MStp2	
