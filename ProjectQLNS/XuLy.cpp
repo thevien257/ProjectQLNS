@@ -676,12 +676,21 @@ void XuLy::diChuyenTPDenPBMoi()
       else
       {
         SetConsoleTextAttribute(color, 11);
+<<<<<<< HEAD
         CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
         GetConsoleScreenBufferInfo(color, &consoleInfo);
         COORD cursorPosition = consoleInfo.dwCursorPosition;
         cursorPosition.X += 100;
         cursorPosition.Y -= 1;
         SetConsoleCursorPosition(color, cursorPosition);
+||||||| 40c79e8
+=======
+        CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
+        GetConsoleScreenBufferInfo(color, &consoleInfo);
+        COORD cursorPosition = consoleInfo.dwCursorPosition;
+        cursorPosition.X += 97;
+        cursorPosition.Y -= 1;
+>>>>>>> 64c469ef4b8afa0f3b58153542d810637d685fda
         cin >> maPB;
         pb = timPhongBan(maPB);
         if (pb == nullptr || pb->getTruongPhong() != nullptr)
@@ -2070,8 +2079,80 @@ void XuLy::phanBoTask()
           cin >> chon;
           if (cin.fail())
           {
+<<<<<<< HEAD
             checkCin();
             flag = true;
+||||||| 40c79e8
+          case 1:
+            cout << endl;
+            SetConsoleTextAttribute(color, 14);
+            cout << "\t\t\t\t\tDay la danh sach task " << endl;
+            SetConsoleTextAttribute(color, 7);
+            dsTask.xuatTask();
+            do
+            {
+              cout << endl;
+              cout << "\t\t\t\tNhap ma task can phan bo hoac nhap 0 de thoat: ";
+              cin >> maTask;
+              if (maTask == "0")
+              {
+                return;
+              }
+              task = timTask(maTask);
+              if (task == nullptr || task->getMaNV() != "")
+              {
+                SetConsoleTextAttribute(color, 12);
+                cout << "\t\t\t\t❌ Khong tim thay task co ma so nay hoac task nay da co nhan vien thuc hien." << endl;
+                SetConsoleTextAttribute(color, 7);
+              }
+            } while (task == nullptr || task->getMaNV() != "");
+
+            for (int i = 0; i < nvt->getDSTask().size(); i++)
+            {
+              Task *taskNV = nvt->getDSTask().at(i);
+              if (taskNV->getMaTask() == maTask)
+              {
+                SetConsoleTextAttribute(color, 12);
+                cout << "\t\t\t\t❌ Task nay da duoc phan bo cho nhan vien nay roi." << endl;
+                SetConsoleTextAttribute(color, 7);
+                flag = true;
+                break;
+              }
+            }
+
+            if (task != nullptr)
+            {
+              task->setMaNV(nvt->getMaSo());
+              nvt->getDSTask().push_back(task);
+              nvt->tangSoLuongTask();
+              flag = false;
+            }
+            SetConsoleTextAttribute(color, 10);
+            cout << "\t\t\t\tPhan bo ";
+            SetConsoleTextAttribute(color, 7);
+            cout << nvt->getHoTen();
+            SetConsoleTextAttribute(color, 10);
+            cout << " mang ma so ";
+            SetConsoleTextAttribute(color, 7);
+            cout << nvt->getMaSo();
+            SetConsoleTextAttribute(color, 10);
+            cout << " thanh cong ✅ ";
+            SetConsoleTextAttribute(color, 7);
+            cout << endl;
+
+            break;
+          case 2:
+            flag = false;
+            break;
+          default:
+            SetConsoleTextAttribute(color, 12);
+            cout << "\t\t\t\tChi duoc chon 1 hoac 2 ❌" << endl;
+            SetConsoleTextAttribute(color, 7);
+            flag = true;
+            break;
+=======
+            checkCin();
+>>>>>>> 64c469ef4b8afa0f3b58153542d810637d685fda
           }
           else
           {
