@@ -18,51 +18,6 @@ danhSachNhanSu::~danhSachNhanSu()
   delete[] ns;
 }
 
-// void danhSachNhanSu::ghiFile(string filename)
-// {
-//   ofstream file(filename);
-//   if (file.is_open())
-//   {
-//     set<string> maSoSet; // tao set de du gia tri "Ma so"
-//     for (NhanSu *ns : dsNhanSu)
-//     {
-//       // Kiem tra xem neu trong set co ma so roi thi ko xuat nua, con chua co thi xuat
-//       if (maSoSet.count(ns->getMaSo()) == 0)
-//       {
-//         if (NhanVienThuong *nvt = dynamic_cast<NhanVienThuong *>(ns))
-//         {
-//           if (nvt != nullptr)
-//           {
-//             file << *nvt << endl;
-//             maSoSet.insert(nvt->getMaSo()); // them "Ma so moi xuat vao set"
-//           }
-//         }
-//         else if (TruongPhong *tp = dynamic_cast<TruongPhong *>(ns))
-//         {
-//           if (tp != nullptr)
-//           {
-//             file << *tp << endl;
-//             maSoSet.insert(tp->getMaSo()); // them "Ma so moi xuat vao set"
-//           }
-//         }
-//         else if (GiamDoc *gd = dynamic_cast<GiamDoc *>(ns))
-//         {
-//           if (gd != nullptr)
-//           {
-//             file << *gd << endl;
-//             maSoSet.insert(gd->getMaSo());
-//           }
-//         }
-//       }
-//     }
-//     file.close();
-//   }
-//   else
-//   {
-//     cout << "Khong mo duoc file!" << endl;
-//   }
-// }
-
 void danhSachNhanSu::ghiFile(string filename)
 {
   ofstream file(filename);
@@ -151,13 +106,12 @@ danhSachNhanSu::danhSachNhanSu()
 
 void danhSachNhanSu::docFileNVT(string filename)
 {
-  ifstream file(filename); // replace "ten_file.txt" with the name of your text file
+  ifstream file(filename);
   if (file.is_open())
   {
     while (file.good())
     {
-      // read data from file and create new employee object
-      NhanSu *ns = new NhanVienThuong(); // replace with appropriate subclass
+      NhanSu *ns = new NhanVienThuong();
       file >> *ns;
       ns->setViTriViecLam("Nhan vien thuong");
       ns->tinhLuong();
@@ -173,13 +127,12 @@ void danhSachNhanSu::docFileNVT(string filename)
 
 void danhSachNhanSu::docFileGD(string filename)
 {
-  ifstream file(filename); // replace "ten_file.txt" with the name of your text file
+  ifstream file(filename);
   if (file.is_open())
   {
     while (file.good())
     {
-      // read data from file and create new employee object
-      NhanSu *ns = new GiamDoc(); // replace with appropriate subclass
+      NhanSu *ns = new GiamDoc();
       file >> *ns;
       ns->setViTriViecLam("Giam doc");
       ns->tinhLuong();
@@ -195,13 +148,12 @@ void danhSachNhanSu::docFileGD(string filename)
 
 void danhSachNhanSu::docFileTP(string filename)
 {
-  ifstream file(filename); // replace "ten_file.txt" with the name of your text file
+  ifstream file(filename);
   if (file.is_open())
   {
     while (file.good())
     {
-      // read data from file and create new employee object
-      NhanSu *ns = new TruongPhong(); // replace with appropriate subclass
+      NhanSu *ns = new TruongPhong();
       file >> *ns;
       ns->setViTriViecLam("Truong phong");
       ns->tinhLuong();
@@ -421,6 +373,136 @@ void danhSachNhanSu::xuatNV()
     else
     {
       cout << "\t\t\t\t╚═════════════════════╩══════════════════════╝\n";
+    }
+    j++;
+  }
+}
+
+void danhSachNhanSu::xuatMaSoVaTenNV()
+{
+  vector<NhanVienThuong *> listNVT;
+  for (NhanSu *ns : dsNhanSu)
+  {
+    if (NhanVienThuong *nvt = dynamic_cast<NhanVienThuong *>(ns))
+    {
+      if (nvt != nullptr)
+      {
+        listNVT.push_back(nvt);
+      }
+    }
+  }
+
+  bool flag = true;
+  int chon;
+  HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+  int cyan = 11;
+  int brightYellow = 14;
+  int darkWhite = 7;
+  cout << "\t\t                      ╔═════════════════════════════════╗\n";
+  cout << "\t\t                      ║ ";
+  SetConsoleTextAttribute(color, cyan);
+  cout << "   Danh sach nhan vien  📂   ";
+  SetConsoleTextAttribute(color, 7);
+  cout << "   ║                \n";
+  cout << "\t\t\t╔═════════════╬═══════════════╦═════════════════╩══════════╗\n";
+  cout << "\t\t\t║ ";
+  SetConsoleTextAttribute(color, cyan);
+  cout << "So thu tu  ";
+  SetConsoleTextAttribute(color, darkWhite);
+  cout << " ║ ";
+  SetConsoleTextAttribute(color, cyan);
+  cout << " Ma nhan vien";
+  SetConsoleTextAttribute(color, darkWhite);
+  cout << " ║    ";
+  SetConsoleTextAttribute(color, cyan);
+  cout << "   Ten nhan vien    ";
+  SetConsoleTextAttribute(color, darkWhite);
+  cout << "    ║\n";
+  cout << "\t\t\t╠═════════════╬═══════════════╬════════════════════════════╣\n";
+  int j = 1;
+  NhanVienThuong *lastNV = listNVT.back();
+  for (NhanVienThuong *nvt : listNVT)
+  {
+    cout << "\t\t\t║ " << std::setw(5) << std::setfill(' ');
+    SetConsoleTextAttribute(color, cyan);
+    cout << j;
+    SetConsoleTextAttribute(color, darkWhite);
+    cout << std::setw(6) << std::setfill(' ') << ""
+         << " ║";
+    nvt->xuatMaVaTen();
+    cout << endl;
+    if (nvt != lastNV)
+    {
+      cout << "\t\t\t╠═════════════╬═══════════════╬════════════════════════════╣\n";
+    }
+    else
+    {
+      cout << "\t\t\t╚═════════════╩═══════════════╩════════════════════════════╝\n";
+    }
+    j++;
+  }
+}
+
+void danhSachNhanSu::xuatMaSoVaTenTP()
+{
+  vector<TruongPhong *> listTP;
+  for (NhanSu *ns : dsNhanSu)
+  {
+    if (TruongPhong *tp = dynamic_cast<TruongPhong *>(ns))
+    {
+      if (tp != nullptr)
+      {
+        listTP.push_back(tp);
+      }
+    }
+  }
+
+  bool flag = true;
+  int chon;
+  HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+  int cyan = 11;
+  int brightYellow = 14;
+  int darkWhite = 7;
+  cout << "\t\t                      ╔═════════════════════════════════╗\n";
+  cout << "\t\t                      ║ ";
+  SetConsoleTextAttribute(color, cyan);
+  cout << "  Danh sach truong phong  📂  ";
+  SetConsoleTextAttribute(color, 7);
+  cout << "  ║                \n";
+  cout << "\t\t\t╔═════════════╬═══════════════╦═════════════════╩══════════╗\n";
+  cout << "\t\t\t║ ";
+  SetConsoleTextAttribute(color, cyan);
+  cout << "So thu tu  ";
+  SetConsoleTextAttribute(color, darkWhite);
+  cout << " ║ ";
+  SetConsoleTextAttribute(color, cyan);
+  cout << " Ma nhan vien";
+  SetConsoleTextAttribute(color, darkWhite);
+  cout << " ║    ";
+  SetConsoleTextAttribute(color, cyan);
+  cout << "   Ten nhan vien    ";
+  SetConsoleTextAttribute(color, darkWhite);
+  cout << "    ║\n";
+  cout << "\t\t\t╠═════════════╬═══════════════╬════════════════════════════╣\n";
+  int j = 1;
+  TruongPhong *lastTP = listTP.back();
+  for (TruongPhong *tp : listTP)
+  {
+    cout << "\t\t\t║ " << std::setw(5) << std::setfill(' ');
+    SetConsoleTextAttribute(color, cyan);
+    cout << j;
+    SetConsoleTextAttribute(color, darkWhite);
+    cout << std::setw(6) << std::setfill(' ') << ""
+         << " ║";
+    tp->xuatMaVaTen();
+    cout << endl;
+    if (tp != lastTP)
+    {
+      cout << "\t\t\t╠═════════════╬═══════════════╬════════════════════════════╣\n";
+    }
+    else
+    {
+      cout << "\t\t\t╚═════════════╩═══════════════╩════════════════════════════╝\n";
     }
     j++;
   }

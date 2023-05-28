@@ -51,12 +51,12 @@ public:
   void xoaPB();
   void sapXepSoLuongNhanSuPBGD();
   void sapXepSoLuongNhanSuPBTD();
-  void diChuyenTPDenPBMoi();
-  void diChuyenNVTDenPBMoi();
   bool checkCoNhanVienHayKhong();
   bool checkCoTruongPhongHayKhong();
   void thucHienPhanBoTruongPhong(PhongBan *pb, TruongPhong *tp, string maPB);
   void thucHienPhanBoNhanVienThuong(PhongBan *pb, NhanVienThuong *nvt, string maPB);
+  void phanBoCuTheNVT();
+  void chiDinhCuTheTruongPhong();
 
   // Phần task
   void xuLyMenuTask();
@@ -69,6 +69,7 @@ public:
   void danhGiaTask();
   void danhGiaTrangThaiTask(Task *task, string maTask, bool daDanhGia, string trangThai, HANDLE color);
   bool checkCoTaskHayKhong();
+  void phanBoTaskChoNhanVienCuThe();
 
   // Phần login và một số chức năng khác
   void inMenuLogin(int &chon);

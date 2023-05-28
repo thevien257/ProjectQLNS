@@ -37,4 +37,5 @@ public:
   // friend istream &operator>>(istream &is, TruongPhong &tp);
   friend ostream &operator<<(ostream &os, const TruongPhong &tp);
   string getMaPhongBan();
+  void xuatMaVaTen();
 };

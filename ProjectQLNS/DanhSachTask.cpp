@@ -96,7 +96,7 @@ void DanhSachTask::nhapTask()
   cout << endl;
   cout << "\t\t\t\tNhap so luong task: ";
   cin >> n;
-  std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // add this line
+  std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
   for (int i = 0; i < n; i++)
   {
     cout << endl;
@@ -107,6 +107,9 @@ void DanhSachTask::nhapTask()
     task->nhapTask();
     dsTask.push_back(task);
   }
+  SetConsoleTextAttribute(color, 10);
+  cout << "\t\t\t\tDa nhap xong task ✅" << endl;
+  SetConsoleTextAttribute(color, 7);
 }
 
 void DanhSachTask::docFileTask(string fileName)

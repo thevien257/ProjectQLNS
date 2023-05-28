@@ -175,3 +175,23 @@ void TruongPhong::tinhLuong()
 {
   this->luong = NhanSu::luong1NgayTP * this->soNgayLamViec + NhanSu::phuCapTP * this->soLuongNhanVien;
 }
+
+void TruongPhong::xuatMaVaTen()
+{
+  HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+  int brightYellow = 14;
+  int darkWhite = 7;
+  cout << " " << setw(7 + maSo.size() / 2) << setfill(' ');
+  SetConsoleTextAttribute(color, brightYellow);
+  cout << maSo;
+  SetConsoleTextAttribute(color, darkWhite);
+  cout << setw(7 - maSo.size() / 2) << setfill(' ') << ""
+       << "║";
+
+  cout << setw(14 + hoTen.size() / 2) << setfill(' ');
+  SetConsoleTextAttribute(color, brightYellow);
+  cout << hoTen;
+  SetConsoleTextAttribute(color, darkWhite);
+  cout << setw(14 - hoTen.size() / 2) << setfill(' ') << ""
+       << "║";
+}

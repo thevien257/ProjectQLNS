@@ -33,6 +33,7 @@ public:
   TruongPhong *getTruongPhong();
   void nhap();
   void xuat();
+  void xuatMaVaTen();
   ~NhanVienThuong();
   // friend istream &operator>>(istream &is, NhanVienThuong &nvt);
   friend ostream &operator<<(ostream &os, const NhanVienThuong &nvt);
