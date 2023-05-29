@@ -1,5 +1,6 @@
-#
 
+![🧑_💻DỰ_ÁN_QUẢN_LÝ_NHÂN_SỰ](https://github.com/thevien2507/Project-qu-n-l-nh-n-s-/assets/127777015/470f39c8-e166-4693-b834-10dd0cee8467)
+#
 ## Mô tả
 
 Dự án này là một hệ thống quản lý nhân sự, phòng ban và công việc trong một tổ chức. Cung cấp các chức năng để xử lý các hoạt động liên quan đến quản lý nhân viên, phòng ban và phân công công việc.
