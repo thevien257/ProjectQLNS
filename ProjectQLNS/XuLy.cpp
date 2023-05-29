@@ -8,11 +8,10 @@
 #include <iomanip>
 #include <fstream>
 #include <windows.h>
-#include <fstream>
 #include <string>
 #include <conio.h>
-#include <fcntl.h>
-#include <io.h>
+// #include <fcntl.h>
+// #include <io.h>
 #include <limits>
 using namespace std;
 #define WHITE 15
@@ -552,6 +551,10 @@ void XuLy::phanBoTaskChoNhanVienCuThe()
     cursorPosition.X -= 43;
     SetConsoleCursorPosition(color, cursorPosition);
     cin >> maTask;
+    if (maTask == "0")
+    {
+      return;
+    }
 
     task = timTask(maTask);
     if (task == nullptr || task->getMaNV() != "")
@@ -570,6 +573,10 @@ void XuLy::phanBoTaskChoNhanVienCuThe()
       cursorPosition.Y -= 1;
       SetConsoleCursorPosition(color, cursorPosition);
       cin >> maNV;
+      if (maNV == "0")
+      {
+        return;
+      }
       nvt = timNVT(maNV);
       if (nvt == nullptr)
       {
@@ -759,6 +766,10 @@ void XuLy::chiDinhCuTheTruongPhong()
       cursorPosition.X -= 40;
       SetConsoleCursorPosition(color, cursorPosition);
       cin >> maTP;
+      if (maTP == "0")
+      {
+        return;
+      }
       tp = timTruongPhongTheoMa(maTP);
       if (tp == nullptr)
       {
@@ -776,6 +787,11 @@ void XuLy::chiDinhCuTheTruongPhong()
         cursorPosition.Y -= 1;
         SetConsoleCursorPosition(color, cursorPosition);
         cin >> maPB;
+        if (maPB == "0")
+        {
+          return;
+        }
+
         pb = timPhongBan(maPB);
         if (pb == nullptr || pb->getTruongPhong() != nullptr)
         {
@@ -2593,6 +2609,10 @@ void XuLy::phanBoCuTheNVT()
       cursorPosition.X -= 40;
       SetConsoleCursorPosition(color, cursorPosition);
       cin >> maNV;
+      if (maNV == "0")
+      {
+        return;
+      }
 
       nvt = timNVT(maNV);
       if (nvt == nullptr)
@@ -2612,6 +2632,11 @@ void XuLy::phanBoCuTheNVT()
         SetConsoleCursorPosition(color, cursorPosition);
 
         cin >> maPB;
+        if (maPB == "0")
+        {
+          return;
+        }
+
         pb = timPhongBan(maPB);
         if (pb == nullptr || nvt->getMaPhongBan() == pb->getMaPhongBan())
         {
@@ -3136,86 +3161,102 @@ void XuLy::XuLyLogin(string &taiKhoan)
 
 void XuLy::InMenuQuanLyNhanSu(int &chon)
 {
-  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-  CONSOLE_CURSOR_INFO cursorInfo;
-  GetConsoleCursorInfo(hConsole, &cursorInfo);
-  cursorInfo.bVisible = true;
-  SetConsoleCursorInfo(hConsole, &cursorInfo);
-
-  cout << endl;
+  bool flag = true;
   HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
-  SetConsoleTextAttribute(color, 11);
-  cout << endl;
-  cout << "\t\t\t\t    ╔═══════════════════════════════════╗\n";
-  cout << "\t\t\t\t╔═══╟════ Menu Quan Ly Nhan Su 🧑‍💻════║═══╗\n";
-  cout << "\t\t\t\t║   ╚═══════════════════════════════════╝   ║\n";
-  cout << "\t\t\t\t║                                           ║\n";
-  cout << "\t\t\t\t║";
-  SetConsoleTextAttribute(color, 7);
-  cout << "     1. Them nhan su";
-  SetConsoleTextAttribute(color, 11);
-  cout << "                       ║\n";
-  cout << "\t\t\t\t║";
-  SetConsoleTextAttribute(color, 7);
-  cout << "     2. Xuat nhan su";
-  SetConsoleTextAttribute(color, 11);
-  cout << "                       ║\n";
-  cout << "\t\t\t\t║";
-  SetConsoleTextAttribute(color, 7);
-  cout << "     3. Sap xep nhan su theo ten A-Z";
-  SetConsoleTextAttribute(color, 11);
-  cout << "       ║\n";
-  cout << "\t\t\t\t║";
-  SetConsoleTextAttribute(color, 7);
-  cout << "     4. Sap xep theo luong giam dan";
-  SetConsoleTextAttribute(color, 11);
-  cout << "        ║\n";
-  cout << "\t\t\t\t║";
-  SetConsoleTextAttribute(color, 7);
-  cout << "     5. Tim nhan vien";
-  SetConsoleTextAttribute(color, 11);
-  cout << "                      ║\n";
-  cout << "\t\t\t\t║";
-  SetConsoleTextAttribute(color, 7);
-  cout << "     6. Tim kiem theo ten  ";
-  SetConsoleTextAttribute(color, 11);
-  cout << "                ║\n";
-  cout << "\t\t\t\t║";
-  SetConsoleTextAttribute(color, 7);
-  cout << "     7. Tim nhan vien muc luong cao nhat";
-  SetConsoleTextAttribute(color, 11);
-  cout << "   ║\n";
-  cout << "\t\t\t\t║";
-  SetConsoleTextAttribute(color, 7);
-  cout << "     8. Sua doi thong tin nhan vien";
-  SetConsoleTextAttribute(color, 11);
-  cout << "        ║\n";
-  cout << "\t\t\t\t║";
-  SetConsoleTextAttribute(color, 7);
-  cout << "     9. Xoa nhan su";
-  SetConsoleTextAttribute(color, 11);
-  cout << "                        ║\n";
-  cout << "\t\t\t\t║";
-  SetConsoleTextAttribute(color, 7);
-  cout << "     0. Thoat khoi menu QLNS";
-  SetConsoleTextAttribute(color, 11);
-  cout << "               ║\n";
-  cout << "\t\t\t\t║";
-  SetConsoleTextAttribute(color, 7);
-  cout << "     > Moi chon 👉";
-  SetConsoleTextAttribute(color, 11);
-  cout << "                         ║\n";
-  cout << "\t\t\t\t║                                           ║\n";
-  cout << "\t\t\t\t╚═══════════════════════════════════════════╝\n\n";
+  do
+  {
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_CURSOR_INFO cursorInfo;
+    GetConsoleCursorInfo(hConsole, &cursorInfo);
+    cursorInfo.bVisible = true;
+    SetConsoleCursorInfo(hConsole, &cursorInfo);
+    cout << endl;
+    SetConsoleTextAttribute(color, 11);
+    cout << endl;
+    cout << "\t\t\t\t    ╔═══════════════════════════════════╗\n";
+    cout << "\t\t\t\t╔═══╟════ Menu Quan Ly Nhan Su 🧑‍💻════║═══╗\n";
+    cout << "\t\t\t\t║   ╚═══════════════════════════════════╝   ║\n";
+    cout << "\t\t\t\t║                                           ║\n";
+    cout << "\t\t\t\t║";
+    SetConsoleTextAttribute(color, 7);
+    cout << "     1. Them nhan su";
+    SetConsoleTextAttribute(color, 11);
+    cout << "                       ║\n";
+    cout << "\t\t\t\t║";
+    SetConsoleTextAttribute(color, 7);
+    cout << "     2. Xuat nhan su";
+    SetConsoleTextAttribute(color, 11);
+    cout << "                       ║\n";
+    cout << "\t\t\t\t║";
+    SetConsoleTextAttribute(color, 7);
+    cout << "     3. Sap xep nhan su theo ten A-Z";
+    SetConsoleTextAttribute(color, 11);
+    cout << "       ║\n";
+    cout << "\t\t\t\t║";
+    SetConsoleTextAttribute(color, 7);
+    cout << "     4. Sap xep theo luong giam dan";
+    SetConsoleTextAttribute(color, 11);
+    cout << "        ║\n";
+    cout << "\t\t\t\t║";
+    SetConsoleTextAttribute(color, 7);
+    cout << "     5. Tim nhan vien";
+    SetConsoleTextAttribute(color, 11);
+    cout << "                      ║\n";
+    cout << "\t\t\t\t║";
+    SetConsoleTextAttribute(color, 7);
+    cout << "     6. Tim kiem theo ten  ";
+    SetConsoleTextAttribute(color, 11);
+    cout << "                ║\n";
+    cout << "\t\t\t\t║";
+    SetConsoleTextAttribute(color, 7);
+    cout << "     7. Tim nhan vien muc luong cao nhat";
+    SetConsoleTextAttribute(color, 11);
+    cout << "   ║\n";
+    cout << "\t\t\t\t║";
+    SetConsoleTextAttribute(color, 7);
+    cout << "     8. Sua doi thong tin nhan vien";
+    SetConsoleTextAttribute(color, 11);
+    cout << "        ║\n";
+    cout << "\t\t\t\t║";
+    SetConsoleTextAttribute(color, 7);
+    cout << "     9. Xoa nhan su";
+    SetConsoleTextAttribute(color, 11);
+    cout << "                        ║\n";
+    cout << "\t\t\t\t║";
+    SetConsoleTextAttribute(color, 7);
+    cout << "     0. Thoat khoi menu QLNS";
+    SetConsoleTextAttribute(color, 11);
+    cout << "               ║\n";
+    cout << "\t\t\t\t║";
+    SetConsoleTextAttribute(color, 7);
+    cout << "     > Moi chon 👉";
+    SetConsoleTextAttribute(color, 11);
+    cout << "                         ║\n";
+    cout << "\t\t\t\t║                                           ║\n";
+    cout << "\t\t\t\t╚═══════════════════════════════════════════╝\n\n";
 
-  CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
-  GetConsoleScreenBufferInfo(color, &consoleInfo);
-  COORD cursorPosition = consoleInfo.dwCursorPosition;
-  // Move the cursor to the right by incrementing X coordinate
-  cursorPosition.X += 52;
-  cursorPosition.Y -= 4;
-  SetConsoleCursorPosition(color, cursorPosition);
-  cin >> chon;
+    CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
+    GetConsoleScreenBufferInfo(color, &consoleInfo);
+    COORD cursorPosition = consoleInfo.dwCursorPosition;
+    // Move the cursor to the right by incrementing X coordinate
+    cursorPosition.X += 52;
+    cursorPosition.Y -= 4;
+    SetConsoleCursorPosition(color, cursorPosition);
+    cin >> chon;
+    if (cin.fail())
+    {
+      cin.clear();
+      cin.ignore(numeric_limits<streamsize>::max(), '\n');
+      SetConsoleTextAttribute(color, 12);
+      cout << "\t\t\t\t❌ Lua chon cua ban khong hop le. Vui long chon lai!" << endl;
+      SetConsoleTextAttribute(color, 7);
+      flag = true;
+    }
+    else
+    {
+      flag = false;
+    }
+  } while (flag);
 
   SetConsoleTextAttribute(color, 7);
 }
