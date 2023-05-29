@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-<strong>Quản lý nhân sự, phòng ban và task một cách linh hoạt 📋</strong>
+  <code style="color: name_color; font-size: 18px;">Quản lý nhân sự, phòng ban và task 📋</code>
 </p>
 
 <br>
