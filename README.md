@@ -12,8 +12,8 @@
 </p>
 
 <p align="center">
-  <code style="color: name_color; font-size: 18px;">Quản lý nhân sự, phòng ban và task 📋</code>
-</p>
+  <strong><code style="color: name_color; font-size: 18px;">Quản lý nhân sự, phòng ban và task 📋</code>
+<strong></p>
 
 <br>
 
