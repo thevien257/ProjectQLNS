@@ -1,10 +1,15 @@
-<h1 align="center"><span style="color:#5e5e5e">Dự án quản lý nhân sự 🧑‍💻</span></h1>
+<h1 align="center"><span style="color:#33cccc">Dự án quản lý nhân sự 🧑‍💻</span></h1>
 
 <!-- <p align="center">
   <img src="https://example.com/your-project-logo.png" alt="Logo" width="150" height="150">
 </p> -->
 
-![Last commit](https://img.shields.io/github/last-commit/thevien2507/ProjectQLNS?style=flat-square&token=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)
+<p style="text-align: center;">
+  <img src="https://badgen.net/badge/icon/github?icon=github&label">
+  <img src="https://badgen.net/badge/icon/git?icon=git&label">
+  <img src="https://badgen.net/badge/icon/terminal?icon=terminal&label">
+  <img src="https://badgen.net/badge/icon/visualstudio?icon=visualstudio&label">
+</p>
 
 <p align="center">
   <strong>Quản lý nhân sự, phòng ban và task!</strong>
@@ -12,23 +17,24 @@
 
 <br>
 
-## Nội dung
+## Nội dung 📂
 
 - [Giới thiệu](#giới-thiệu)
 - [Cài đặt](#cài-đặt)
-- [Sử dụng](#sử-dụng)
+- [Tính năng](#tính-năng)
+- [Video hướng dẫn sử dụng](#video-hướng-dẫn-sử-dụng-📹)
 - [Đóng góp](#đóng-góp)
 - [Liên hệ](#liên-hệ)
 
 <br>
 
-## Giới thiệu
+## Giới thiệu 📋
 
 Đây là một dự án quản lý nhân sự, phòng ban và công việc trong một tổ chức. Dự án cung cấp các chức năng để xử lý các hoạt động liên quan đến quản lý nhân viên, phòng ban và phân công công việc.
 
 <br>
 
-## Cài đặt
+## Cài đặt ⌨️
 
 Để bắt đầu sử dụng dự án, làm theo các bước sau:
 
@@ -36,51 +42,70 @@
 
 <span style="color:#33cccc">2.</span> Mở thư mục source code bằng IDE của bạn.
 
-<span style="color:#33cccc">3.</span> Nhập câu lệnh mingw32-make vào terminal.
+<span style="color:#33cccc">3.</span> Nhập câu lệnh sau vào terminal:
+
+```bash
+mingw32-make
+```
 
 <span style="color:#33cccc">4.</span> Sau khi hoàn thành chạy file **.exe** vừa được tạo ra.
 
 <br>
 
-## Sử dụng
+## Tính năng 📁
 
 Khi dự án đang chạy, bạn có thể tương tác với hệ thống thông qua giao diện dòng lệnh. Dưới đây là các chức năng chính của hệ thống:
 
-- **Quản lý nhân sự**
+- <span style="color:#ff9933">**Quản lý nhân sự**</span>
 
-  - Phân bổ nhân viên thường vào các phòng ban.
-  - Liệt kê danh sách các trưởng phòng.
-  - Sắp xếp nhân sự theo tên.
-  - Sắp xếp nhân sự theo lương giảm dần.
-  - Tìm nhân viên có mức lương cao nhất.
-  - Sửa đổi thông tin nhân sự.
-  - Tìm kiếm nhân sự theo mã số.
-  - Xóa nhân sự.
+  - Thêm nhân sự
+  - Xuất nhân sự
+  - Sắp xếp nhân sự theo tên (từ A-Z)
+  - Sắp xếp theo mức lương giảm dần
+  - Tìm nhân sự theo mã
+  - Tìm nhân sự theo tên
+  - Tìm nhân sự có mức lương cao nhất
+  - Sửa đổi thông tin nhân sự
+  - Xóa nhân sự
 
-- **Quản lý phòng ban**
+- <span style="color:#ff9933">**Quản lý phòng ban**</span>
 
-  - Phân bổ nhân viên thường vào các phòng ban.
-  - Tìm phòng ban theo mã.
-  - Tìm nhân viên thường trong một phòng ban.
-  - Tìm trưởng phòng của một phòng ban.
-  - Xóa phòng ban.
-  - Sắp xếp phòng ban theo số lượng nhân sự (phòng ban chung và phòng ban công việc).
+  - Thêm phòng ban
+  - Xuất phòng ban
+  - Phân bổ nhân viên về phòng ban
+  - Chỉ định trưởng phòng cho phòng ban
+  - Phân bổ nhân viên cụ thể vào phòng ban
+  - Chỉ định trưởng phòng cụ thể cho phòng ban
+  - Xóa trưởng phòng khỏi phòng ban
+  - Xóa nhân viên khỏi phòng ban
+  - Xóa phòng ban
+  - Sắp xếp số lượng nhân sự của phòng ban (theo thứ tự tăng dần hoặc giảm dần)
 
-- **Quản lý công việc**
-  - Phân bổ công việc cho nhân viên.
-  - Tìm công việc theo mã.
-  - Xóa công việc.
-  - Xóa công việc đã được phân cho nhân viên.
-  - Sắp xếp công việc theo số lượng nhân viên được phân công.
-  - Sắp xếp công việc theo trạng thái hoàn thành.
-  - Đánh giá trạng thái công việc.
+- <span style="color:#ff9933">**Quản lý task**</span>
 
-<br>
+  - Thêm task
+  - Xuất task
+  - Phân bổ task cho nhân viên
+  - Phân bổ task cho nhân viên cụ thể
+  - Xóa task
+  - Xóa task khỏi nhân viên
+  - Đánh giá task
+  - Sắp xếp nhân viên có nhiều task nhất
+  - Sắp xếp nhân viên hoàn thành nhiều task nhất
+    <br>
 
-## Đóng góp
+## Video hướng dẫn sử dụng 📹
+
+<div style="text-align: center;">
+  <a href="https://youtu.be/9Z3Z3YX6Z0A">
+    <img src="https://img.youtube.com/vi/9Z3Z3YX6Z0A/maxresdefault.jpg" alt="Video thumbnail" width="640" height="360">
+  </a>
+</div>
+
+## Đóng góp ⚙️
 
 Mọi đóng góp cho dự án này đều được cho phép. Nếu bạn gặp bất kỳ vấn đề nào hoặc có gợi ý để cải thiện, vui lòng mở mục issue hoặc gửi yêu cầu pull.
 
-## Liên hệ
+## Liên hệ 📨
 
 Để biết thêm thông tin hoặc câu hỏi, xin vui lòng liên hệ người duy trì dự án qua email: [thevien2507@gmail.com](mailto:thevien2507@gmail.com) hoặc [truong13062k4@gmail.com](mailto:truong13062k4@gmail.com).
