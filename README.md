@@ -11,15 +11,10 @@
   <img align="center" src="https://badgen.net/badge/icon/visualstudio?icon=visualstudio&label">
 </p>
 
-<center>
-
-```diff
-- Quản lý nhân sự
-+ Quản lý phòng ban
-! Quản lý task
-```
-
+<div style="text-align: center;">
+  <code style="color: orange;">Quản lý nhân sự, phòng ban và task 📋</code>
 </div>
+
 <br>
 
 ## Nội dung 📂
