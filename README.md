@@ -13,7 +13,7 @@
 
 <p align="center">
   <strong><code style="color: name_color; font-size: 18px;">Quản lý nhân sự, phòng ban và task 📋</code>
-<strong></p>
+</strong></p>
 
 <br>
 
