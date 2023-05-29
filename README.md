@@ -20,11 +20,11 @@
 ## Nội dung 📂
 
 - [Giới thiệu](#giới-thiệu)
-- [Cài đặt](#cài-đặt-⌨️)
-- [Tính năng](#tính-năng-📁)
-- [Video hướng dẫn sử dụng](#video-hướng-dẫn-sử-dụng-📹)
-- [Đóng góp](#đóng-góp-⚙️)
-- [Liên hệ](#liên-hệ-📨)
+- [Cài đặt](#cài-đặt)
+- [Tính năng](#tính-năng)
+- [Video hướng dẫn sử dụng](#video-hướng-dẫn-sử-dụng)
+- [Đóng góp](#đóng-góp)
+- [Liên hệ](#liên-hệ)
 
 <br>
 
@@ -34,7 +34,7 @@
 
 <br>
 
-## Cài đặt ⌨️
+## Cài đặt
 
 Để bắt đầu sử dụng dự án, làm theo các bước sau:
 
@@ -52,7 +52,7 @@ mingw32-make
 
 <br>
 
-## Tính năng 📁
+## Tính năng
 
 Khi dự án đang chạy, bạn có thể tương tác với hệ thống thông qua giao diện dòng lệnh. Dưới đây là các chức năng chính của hệ thống:
 
@@ -94,7 +94,7 @@ Khi dự án đang chạy, bạn có thể tương tác với hệ thống thôn
   - Sắp xếp nhân viên hoàn thành nhiều task nhất
     <br>
 
-## Video hướng dẫn sử dụng 📹
+## Video hướng dẫn sử dụng
 
 <div style="text-align: center;">
   <a href="https://youtu.be/9Z3Z3YX6Z0A">
@@ -102,10 +102,10 @@ Khi dự án đang chạy, bạn có thể tương tác với hệ thống thôn
   </a>
 </div>
 
-## Đóng góp ⚙️
+## Đóng góp
 
 Mọi đóng góp cho dự án này đều được cho phép. Nếu bạn gặp bất kỳ vấn đề nào hoặc có gợi ý để cải thiện, vui lòng mở mục issue hoặc gửi yêu cầu pull.
 
-## Liên hệ 📨
+## Liên hệ
 
 Để biết thêm thông tin hoặc câu hỏi, xin vui lòng liên hệ người duy trì dự án qua email: [thevien2507@gmail.com](mailto:thevien2507@gmail.com) hoặc [truong13062k4@gmail.com](mailto:truong13062k4@gmail.com).
