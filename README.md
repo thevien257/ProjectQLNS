@@ -1,17 +1,8 @@
-<<<<<<< HEAD
 <h1 align="center"><span style="color:#5e5e5e">Dự án quản lý nhân sự 🧑‍💻</span></h1>
 
 <!-- <p align="center">
   <img src="https://example.com/your-project-logo.png" alt="Logo" width="150" height="150">
 </p> -->
-||||||| 128e497
-#
-
-## Mô tả
-=======
-# Dự án quản lý nhân sự 🧑‍💻
-## Mô tả
->>>>>>> 91abf2e6d8e7fba5a984a8c9c2f38cc806ff2b98
 
 ![Last commit](https://img.shields.io/github/last-commit/thevien2507/ProjectQLNS?style=flat-square&token=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)
 
