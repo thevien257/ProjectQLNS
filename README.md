@@ -19,7 +19,7 @@
 
 ## Nội dung 📂
 
-- [Giới thiệu](#giới-thiệu-📋)
+- [Giới thiệu](#giới-thiệu)
 - [Cài đặt](#cài-đặt-⌨️)
 - [Tính năng](#tính-năng-📁)
 - [Video hướng dẫn sử dụng](#video-hướng-dẫn-sử-dụng-📹)
@@ -28,7 +28,7 @@
 
 <br>
 
-## Giới thiệu 📋
+## Giới thiệu
 
 Đây là một dự án quản lý nhân sự, phòng ban và công việc trong một tổ chức. Dự án cung cấp các chức năng để xử lý các hoạt động liên quan đến quản lý nhân viên, phòng ban và phân công công việc.
 
