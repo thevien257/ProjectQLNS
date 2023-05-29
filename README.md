@@ -11,9 +11,9 @@
   <img align="center" src="https://badgen.net/badge/icon/visualstudio?icon=visualstudio&label">
 </p>
 
-<div style="text-align: center;">
-  <code style="color: orange;">Quản lý nhân sự, phòng ban và task 📋</code>
-</div>
+<p align="center">
+<strong>Quản lý nhân sự, phòng ban và task một cách linh hoạt 📋</strong>
+</p>
 
 <br>
 
