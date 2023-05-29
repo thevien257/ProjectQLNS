@@ -4,15 +4,15 @@
   <img src="https://example.com/your-project-logo.png" alt="Logo" width="150" height="150">
 </p> -->
 
-<p style="text-align: center;">
-  <img src="https://badgen.net/badge/icon/github?icon=github&label">
-  <img src="https://badgen.net/badge/icon/git?icon=git&label">
-  <img src="https://badgen.net/badge/icon/terminal?icon=terminal&label">
-  <img src="https://badgen.net/badge/icon/visualstudio?icon=visualstudio&label">
+<p align="center">
+  <img align="center" src="https://badgen.net/badge/icon/github?icon=github&label">
+  <img align="center" src="https://badgen.net/badge/icon/git?icon=git&label">
+  <img align="center" src="https://badgen.net/badge/icon/terminal?icon=terminal&label">
+  <img align="center" src="https://badgen.net/badge/icon/visualstudio?icon=visualstudio&label">
 </p>
 
-<p align="center">
-  <strong>Quản lý nhân sự, phòng ban và task!</strong>
+<strong>Quản lý nhân sự, phòng ban và task!</strong>
+
 </p>
 
 <br>
