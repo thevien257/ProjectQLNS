@@ -1,4 +1,4 @@
-<h1 align="center"><span style="color:#33cccc">Dự án quản lý nhân sự 🧑‍💻</span></h1>
+<h1 align="center"><font color="#33cccc">Dự án quản lý nhân sự 🧑‍💻</font></h1>
 
 <!-- <p align="center">
   <img src="https://example.com/your-project-logo.png" alt="Logo" width="150" height="150">
@@ -10,9 +10,8 @@
   <img align="center" src="https://badgen.net/badge/icon/terminal?icon=terminal&label">
   <img align="center" src="https://badgen.net/badge/icon/visualstudio?icon=visualstudio&label">
 </p>
-
+<p align="center">
 <strong>Quản lý nhân sự, phòng ban và task!</strong>
-
 </p>
 
 <br>
