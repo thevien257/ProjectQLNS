@@ -19,12 +19,12 @@
 
 ## Nội dung 📂
 
-- [Giới thiệu](#giới-thiệu)
-- [Cài đặt](#cài-đặt)
-- [Tính năng](#tính-năng)
+- [Giới thiệu](#giới-thiệu-📋)
+- [Cài đặt](#cài-đặt-⌨️)
+- [Tính năng](#tính-năng-📁)
 - [Video hướng dẫn sử dụng](#video-hướng-dẫn-sử-dụng-📹)
-- [Đóng góp](#đóng-góp)
-- [Liên hệ](#liên-hệ)
+- [Đóng góp](#đóng-góp-⚙️)
+- [Liên hệ](#liên-hệ-📨)
 
 <br>
 
