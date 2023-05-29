@@ -1,23 +1,52 @@
-#
+<h1 align="center"><span style="color:#5e5e5e">Dự án quản lý nhân sự 🧑‍💻</span></h1>
 
-## Mô tả
+<!-- <p align="center">
+  <img src="https://example.com/your-project-logo.png" alt="Logo" width="150" height="150">
+</p> -->
 
-Dự án này là một hệ thống quản lý nhân sự, phòng ban và công việc trong một tổ chức. Cung cấp các chức năng để xử lý các hoạt động liên quan đến quản lý nhân viên, phòng ban và phân công công việc.
+![Last commit](https://img.shields.io/github/last-commit/thevien2507/ProjectQLNS?style=flat-square&token=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)
+
+<p align="center">
+  <strong>Quản lý nhân sự, phòng ban và task!</strong>
+</p>
+
+<br>
+
+## Nội dung
+
+- [Giới thiệu](#giới-thiệu)
+- [Cài đặt](#cài-đặt)
+- [Sử dụng](#sử-dụng)
+- [Đóng góp](#đóng-góp)
+- [Liên hệ](#liên-hệ)
+
+<br>
+
+## Giới thiệu
+
+Đây là một dự án quản lý nhân sự, phòng ban và công việc trong một tổ chức. Dự án cung cấp các chức năng để xử lý các hoạt động liên quan đến quản lý nhân viên, phòng ban và phân công công việc.
+
+<br>
 
 ## Cài đặt
 
-Để sử dụng dự án này, làm theo các bước sau:
+Để bắt đầu sử dụng dự án, làm theo các bước sau:
 
-    1. Clone repository về máy của bạn.
-    2. Mở thư mục source code bằng IDE của bạn.
-    3. Nhập câu lệnh mingw32-make vàovào terminal.
-    4. Sau khi hoàn thành chạy file .exe vừa được tạo ra.
+<span style="color:#33cccc">1.</span> Clone repository về máy của bạn.
+
+<span style="color:#33cccc">2.</span> Mở thư mục source code bằng IDE của bạn.
+
+<span style="color:#33cccc">3.</span> Nhập câu lệnh mingw32-make vào terminal.
+
+<span style="color:#33cccc">4.</span> Sau khi hoàn thành chạy file **.exe** vừa được tạo ra.
+
+<br>
 
 ## Sử dụng
 
-Khi dự án đang chạy, bạn có thể tương tác với hệ thống thông qua console. Dưới đây là các chức năng chính của hệ thống:
+Khi dự án đang chạy, bạn có thể tương tác với hệ thống thông qua giao diện dòng lệnh. Dưới đây là các chức năng chính của hệ thống:
 
-- Quản lý nhân sự:
+- **Quản lý nhân sự**
 
   - Phân bổ nhân viên thường vào các phòng ban.
   - Liệt kê danh sách các trưởng phòng.
@@ -28,7 +57,7 @@ Khi dự án đang chạy, bạn có thể tương tác với hệ thống thôn
   - Tìm kiếm nhân sự theo mã số.
   - Xóa nhân sự.
 
-- Quản lý phòng ban:
+- **Quản lý phòng ban**
 
   - Phân bổ nhân viên thường vào các phòng ban.
   - Tìm phòng ban theo mã.
@@ -37,7 +66,7 @@ Khi dự án đang chạy, bạn có thể tương tác với hệ thống thôn
   - Xóa phòng ban.
   - Sắp xếp phòng ban theo số lượng nhân sự (phòng ban chung và phòng ban công việc).
 
-- Quản lý công việc:
+- **Quản lý công việc**
   - Phân bổ công việc cho nhân viên.
   - Tìm công việc theo mã.
   - Xóa công việc.
@@ -46,11 +75,12 @@ Khi dự án đang chạy, bạn có thể tương tác với hệ thống thôn
   - Sắp xếp công việc theo trạng thái hoàn thành.
   - Đánh giá trạng thái công việc.
 
+<br>
+
 ## Đóng góp
 
 Mọi đóng góp cho dự án này đều được cho phép. Nếu bạn gặp bất kỳ vấn đề nào hoặc có gợi ý để cải thiện, vui lòng mở mục issue hoặc gửi yêu cầu pull.
 
 ## Liên hệ
 
-Để biết thêm thông tin hoặc câu hỏi, xin vui lòng liên hệ người duy trì dự án qua email: [thevien2507@gmail.com](mailto:thevien2507@gmail.com) hoặc [truong13062k4@gmail.com
-](mailto:truong13062k4@gmail.com).
+Để biết thêm thông tin hoặc câu hỏi, xin vui lòng liên hệ người duy trì dự án qua email: [thevien2507@gmail.com](mailto:thevien2507@gmail.com) hoặc [truong13062k4@gmail.com](mailto:truong13062k4@gmail.com).
