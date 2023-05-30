@@ -96,10 +96,9 @@ Khi dự án đang chạy, bạn có thể tương tác với hệ thống thôn
 
 ## Video demo sản phẩm
 
-<div style="text-align: center; position: relative;">
+<div style="text-align: center;">
   <a href="https://youtu.be/KIpqvelFw9E" target="_blank" rel="noopener noreferrer" onclick="window.open(this.href,'_blank');return false;">
-    <img src="https://drive.google.com/uc?id=1jBGmlVMYHx44v7BBNQ_3JfUDKv8aOZeQ&export=download" alt="Video thumbnail" width="1918" height="450">
-    <div style="font-size: 50px; color: red; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">&#9654;</div>
+    <img src="https://drive.google.com/uc?id=1A3hb9N27uUbX9yc2S2UYVF7ZX7HuEmn8&export=download" alt="Video thumbnail" width="1918" height="450">
   </a>
 </div>
 
