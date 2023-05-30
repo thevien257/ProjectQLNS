@@ -54,7 +54,7 @@ mingw32-make
 
 ## Tính năng
 
-Khi dự án đang chạy, bạn có thể tương tác với hệ thống thông qua giao diện dòng lệnh. Dưới đây là các chức năng chính của hệ thống:
+Khi dự án đang chạy, bạn có thể tương tác với hệ thống thông qua giao diện console. Dưới đây là các chức năng chính của hệ thống:
 
 - <span style="color:#ff9933">**Quản lý nhân sự**</span>
 
