@@ -30,7 +30,7 @@
 
 ## Giới thiệu
 
-Đây là một dự án quản lý nhân sự, phòng ban và công việc trong một tổ chức. Dự án cung cấp các chức năng để xử lý các hoạt động liên quan đến quản lý nhân viên, phòng ban và phân công công việc.
+Đây là một dự án quản lý nhân sự, phòng ban và công việc trong một tổ chức. Dự án cung cấp các chức năng để xử lý các hoạt động liên quan đến quản lý nhân sự, phòng ban và phân công công việc.
 
 <br>
 
