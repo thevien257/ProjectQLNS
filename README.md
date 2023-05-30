@@ -22,7 +22,7 @@
 - [Giới thiệu](#giới-thiệu)
 - [Cài đặt](#cài-đặt)
 - [Tính năng](#tính-năng)
-- [Video hướng dẫn sử dụng](#video-hướng-dẫn-sử-dụng)
+- [Video demo sản phẩm](#video-demo-sản-phẩm)
 - [Đóng góp](#đóng-góp)
 - [Liên hệ](#liên-hệ)
 
@@ -94,11 +94,11 @@ Khi dự án đang chạy, bạn có thể tương tác với hệ thống thôn
   - Sắp xếp nhân viên hoàn thành nhiều task nhất
     <br>
 
-## Video hướng dẫn sử dụng
+## Video demo sản phẩm
 
 <div style="text-align: center;">
-  <a href="https://youtu.be/9Z3Z3YX6Z0A">
-    <img src="https://img.youtube.com/vi/9Z3Z3YX6Z0A/maxresdefault.jpg" alt="Video thumbnail" width="640" height="360">
+  <a href="https://youtu.be/KIpqvelFw9E">
+    <img src="https://img.youtube.com/vi/KIpqvelFw9E/maxresdefault.jpg" alt="Video thumbnail" width="640" height="360">
   </a>
 </div>
 
