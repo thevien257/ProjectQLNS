@@ -2969,104 +2969,6 @@ void XuLy::animationLoading(string taiKhoan)
   SetConsoleOutputCP(CP_UTF8);
 }
 
-void XuLy::anHienMatKhau(string &mk)
-{
-  char c;
-  string prevMk = "";
-  bool hidePassword = true;
-
-  while (true)
-  {
-    c = getch(); // Lay ki tu tu ban phim
-
-    if (c == '\r') // Nut enter
-    {
-      break;
-    }
-    else if (c == '\b') // Neu nhan Nut backspace
-    {
-      if (mk.length() > 0)
-      {
-        cout << "\b \b"; // Xoa 1 ki tu truoc vua nhap
-        mk.pop_back();   // Xoa ki tu do khoi mk
-      }
-    }
-    else if (c >= 32 && c <= 126) // Neu la ki tu in duoc
-    {
-
-      if (hidePassword && c != '[' && c != ']')
-      {
-        cout << "*"; // An cac ky tu tren man hinh tru ky tu "[", "]"
-      }
-      else
-      {
-        cout << c; // hien ky tu
-      }
-      if (!hidePassword || (hidePassword && c != '[' && c != ']')) // Neu khong an mat khau hoac an mat khau nhung khong phai la ky tu "[", "]"
-      {
-        if (c != ']')
-        {
-          mk.push_back(c); // them ky tu vua nhap vao mk
-        }
-      }
-      // Neu an ky tu ] thi an mat khau
-      if (c == ']')
-      {
-        hidePassword = true;
-        // Xoa cac ky tu chua an truoc tien
-        for (int i = 0; i < mk.length(); i++)
-        {
-          if (i == 0)
-          {
-            cout << "\b \b";
-          }
-          cout << "\b \b";
-        }
-
-        // In ra cac ky tu * thay cho mat khau
-        for (int i = 0; i < mk.length(); i++)
-        {
-          if (mk[i] == '[' || mk[i] == ']')
-          {
-          }
-          else
-          {
-            cout << "*";
-          }
-        }
-      }
-      // Neu an ky tu [ thi hien mat khau
-      else if (c == '[')
-      {
-        hidePassword = false;
-        prevMk = mk; // Luu cac mat khau da nhap truoc khi an
-
-        // Xoa cac ky tu chua * truoc tien
-        for (int i = 0; i < mk.length(); i++)
-        {
-          if (i == 0)
-          {
-            cout << "\b \b";
-          }
-          cout << "\b \b";
-        }
-
-        // In ra cac ky tu da nhap truoc do
-        for (int i = 0; i < prevMk.length(); i++)
-        {
-          if (prevMk[i] == '[' || prevMk[i] == ']')
-          {
-          }
-          else
-          {
-            cout << prevMk[i];
-          }
-        }
-      }
-    }
-  }
-}
-
 bool XuLy::login(string &tk)
 {
   system("cls");
@@ -3087,9 +2989,6 @@ bool XuLy::login(string &tk)
   cout << "\t\t\t\t\t║  Tai khoan:                        ║\n";
   cout << "\t\t\t\t\t║  Mat khau:                         ║\n";
   cout << "\t\t\t\t\t║                                    ║\n";
-  cout << "\t\t\t\t\t║  Ấn '[' để hiện mật khẩu           ║\n";
-  cout << "\t\t\t\t\t║  Ấn ']' để ẩn mật khẩu             ║\n";
-  cout << "\t\t\t\t\t║                                    ║\n";
   cout << "\t\t\t\t\t╚════════════════════════════════════╝\n\n";
 
   SetConsoleTextAttribute(color, 14);
@@ -3099,14 +2998,13 @@ bool XuLy::login(string &tk)
   SetConsoleTextAttribute(color, 15);
   cout << "\033[28;95H";
   cout << "The Vien & Xuan Truong 😁" << endl;
+
   SetConsoleTextAttribute(color, 7);
   cout << "\033[6;55H";
   cin >> tk;
 
   cout << "\033[7;55H";
-  // cin >> mk;
-  mk = "";
-  anHienMatKhau(mk);
+  cin >> mk;
 
   HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
   CONSOLE_CURSOR_INFO cursorInfo;
@@ -3123,10 +3021,6 @@ bool XuLy::login(string &tk)
       cout << endl;
       cout << endl;
       cout << endl;
-      cout << endl
-           << endl
-           << endl
-           << endl;
       HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
 
       animationLoading(tk);
@@ -3150,10 +3044,6 @@ bool XuLy::login(string &tk)
     cout << endl;
     cout << endl;
     cout << endl;
-    cout << endl
-         << endl
-         << endl
-         << endl;
     HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(color, 12);
     cout << "\t\t\t\t❌ Sai tai khoan hoac mat khau! Vui long nhap lai 😚 " << endl;
@@ -3188,9 +3078,6 @@ void XuLy::signUp()
   cout << "\t\t\t\t\t║  Mat khau:                         ║\n";
   cout << "\t\t\t\t\t║  Nhap lai mat khau:                ║\n";
   cout << "\t\t\t\t\t║                                    ║\n";
-  cout << "\t\t\t\t\t║  Ấn '[' để hiện mật khẩu           ║\n";
-  cout << "\t\t\t\t\t║  Ấn ']' để ẩn mật khẩu             ║\n";
-  cout << "\t\t\t\t\t║                                    ║\n";
   cout << "\t\t\t\t\t╚════════════════════════════════════╝\n\n";
 
   cout << "\033[6;55H";
@@ -3198,38 +3085,26 @@ void XuLy::signUp()
   cin >> itk;
 
   cout << "\033[7;55H";
-  // cin >> mk;
-  mk = "";
-  anHienMatKhau(mk);
+  cin >> mk;
   do
   {
     GetConsoleCursorInfo(hConsole, &cursorInfo);
     cursorInfo.bVisible = true;
     SetConsoleCursorInfo(hConsole, &cursorInfo);
     cout << "\033[8;63H";
-    // cin >> imk;
-    imk = "";
-    anHienMatKhau(imk);
+    cin >> imk;
     if (imk != mk)
     {
-      for (int i = 0; i < imk.length(); i++)
-      {
-        cout << "\b \b";
-      }
+      cin.clear();
+      cin.ignore(10000, '\n');
       cout << endl;
       cout << endl;
       cout << endl;
-      cout << endl
-           << endl
-           << endl
-           << endl
-           << endl;
       HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
       GetConsoleCursorInfo(hConsole, &cursorInfo);
       cursorInfo.bVisible = false;
       SetConsoleCursorInfo(hConsole, &cursorInfo);
       SetConsoleTextAttribute(color, 12);
-
       cout << "\t\t\t\t❌ Mat khau ban da nhap khong giong voi mat khau truoc 😚 " << endl;
       SetConsoleTextAttribute(color, 7);
     }
@@ -3241,17 +3116,11 @@ void XuLy::signUp()
   cout << endl;
   cout << endl;
   cout << endl;
-  cout << endl
-       << endl
-       << endl
-       << endl
-       << endl;
   cout << "\033[K" << endl;
   GetConsoleCursorInfo(hConsole, &cursorInfo);
   cursorInfo.bVisible = false;
   SetConsoleCursorInfo(hConsole, &cursorInfo);
   SetConsoleTextAttribute(color, 10);
-
   cout << "\t\t\t\t\t\tDang ky thanh cong ✅" << endl;
   SetConsoleTextAttribute(color, 7);
   system("pause >nul");
