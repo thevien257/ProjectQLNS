@@ -235,8 +235,3 @@ void NhanSu::xuat()
   SetConsoleTextAttribute(color, 7);
   cout << "║ " << std::left << std::setw(20) << formatLuong(this->luong) + " d" << std::right << " ║" << endl;
 }
-
-void NhanSu::tinhLuong()
-{
-  this->luong = 0;
-}

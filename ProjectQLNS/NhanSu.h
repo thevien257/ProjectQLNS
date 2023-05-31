@@ -37,7 +37,7 @@ public:
   long getLuong();
   virtual void nhap();
   virtual void xuat();
-  virtual void tinhLuong();
+  virtual void tinhLuong() = 0;
   friend istream &operator>>(istream &is, NhanSu &ns);
   friend ostream &operator<<(ostream &os, const NhanSu &ns);
   string formatLuong(double amount);

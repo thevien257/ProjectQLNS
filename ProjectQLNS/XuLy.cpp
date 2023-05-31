@@ -10,8 +10,6 @@
 #include <windows.h>
 #include <string>
 #include <conio.h>
-// #include <fcntl.h>
-// #include <io.h>
 #include <limits>
 using namespace std;
 #define WHITE 15
@@ -2505,14 +2503,20 @@ void XuLy::suaDoiThongTinNhanSu()
 
 void XuLy::sapXepLuongGiamDan()
 {
+  HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
   vector<NhanSu *> nsList = ds.getListNS();
   sort(nsList.begin(), nsList.end(), [](NhanSu *ns1, NhanSu *ns2)
        { return ns1->getLuong() > ns2->getLuong(); });
   ds.setListNS(nsList);
+
+  SetConsoleTextAttribute(color, 10);
+  cout << "\t\t\t\tDa sap xep nhan su theo muc luong giam dan ✅" << endl;
+  SetConsoleTextAttribute(color, 7);
 }
 
 void XuLy::SapXepTheoTen()
 {
+  HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
   vector<NhanSu *> nsList = ds.getListNS();
   sort(
       nsList.begin(), nsList.end(), [](NhanSu *ns1, NhanSu *ns2)
@@ -2523,6 +2527,9 @@ void XuLy::SapXepTheoTen()
     string lastName2 = ten2.substr(ten2.find_last_of(' ') + 1);
     return lastName1 < lastName2; });
   ds.setListNS(nsList);
+  SetConsoleTextAttribute(color, 10);
+  cout << "\t\t\t\tDa sap xep nhan su theo ten tu A-Z ✅" << endl;
+  SetConsoleTextAttribute(color, 7);
 }
 
 void XuLy::timNVLuongCaoNhat()
@@ -3199,9 +3206,9 @@ void XuLy::InMenuQuanLyNhanSu(int &chon)
     cout << "        ║\n";
     cout << "\t\t\t\t║";
     SetConsoleTextAttribute(color, 7);
-    cout << "     5. Tim nhan vien";
+    cout << "     5. Tim kiem theo ma so";
     SetConsoleTextAttribute(color, 11);
-    cout << "                      ║\n";
+    cout << "                ║\n";
     cout << "\t\t\t\t║";
     SetConsoleTextAttribute(color, 7);
     cout << "     6. Tim kiem theo ten  ";
@@ -3209,14 +3216,14 @@ void XuLy::InMenuQuanLyNhanSu(int &chon)
     cout << "                ║\n";
     cout << "\t\t\t\t║";
     SetConsoleTextAttribute(color, 7);
-    cout << "     7. Tim nhan vien muc luong cao nhat";
+    cout << "     7. Tim nhan su co muc luong cao nhat";
     SetConsoleTextAttribute(color, 11);
-    cout << "   ║\n";
+    cout << "  ║\n";
     cout << "\t\t\t\t║";
     SetConsoleTextAttribute(color, 7);
-    cout << "     8. Sua doi thong tin nhan vien";
+    cout << "     8. Sua doi thong tin nhan su";
     SetConsoleTextAttribute(color, 11);
-    cout << "        ║\n";
+    cout << "          ║\n";
     cout << "\t\t\t\t║";
     SetConsoleTextAttribute(color, 7);
     cout << "     9. Xoa nhan su";
