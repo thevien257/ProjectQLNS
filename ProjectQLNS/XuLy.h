@@ -89,4 +89,5 @@ public:
   bool checkCoNVTrongListNSHayKhong();
   bool checkTaskDaDuocPhanBoChua();
   bool checkCoTaskTrongListTaskHayKhong();
+  void anHienMatKhau(string &matKhau);
 };
