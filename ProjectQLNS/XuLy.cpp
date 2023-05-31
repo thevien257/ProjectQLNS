@@ -3107,6 +3107,14 @@ bool XuLy::login(string &tk)
   // cin >> mk;
   mk = "";
   anHienMatKhau(mk);
+  for (int i = 0; i < mk.length(); i++)
+  {
+    cout << "\b \b";
+  }
+  for (int i = 0; i < mk.length(); i++)
+  {
+    cout << "*";
+  }
 
   HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
   CONSOLE_CURSOR_INFO cursorInfo;
@@ -3201,6 +3209,14 @@ void XuLy::signUp()
   // cin >> mk;
   mk = "";
   anHienMatKhau(mk);
+  for (int i = 0; i < mk.length(); i++)
+  {
+    cout << "\b \b";
+  }
+  for (int i = 0; i < mk.length(); i++)
+  {
+    cout << "*";
+  }
   do
   {
     GetConsoleCursorInfo(hConsole, &cursorInfo);
@@ -3233,6 +3249,17 @@ void XuLy::signUp()
       cout << "\t\t\t\t❌ Mat khau ban da nhap khong giong voi mat khau truoc 😚 " << endl;
       SetConsoleTextAttribute(color, 7);
     }
+    if (imk == mk)
+    {
+      for (int i = 0; i < imk.length(); i++)
+      {
+        cout << "\b \b";
+      }
+      for (int i = 0; i < imk.length(); i++)
+      {
+        cout << "*";
+      }
+    }
   } while (imk != mk);
 
   ofstream output("output.txt", ios::app);
@@ -3246,7 +3273,7 @@ void XuLy::signUp()
        << endl
        << endl
        << endl;
-  cout << "\033[K" << endl;
+  cout << "\033[K";
   GetConsoleCursorInfo(hConsole, &cursorInfo);
   cursorInfo.bVisible = false;
   SetConsoleCursorInfo(hConsole, &cursorInfo);
