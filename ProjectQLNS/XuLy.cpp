@@ -2996,15 +2996,21 @@ void XuLy::anHienMatKhau(string &mk)
 
       if (hidePassword && c != '[' && c != ']')
       {
-        cout << "*"; // An cac ky tu tren man hinh tru ky tu "[", "]"
+        if (c != ']' && c != '[')
+        {
+          cout << "*"; // An cac ky tu tren man hinh tru ky tu "[", "]"
+        }
       }
-      else
+      else if (!hidePassword || (hidePassword && c != '[' && c != ']'))
       {
-        cout << c; // hien ky tu
+        if (c != ']' && c != '[')
+        {
+          cout << c; // hien ky tu
+        }
       }
       if (!hidePassword || (hidePassword && c != '[' && c != ']')) // Neu khong an mat khau hoac an mat khau nhung khong phai la ky tu "[", "]"
       {
-        if (c != ']')
+        if (c != ']' && c != '[')
         {
           mk.push_back(c); // them ky tu vua nhap vao mk
         }
@@ -3012,54 +3018,60 @@ void XuLy::anHienMatKhau(string &mk)
       // Neu an ky tu ] thi an mat khau
       if (c == ']')
       {
-        hidePassword = true;
-        // Xoa cac ky tu chua an truoc tien
-        for (int i = 0; i < mk.length(); i++)
+        if (hidePassword == false)
         {
-          if (i == 0)
+          hidePassword = true;
+          // Xoa cac ky tu chua an truoc tien
+          for (int i = 0; i < mk.length(); i++)
           {
+            // if (i == 0)
+            // {
+            //   cout << "\b \b";
+            // }
             cout << "\b \b";
           }
-          cout << "\b \b";
-        }
 
-        // In ra cac ky tu * thay cho mat khau
-        for (int i = 0; i < mk.length(); i++)
-        {
-          if (mk[i] == '[' || mk[i] == ']')
+          // In ra cac ky tu * thay cho mat khau
+          for (int i = 0; i < mk.length(); i++)
           {
-          }
-          else
-          {
-            cout << "*";
+            if (mk[i] == '[' || mk[i] == ']')
+            {
+            }
+            else
+            {
+              cout << "*";
+            }
           }
         }
       }
       // Neu an ky tu [ thi hien mat khau
       else if (c == '[')
       {
-        hidePassword = false;
-        prevMk = mk; // Luu cac mat khau da nhap truoc khi an
-
-        // Xoa cac ky tu chua * truoc tien
-        for (int i = 0; i < mk.length(); i++)
+        if (hidePassword == true)
         {
-          if (i == 0)
+          hidePassword = false;
+          prevMk = mk; // Luu cac mat khau da nhap truoc khi an
+
+          // Xoa cac ky tu chua * truoc tien
+          for (int i = 0; i < mk.length(); i++)
           {
+            // if (i == 0)
+            // {
+            //   cout << "\b \b";
+            // }
             cout << "\b \b";
           }
-          cout << "\b \b";
-        }
 
-        // In ra cac ky tu da nhap truoc do
-        for (int i = 0; i < prevMk.length(); i++)
-        {
-          if (prevMk[i] == '[' || prevMk[i] == ']')
+          // In ra cac ky tu da nhap truoc do
+          for (int i = 0; i < prevMk.length(); i++)
           {
-          }
-          else
-          {
-            cout << prevMk[i];
+            if (prevMk[i] == '[' || prevMk[i] == ']')
+            {
+            }
+            else
+            {
+              cout << prevMk[i];
+            }
           }
         }
       }
