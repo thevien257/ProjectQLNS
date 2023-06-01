@@ -3184,7 +3184,9 @@ void XuLy::signUp()
   HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
   CONSOLE_CURSOR_INFO cursorInfo;
   system("cls");
-  string tk, mk, itk, imk;
+
+  string tk = "", mk = "", imk = "", itk = "";
+  string viTriHienTaiTK, viTriHienTaiMK, viTriHienTaiIMK;
   cout << endl;
   HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
   SetConsoleTextAttribute(color, 11);
@@ -3201,24 +3203,63 @@ void XuLy::signUp()
   cout << "\t\t\t\t\t║                                    ║\n";
   cout << "\t\t\t\t\t╚════════════════════════════════════╝\n\n";
 
-  cout << "\033[6;55H";
-  SetConsoleTextAttribute(color, 7);
-  cin >> itk;
-
-  cout << "\033[7;55H";
-  // cin >> mk;
-  mk = "";
-  anHienMatKhau(mk);
-  for (int i = 0; i < mk.length(); i++)
-  {
-    cout << "\b \b";
-  }
-  for (int i = 0; i < mk.length(); i++)
-  {
-    cout << "*";
-  }
   do
   {
+    ifstream input("taiKhoan.txt");
+    viTriHienTaiTK = "\033[6;55H" + itk;
+    viTriHienTaiMK = "\033[7;55H" + mk;
+    viTriHienTaiIMK = "\033[8;63H" + imk;
+
+    cout << "\033[18;5H";
+    cout << "\033[K";
+    cout << "\033[19;0H";
+    cout << "\033[K";
+
+    if (itk != "")
+    {
+      cout << viTriHienTaiTK;
+      for (int i = 0; i < itk.length(); i++)
+      {
+        cout << "\b \b";
+      }
+    }
+    if (mk != "")
+    {
+      cout << viTriHienTaiMK;
+      for (int i = 0; i < mk.length(); i++)
+      {
+        cout << "\b \b";
+      }
+    }
+    if (imk != "")
+    {
+      cout << viTriHienTaiIMK;
+      for (int i = 0; i < imk.length(); i++)
+      {
+        cout << "\b \b";
+      }
+    }
+
+    GetConsoleCursorInfo(hConsole, &cursorInfo);
+    cursorInfo.bVisible = true;
+    SetConsoleCursorInfo(hConsole, &cursorInfo);
+    cout << "\033[6;55H";
+    SetConsoleTextAttribute(color, 7);
+
+    cin >> itk;
+
+    cout << "\033[7;55H";
+    mk = "";
+    anHienMatKhau(mk);
+    for (int i = 0; i < mk.length(); i++)
+    {
+      cout << "\b \b";
+    }
+    for (int i = 0; i < mk.length(); i++)
+    {
+      cout << "*";
+    }
+
     GetConsoleCursorInfo(hConsole, &cursorInfo);
     cursorInfo.bVisible = true;
     SetConsoleCursorInfo(hConsole, &cursorInfo);
@@ -3228,18 +3269,7 @@ void XuLy::signUp()
     anHienMatKhau(imk);
     if (imk != mk)
     {
-      for (int i = 0; i < imk.length(); i++)
-      {
-        cout << "\b \b";
-      }
-      cout << endl;
-      cout << endl;
-      cout << endl;
-      cout << endl
-           << endl
-           << endl
-           << endl
-           << endl;
+      cout << "\033[18;5H";
       HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
       GetConsoleCursorInfo(hConsole, &cursorInfo);
       cursorInfo.bVisible = false;
@@ -3260,19 +3290,35 @@ void XuLy::signUp()
         cout << "*";
       }
     }
-  } while (imk != mk);
+
+    while (!input.eof())
+    {
+      input >> tk;
+      if (tk == itk)
+      {
+        cout << "\033[19;0H";
+        HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+        SetConsoleTextAttribute(color, 12);
+        cout << "\t\t\t\t\t Tai khoan ban dang ky da ton tai!" << endl;
+        tatConTro();
+        itk = tk;
+        break;
+      }
+    }
+    if (imk != mk || tk == itk)
+    {
+      system("pause > nul");
+    }
+  } while (imk != mk || tk == itk);
 
   ofstream output("output.txt", ios::app);
   output << itk << " "
          << imk << endl;
-  cout << endl;
-  cout << endl;
-  cout << endl;
-  cout << endl
-       << endl
-       << endl
-       << endl
-       << endl;
+  ofstream outputTK("taiKhoan.txt", ios::app);
+  outputTK << itk << endl;
+  cout << "\033[18;5H";
+  cout << "\033[K";
+  cout << "\033[19;0H";
   cout << "\033[K";
   GetConsoleCursorInfo(hConsole, &cursorInfo);
   cursorInfo.bVisible = false;
