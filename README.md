@@ -30,7 +30,7 @@
 
 ## Giới thiệu
 
-Đây là một dự án quản lý nhân sự, phòng ban và công việc trong một tổ chức. Dự án cung cấp các chức năng để xử lý các hoạt động liên quan đến quản lý nhân sự, phòng ban và phân công công việc.
+Đây là một dự án quản lý nhân sự, phòng ban và công việc trong một tổ chức. Dự án cung cấp các chức năng để xử lý các hoạt động liên quan đến quản lý nhân viên, phòng ban và phân công công việc.
 
 <br>
 
@@ -54,7 +54,7 @@ mingw32-make
 
 ## Tính năng
 
-Khi dự án đang chạy, bạn có thể tương tác với hệ thống thông qua giao diện console. Dưới đây là các chức năng chính của hệ thống:
+Khi dự án đang chạy, bạn có thể tương tác với hệ thống thông qua giao diện dòng lệnh. Dưới đây là các chức năng chính của hệ thống:
 
 - <span style="color:#ff9933">**Quản lý nhân sự**</span>
 
@@ -97,8 +97,8 @@ Khi dự án đang chạy, bạn có thể tương tác với hệ thống thôn
 ## Video demo sản phẩm
 
 <div style="text-align: center;">
-  <a href="https://youtu.be/KIpqvelFw9E" target="_blank" rel="noopener noreferrer" onclick="window.open(this.href,'_blank');return false;">
-    <img src="https://drive.google.com/uc?id=1A3hb9N27uUbX9yc2S2UYVF7ZX7HuEmn8&export=download" alt="Video thumbnail" width="1918" height="450">
+  <a href="https://youtu.be/ujaKyJIn654" target="_blank">
+    <img src="https://drive.google.com/uc?id=1jBGmlVMYHx44v7BBNQ_3JfUDKv8aOZeQ&export=download" alt="Video thumbnail" width="1918" height="450">
   </a>
 </div>
 
