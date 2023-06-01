@@ -98,7 +98,7 @@ Khi dự án đang chạy, bạn có thể tương tác với hệ thống thôn
 
 <div style="text-align: center;">
   <a href="https://youtu.be/ujaKyJIn654" target="_blank">
-    <img src="https://drive.google.com/uc?id=1JERqXhLTVz5BE3EJfgkHeJ1lJVWdWB0o&export=download" alt="Video thumbnail" width="1918" height="500">
+    <img src="https://drive.google.com/uc?id=1JERqXhLTVz5BE3EJfgkHeJ1lJVWdWB0o&export=download" alt="Video thumbnail" width="1918" height="425">
   </a>
 </div>
 
