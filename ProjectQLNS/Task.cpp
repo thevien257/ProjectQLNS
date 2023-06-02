@@ -131,8 +131,18 @@ void Task::xuatTask()
   }
 }
 
-istream &operator>>(istream &is, Task &task)
+// istream &operator>>(istream &is, Task &task)
+// {
+//   is >> task.maTask >> task.tenTask >> task.deadLine;
+//   return is;
+// }
+
+istream &operator>>(istream &input, Task &task)
 {
-  is >> task.maTask >> task.tenTask >> task.deadLine;
-  return is;
+  char separator;
+  getline(input, task.maTask, '#');
+  getline(input, task.tenTask, '#');
+  getline(input, task.deadLine, '#');
+  input.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+  return input;
 }

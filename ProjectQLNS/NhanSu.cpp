@@ -7,6 +7,7 @@
 #include <fstream>
 #include <windows.h>
 #include <sstream>
+#include <limits>
 using namespace std;
 
 long NhanSu::luong1NgayNVT = 200000;
@@ -45,10 +46,22 @@ ostream &operator<<(ostream &os, const NhanSu &ns)
   return os;
 }
 
-istream &operator>>(istream &is, NhanSu &ns)
+// istream &operator>>(istream &is, NhanSu &ns)
+// {
+//   is >> ns.hoTen >> ns.maSo >> ns.soDienThoai >> ns.soNgayLamViec;
+//   return is;
+// }
+
+istream &operator>>(istream &input, NhanSu &ns)
 {
-  is >> ns.hoTen >> ns.maSo >> ns.soDienThoai >> ns.soNgayLamViec;
-  return is;
+  char separator;
+  getline(input, ns.hoTen, '#');
+  getline(input, ns.maSo, '#');
+  getline(input, ns.soDienThoai, '#');
+  input >> ns.soNgayLamViec >> separator;
+  // Read and discard the remaining characters until the end of line
+  input.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+  return input;
 }
 
 long NhanSu::getLuong()
@@ -96,7 +109,7 @@ void NhanSu::nhap()
   cout << endl;
   cout << endl;
 
-  if (viTriViecLam == "Giam Doc")
+  if (viTriViecLam == "Giam doc")
   {
     SetConsoleTextAttribute(color, 11);
     cout << "\t\t\t\t╔═════════════════════════════════════════════╗\n";
@@ -107,7 +120,7 @@ void NhanSu::nhap()
     cout << "            ║\n";
     cout << "\t\t\t\t╟─────────────────────────────────────────────╢\n";
   }
-  else if (viTriViecLam == "Truong Phong")
+  else if (viTriViecLam == "Truong phong")
   {
     SetConsoleTextAttribute(color, 11);
     cout << "\t\t\t\t╔═════════════════════════════════════════════╗\n";
@@ -118,7 +131,7 @@ void NhanSu::nhap()
     cout << "          ║\n";
     cout << "\t\t\t\t╟─────────────────────────────────────────────╢\n";
   }
-  else
+  else if (viTriViecLam == "Nhan vien thuong")
   {
     SetConsoleTextAttribute(color, 11);
     cout << "\t\t\t\t╔═════════════════════════════════════════════╗\n";

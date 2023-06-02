@@ -1,5 +1,6 @@
 #include "PhongBan.h"
 #include <iostream>
+#include <limits>
 using namespace std;
 
 int PhongBan::getSoluongNhanSu()
@@ -28,10 +29,19 @@ void PhongBan::setTruongPhong(TruongPhong *tp)
   this->tp = tp;
 }
 
-istream &operator>>(istream &is, PhongBan &pb)
+// istream &operator>>(istream &is, PhongBan &pb)
+// {
+//   is >> pb.maPhongBan >> pb.tenPhongBan;
+//   return is;
+// }
+
+istream &operator>>(istream &input, PhongBan &pb)
 {
-  is >> pb.maPhongBan >> pb.tenPhongBan;
-  return is;
+  char separator;
+  getline(input, pb.maPhongBan, '#');
+  getline(input, pb.tenPhongBan, '#');
+  input.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+  return input;
 }
 
 TruongPhong *PhongBan::getTruongPhong()

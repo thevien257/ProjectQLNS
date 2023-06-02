@@ -244,7 +244,7 @@ void danhSachNhanSu::nhap()
     {
     case 1:
       ns = new TruongPhong();
-      ns->setViTriViecLam("Truong Phong");
+      ns->setViTriViecLam("Truong phong");
       ns->nhap();
       ns->tinhLuong();
       this->dsNhanSu.push_back(ns);
@@ -252,7 +252,7 @@ void danhSachNhanSu::nhap()
       break;
     case 2:
       ns = new NhanVienThuong();
-      ns->setViTriViecLam("Nhan Vien Thuong");
+      ns->setViTriViecLam("Nhan vien thuong");
       ns->nhap();
       ns->tinhLuong();
       this->dsNhanSu.push_back(ns);
@@ -260,7 +260,7 @@ void danhSachNhanSu::nhap()
       break;
     case 3:
       ns = new GiamDoc();
-      ns->setViTriViecLam("Giam Doc");
+      ns->setViTriViecLam("Giam doc");
       ns->nhap();
       ns->tinhLuong();
       this->dsNhanSu.push_back(ns);

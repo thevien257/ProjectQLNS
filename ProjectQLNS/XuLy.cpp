@@ -2275,7 +2275,7 @@ void XuLy::xoaNhanSu()
           {
             ds.getListNS().erase(ds.getListNS().begin() + i);
             SetConsoleTextAttribute(color, 10);
-            cout << "\t\t\t\tDa xoa giam doc mang ma so " << giamDoc->getHoTen() << " - co ten " << giamDoc->getHoTen() << " ✅" << endl;
+            cout << "\t\t\t\tDa xoa giam doc mang ma so " << giamDoc->getMaSo() << " - co ten " << giamDoc->getHoTen() << " ✅" << endl;
             SetConsoleTextAttribute(color, 7);
             cout << endl;
           }
