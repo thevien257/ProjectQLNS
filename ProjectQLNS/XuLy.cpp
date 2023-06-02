@@ -2466,6 +2466,7 @@ void XuLy::suaDoiThongTinNhanSu()
     return;
   }
 
+  bool foundNS = false;
   HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
   SetConsoleTextAttribute(color, 14);
   cout << "\t\t\t\t\tDay la danh sach nhan su hien co 📜 " << endl;
@@ -2473,30 +2474,49 @@ void XuLy::suaDoiThongTinNhanSu()
   ds.xuat();
   cout << endl;
   string ma;
-  cout << "\t\t\t\tNhap ma nhan su can sua doi: ";
-  cin >> ma;
-  for (NhanSu *ns : ds.getListNS())
+
+  do
   {
-    if (ma == ns->getMaSo())
+    cout << "\t\t\t\tVui long nhap lai ma so nhan su can sua doi hoac nhap 0 de thoat: ";
+    cin >> ma;
+    for (NhanSu *ns : ds.getListNS())
     {
-      system("cls");
-      SetConsoleTextAttribute(color, 10);
-      cout << endl;
-      cout << endl;
-      cout << endl;
-      cout << endl;
-      cout << endl;
-      cout << endl;
-      cout << endl;
-      cout << endl;
-      cout << endl;
-      cout << "\t\t\t\tDa tim thay nhan su voi ma so " << ma << " ✅" << endl;
-      SetConsoleTextAttribute(color, 11);
-      cout << "\t\t\t\tVui long nhap cac thong tin sau de sua doi " << endl;
-      SetConsoleTextAttribute(color, 7);
-      ns->nhap();
+      if (ma == "0")
+      {
+        SetConsoleTextAttribute(color, 12);
+        cout << "\t\t\t\tBan da chon thoat! 🚪" << endl;
+        SetConsoleTextAttribute(color, 7);
+        return;
+      }
+      if (ma == ns->getMaSo())
+      {
+        foundNS = true;
+        system("cls");
+        SetConsoleTextAttribute(color, 10);
+        cout << endl;
+        cout << endl;
+        cout << endl;
+        cout << endl;
+        cout << endl;
+        cout << endl;
+        cout << endl;
+        cout << endl;
+        cout << endl;
+        cout << "\t\t\t\tDa tim thay nhan su voi ma so " << ma << " ✅" << endl;
+        SetConsoleTextAttribute(color, 11);
+        cout << "\t\t\t\tVui long nhap cac thong tin sau de sua doi " << endl;
+        SetConsoleTextAttribute(color, 7);
+        ns->nhap();
+        break;
+      }
     }
-  }
+    if (foundNS == false)
+    {
+      SetConsoleTextAttribute(color, 12);
+      cout << "\t\t\t\tOOPS! Khong tim thay nhan su voi ma so " << ma << " 🥲" << endl;
+      SetConsoleTextAttribute(color, 7);
+    }
+  } while (foundNS == false);
 }
 
 void XuLy::sapXepLuongGiamDan()
