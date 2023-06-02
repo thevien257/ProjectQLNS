@@ -1,14 +1,9 @@
 Ma so	Ho ten	So dien thoai	Vi tri viec lam	So ngay lam viec	Luong	Ma phong ban	So luong task	Ma task	Ten task	Trang thai Task	Nguoi quan ly	Ma so	So luong nhan vien	Ho va ten nhan vien	Ma so nhan vien	
-MSgd5	Nguyen Thi T	129391329321	Giam Doc	40	40000000	
+MSA	Le Van A	123	Truong Phong	123	36900000								
 MSgd1	GD	1243123	Giam doc	28	28000000	
-MStp1	Vien	1231232	Truong phong	30	9200000	pb3							1	Nguyen Van B	MSnvB	
-MStp3	Bui Trinh The Vien	0911371598	Truong Phong	30	9000000								
-MStp2	Truong	123156752	Truong phong	28	8400000	pb1							
-MStp4	Nguyen The Vien	123123123	Truong Phong	28	8400000	pbBE							
-MSnvB	Nguyen Van B	123912939219	Nhan Vien Thuong	31	6400000	pb3	2	BS	Build Server	Hoan thanh	
-								task3	DataBase	Hoan thanh	Vien	MStp1	
-MSnv3	Le Van A	1238219321839	Nhan Vien Thuong	29	5800000		2	task1	QuanLyGioLam	Khong hoan thanh	
-								task2	InAn	Hoan thanh	
+Le Van C	123	123	Nhan Vien Thuong	123	24600000						
+MSB	Le Van B	1235478	Truong Phong	30	9000000								
+MStp1	Vien	1231232	Truong phong	30	9000000								
+MStp2	Truong	123156752	Truong phong	28	8400000								
 MSnv2	Cam	123156752	Nhan vien thuong	28	5600000						
-MSnv1	Chuoi	1231232	Nhan vien thuong	25	5000000		1	FS	Fix Server		
-MSgdSuaDoi	Nguyen Van Sua Doi	1231232389	Giam Doc	30	30000000	
+MSnv1	Chuoi	1231232	Nhan vien thuong	25	5000000						
