@@ -3525,14 +3525,22 @@ void XuLy::clearScreen()
   DWORD dwConSize;
 
   if (!GetConsoleScreenBufferInfo(hConsole, &csbi))
+  {
+    throw runtime_error("Loi: GetConsoleScreenBufferInfo");
     return;
+  }
   dwConSize = csbi.dwSize.X * csbi.dwSize.Y;
 
   if (!FillConsoleOutputCharacter(hConsole, (TCHAR)' ', dwConSize, coordScreen, &cCharsWritten))
+  {
+    throw runtime_error("Loi: FillConsoleOutputCharacter");
     return;
+  }
   if (!FillConsoleOutputAttribute(hConsole, csbi.wAttributes, dwConSize, coordScreen, &cCharsWritten))
+  {
+    throw runtime_error("Loi: FillConsoleOutputAttribute");
     return;
-
+  }
   SetConsoleCursorPosition(hConsole, coordScreen);
 }
 
