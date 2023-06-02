@@ -235,23 +235,8 @@ void NhanVienThuong::xuat()
         cout << "║ " << std::left << std::setw(20) << task->getTrangThaiTask() << std::right << " ║" << endl;
         SetConsoleTextAttribute(color, 7);
       }
-      // cout << "\t\t\t\t║";
-      // SetConsoleTextAttribute(color, 14);
-      // cout << "  Tinh trang         ";
-      // SetConsoleTextAttribute(color, 7);
-      // cout << "║ " << std::left << std::setw(20) << task->getTinhTrang() << std::right << " ║" << endl;
-      // SetConsoleTextAttribute(color, 7);
       i++;
     }
-    // if (this->getSoNgayLamViec() < 25)
-    // {
-    //   cout << "\t\t\t\t║";
-    //   SetConsoleTextAttribute(color, 12);
-    //   cout << "  Canh bao: Nhan vien nay co nguy co bi sa thai";
-    //   SetConsoleTextAttribute(color, 7);
-    //   cout << " ║" << endl;
-    //   SetConsoleTextAttribute(color, 7);
-    // }
   }
 }
 

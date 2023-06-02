@@ -39,11 +39,6 @@ void NhanSu::setViTriViecLam(string viTriViecLam)
   this->viTriViecLam = viTriViecLam;
 }
 
-// vector<Task *> NhanSu::getDSTask()
-// {
-//   return dsTask;
-// }
-
 ostream &operator<<(ostream &os, const NhanSu &ns)
 {
   os << ns.hoTen << "\t" << ns.maSo << "\t" << ns.luong << "\t" << ns.soDienThoai << "\t" << ns.soNgayLamViec << endl;

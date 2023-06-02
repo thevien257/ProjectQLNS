@@ -8,13 +8,6 @@
 #include <windows.h>
 using namespace std;
 
-// istream &operator>>(istream &is, TruongPhong &tp)
-// {
-//   // Read data from the input stream and populate the ns object
-//   is >> tp.hoTen >> tp.maSo >> tp.luong >> tp.soDienThoai >> tp.soNgayLamViec;
-//   return is;
-// }
-
 void TruongPhong::setMaPhongBan(string maPhongBan)
 {
   this->maPhongBan = maPhongBan;
@@ -110,11 +103,6 @@ void TruongPhong::xuat()
   HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
   NhanSu::xuat();
 
-  // cout << "\t\t\t\t║";
-  // SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
-  // cout << "  Luong              ";
-  // SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
-  // cout << "║ " << std::left << std::setw(20) << formatLuong(this->luong) << std::right << " ║" << endl;
   if (maPhongBan != "")
   {
     cout << "\t\t\t\t║";
@@ -134,27 +122,27 @@ void TruongPhong::xuat()
   if (soLuongNhanVien > 0)
   {
     cout << "\t\t\t\t║";
-    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 3); // set color to bright cyan
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 3);
     cout << "             Thong tin nhan vien";
-    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7); // set color to white
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
     cout << "            ║\n";
     int i = 1;
     for (NhanVienThuong *nv : listNV)
     {
       cout << "\t\t\t\t║";
-      SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 3); // set color to yellow
+      SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 3);
       cout << "              Nhan vien thu " << i;
-      SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7); // set color to white
+      SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
       cout << "               ║\n";
       cout << "\t\t\t\t║";
-      SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14); // set color to yellow
+      SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
       cout << "  Ten nhan vien      ";
-      SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7); // set color to white
+      SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
       cout << "║ " << std::left << std::setw(20) << nv->getHoTen() << std::right << " ║" << endl;
       cout << "\t\t\t\t║";
-      SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14); // set color to yellow
+      SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
       cout << "  Ma so nhan vien    ";
-      SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7); // set color to white
+      SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
       cout << "║ " << std::left << std::setw(20) << nv->getMaSo() << std::right << " ║" << endl;
       i++;
     }

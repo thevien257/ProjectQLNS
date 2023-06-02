@@ -2898,13 +2898,13 @@ void XuLy::animationLoading(string taiKhoan)
 
   int bar1 = 177,
       bar2 = 219;
-  cout << "\n\n\n\t\t\t\tDang tai.......";
-  cout << "\n\n\t\t\t";
+  cout << "\n\n\n\t\t\tDang tai.......";
+  cout << "\n\n\t\t";
 
   for (int i = 0; i < 50; i++)
   {
     cout << "\r";
-    cout << "\t\t\t\t";
+    cout << "\t\t\t";
     for (int j = 0; j < 50; j++)
     {
       SetConsoleOutputCP(CP_UTF8);
@@ -3133,10 +3133,6 @@ void XuLy::anHienMatKhau(string &mk)
           // Xoa cac ky tu chua * truoc tien
           for (int i = 0; i < mk.length(); i++)
           {
-            // if (i == 0)
-            // {
-            //   cout << "\b \b";
-            // }
             cout << "\b \b";
           }
 
@@ -3230,7 +3226,7 @@ bool XuLy::login(string &tk)
       animationLoading(tk);
       SetConsoleTextAttribute(color, 10);
       cout << endl;
-      cout << "\n\t\t\t\tDang nhap thanh cong ✅" << endl;
+      cout << "\n\t\t\tDang nhap thanh cong ✅" << endl;
 
       tatConTro();
 

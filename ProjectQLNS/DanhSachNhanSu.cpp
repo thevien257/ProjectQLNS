@@ -183,7 +183,7 @@ void danhSachNhanSu::inMenu(int &chon)
   HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
   CONSOLE_CURSOR_INFO cursorInfo;
   GetConsoleCursorInfo(hConsole, &cursorInfo);
-  cursorInfo.bVisible = true; // set the cursor visibility
+  cursorInfo.bVisible = true;
   SetConsoleCursorInfo(hConsole, &cursorInfo);
 
   cout << endl;
@@ -225,7 +225,6 @@ void danhSachNhanSu::inMenu(int &chon)
   CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
   GetConsoleScreenBufferInfo(color, &consoleInfo);
   COORD cursorPosition = consoleInfo.dwCursorPosition;
-  // Move the cursor to the right by incrementing X coordinate
   cursorPosition.X += 52;
   cursorPosition.Y -= 4;
   SetConsoleCursorPosition(color, cursorPosition);
