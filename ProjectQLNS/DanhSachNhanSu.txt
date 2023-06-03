@@ -1,11 +1,7 @@
 Ma so	Ho ten	So dien thoai	Vi tri viec lam	So ngay lam viec	Luong	Ma phong ban	So luong task	Ma task	Ten task	Trang thai Task	Nguoi quan ly	Ma so	So luong nhan vien	Ho va ten nhan vien	Ma so nhan vien	
 MSgd1	Le Van A	1243123	Giam doc	40	40000000	
 MSgd2	Le Van B	1249999	Giam doc	40	40000000	
-MSgd9	Le Van Nam	1923939999912	Giam doc	30	30000000	
-MStp4	Nguyen Van C	123912993199	Truong phong	30	9400000	pbBE							2	Nguyen Sua Doi	MSnvSuaDoi	
-														Nguyen The Vien	MSnv5	
-MStp12	Bui Trinh The Vien	123139299999	Truong phong	30	9000000								
-MStp2	Nguyen Xuan Truong	123812931929	Truong phong	29	8700000								
-MSnvSuaDoi	Nguyen Sua Doi	1231923999	Nhan vien thuong	30	6200000	pbBE	1	GKH	Gap khach hang	Hoan thanh	Nguyen Van C	MStp4	
-MSnv5	Nguyen The Vien	99129312399	Nhan vien thuong	28	5800000	pbBE	1	BW	Build website	Hoan thanh	Nguyen Van C	MStp4	
+MSnv2	Nguyen Van Cam	123156752	Nhan vien thuong	28	5600000						
 MSnv1	Le Van Chuoi	1231232	Nhan vien thuong	25	5000000						
+MStp2	Nguyen Xuan Truong	123812931929	Truong phong	29	8700000								
+MStp1	Bui Trinh The Vien	0911371598	Truong phong	30	9000000								

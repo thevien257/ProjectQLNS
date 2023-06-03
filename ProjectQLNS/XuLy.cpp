@@ -549,6 +549,9 @@ void XuLy::phanBoTaskChoNhanVienCuThe()
     cin >> maTask;
     if (maTask == "0")
     {
+      SetConsoleTextAttribute(color, 12);
+      cout << "\t\t\t\tBan da thoat khoi chuc nang phan bo task 🔓" << endl;
+      SetConsoleTextAttribute(color, 7);
       return;
     }
 
@@ -571,6 +574,9 @@ void XuLy::phanBoTaskChoNhanVienCuThe()
       cin >> maNV;
       if (maNV == "0")
       {
+        SetConsoleTextAttribute(color, 12);
+        cout << "\t\t\t\tBan da thoat khoi chuc nang phan bo task 🔓" << endl;
+        SetConsoleTextAttribute(color, 7);
         return;
       }
       nvt = timNVT(maNV);
@@ -764,6 +770,9 @@ void XuLy::chiDinhCuTheTruongPhong()
       cin >> maTP;
       if (maTP == "0")
       {
+        SetConsoleTextAttribute(color, 12);
+        cout << "\t\t\t\tBan da chon thoat khoi chuc nang phan bo truong phong 🔓" << endl;
+        SetConsoleTextAttribute(color, 7);
         return;
       }
       tp = timTruongPhongTheoMa(maTP);
@@ -785,6 +794,9 @@ void XuLy::chiDinhCuTheTruongPhong()
         cin >> maPB;
         if (maPB == "0")
         {
+          SetConsoleTextAttribute(color, 12);
+          cout << "\t\t\t\tBan da chon thoat khoi chuc nang phan bo truong phong 🔓" << endl;
+          SetConsoleTextAttribute(color, 7);
           return;
         }
 
@@ -1065,6 +1077,9 @@ void XuLy::xoaPB()
     pb = timPhongBan(maPB);
     if (maPB == "0")
     {
+      SetConsoleTextAttribute(color, 12);
+      cout << "\t\t\t\tBan da thoat khoi chuc nang xoa phong ban 🔓" << endl;
+      SetConsoleTextAttribute(color, 7);
       return;
     }
     if (pb == nullptr)
@@ -1268,6 +1283,9 @@ void XuLy::xoaNVkhoiPB()
       cin >> maNV;
       if (maNV == "0")
       {
+        SetConsoleTextAttribute(color, 12);
+        cout << "\t\t\t\tBan da thoat khoi chuc nang xoa nhan vien khoi phong ban 🔓" << endl;
+        SetConsoleTextAttribute(color, 7);
         return;
       }
       nv = timNVT(maNV);
@@ -1423,6 +1441,9 @@ void XuLy::chiDinhTruongPhong()
                 cin >> maPB;
                 if (maPB == "0")
                 {
+                  SetConsoleTextAttribute(color, 12);
+                  cout << "\t\t\t\tDa thoat khoi chuc nang phan bo truong phong 🔓" << endl;
+                  SetConsoleTextAttribute(color, 7);
                   return;
                 }
                 pb = timPhongBan(maPB);
@@ -1525,6 +1546,9 @@ void XuLy::phanBoNhanVienThuongVaoPhongBan()
                 cin >> maPhong;
                 if (maPhong == "0")
                 {
+                  SetConsoleTextAttribute(color, 12);
+                  cout << "\t\t\t\tDa thoat khoi chuc nang phan bo nhan vien thuong 🔓" << endl;
+                  SetConsoleTextAttribute(color, 7);
                   return;
                 }
                 pb = timPhongBan(maPhong);
@@ -1710,6 +1734,9 @@ void XuLy::danhGiaTask()
     cin >> maTask;
     if (maTask == "0")
     {
+      SetConsoleTextAttribute(color, 12);
+      cout << "\t\t\t\tBan da chon thoat khoi chuc nang danh gia task 🔓" << endl;
+      SetConsoleTextAttribute(color, 7);
       return;
     }
     task = timTask(maTask);
@@ -1870,6 +1897,9 @@ void XuLy::xoaTaskKhoiNV()
       nvt = timNVT(maNV);
       if (maNV == "0")
       {
+        SetConsoleTextAttribute(color, 12);
+        cout << "\t\t\t\tBan da thoat khoi chuc nang xoa task khoi nhan vien 🔓" << endl;
+        SetConsoleTextAttribute(color, 7);
         return;
       }
       if (nvt == nullptr || nvt->getDSTask().size() == 0)
@@ -2113,6 +2143,9 @@ void XuLy::phanBoTask()
                 cin >> maTask;
                 if (maTask == "0")
                 {
+                  SetConsoleTextAttribute(color, 12);
+                  cout << "\t\t\t\tBan da thoat khoi chuc nang phan bo task 🔓" << endl;
+                  SetConsoleTextAttribute(color, 7);
                   return;
                 }
                 task = timTask(maTask);
@@ -2230,6 +2263,9 @@ void XuLy::xoaNhanSu()
     foundNS = found(maSo);
     if (maSo == "0")
     {
+      SetConsoleTextAttribute(color, 12);
+      cout << "\t\t\t\tBan da thoat khoi chuc nang xoa nhan su 🔓" << endl;
+      SetConsoleTextAttribute(color, 7);
       return;
     }
     if (foundNS == false)
@@ -2484,7 +2520,7 @@ void XuLy::suaDoiThongTinNhanSu()
       if (ma == "0")
       {
         SetConsoleTextAttribute(color, 12);
-        cout << "\t\t\t\tBan da chon thoat! 🚪" << endl;
+        cout << "\t\t\t\tBan da chon thoat khoi chuc nang sua doi thong tin nhan su 🔓" << endl;
         SetConsoleTextAttribute(color, 7);
         return;
       }
@@ -2716,6 +2752,9 @@ void XuLy::phanBoCuTheNVT()
       cin >> maNV;
       if (maNV == "0")
       {
+        SetConsoleTextAttribute(color, 12);
+        cout << "\t\t\t\tBan da chon thoat phan bo nhan vien 🔓" << endl;
+        SetConsoleTextAttribute(color, 7);
         return;
       }
 
@@ -2739,6 +2778,9 @@ void XuLy::phanBoCuTheNVT()
         cin >> maPB;
         if (maPB == "0")
         {
+          SetConsoleTextAttribute(color, 12);
+          cout << "\t\t\t\tBan da chon thoat phan bo nhan vien 🔓" << endl;
+          SetConsoleTextAttribute(color, 7);
           return;
         }
 
@@ -2804,7 +2846,7 @@ void XuLy::phanBoNhanVienThuong()
   lietKeDanhSachTruongPhong();
   bool flag = true;
   int chon;
-
+  HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
   for (NhanSu *ns : ds.getListNS())
   {
     if (NhanVienThuong *newNV = dynamic_cast<NhanVienThuong *>(ns))
@@ -2834,6 +2876,9 @@ void XuLy::phanBoNhanVienThuong()
                 cin >> chonMa;
                 if (chonMa == "0")
                 {
+                  SetConsoleTextAttribute(color, 12);
+                  cout << "\t\t\tBan da chon thoat phan bo nhan vien 🔓" << endl;
+                  SetConsoleTextAttribute(color, 7);
                   return;
                 }
                 tp = timTruongPhongTheoMa(chonMa);
