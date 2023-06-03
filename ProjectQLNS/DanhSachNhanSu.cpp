@@ -403,7 +403,7 @@ void danhSachNhanSu::xuatMaSoVaTenNV()
   cout << "   Danh sach nhan vien  📂   ";
   SetConsoleTextAttribute(color, 7);
   cout << "   ║                \n";
-  cout << "\t\t\t╔═════════════╬═══════════════╦═════════════════╩══════════╗\n";
+  cout << "\t\t\t╔═════════════╬═══════════════╦═════════════════╩══════════╦════════════════════════════╗\n";
   cout << "\t\t\t║ ";
   SetConsoleTextAttribute(color, cyan);
   cout << "So thu tu  ";
@@ -416,8 +416,12 @@ void danhSachNhanSu::xuatMaSoVaTenNV()
   SetConsoleTextAttribute(color, cyan);
   cout << "   Ten nhan vien    ";
   SetConsoleTextAttribute(color, darkWhite);
-  cout << "    ║\n";
-  cout << "\t\t\t╠═════════════╬═══════════════╬════════════════════════════╣\n";
+  cout << "    ║  ";
+  SetConsoleTextAttribute(color, cyan);
+  cout << "    Ma so phong ban  ";
+  SetConsoleTextAttribute(color, darkWhite);
+  cout << "     ║\n";
+  cout << "\t\t\t╠═════════════╬═══════════════╬════════════════════════════╬════════════════════════════╣\n";
   int j = 1;
   NhanVienThuong *lastNV = listNVT.back();
   for (NhanVienThuong *nvt : listNVT)
@@ -432,11 +436,80 @@ void danhSachNhanSu::xuatMaSoVaTenNV()
     cout << endl;
     if (nvt != lastNV)
     {
-      cout << "\t\t\t╠═════════════╬═══════════════╬════════════════════════════╣\n";
+      cout << "\t\t\t╠═════════════╬═══════════════╬════════════════════════════╬════════════════════════════╣\n";
     }
     else
     {
-      cout << "\t\t\t╚═════════════╩═══════════════╩════════════════════════════╝\n";
+      cout << "\t\t\t╚═════════════╩═══════════════╩════════════════════════════╩════════════════════════════╝\n";
+    }
+    j++;
+  }
+}
+
+void danhSachNhanSu::xuatMaSoVaTenNVTask()
+{
+  vector<NhanVienThuong *> listNVT;
+  for (NhanSu *ns : dsNhanSu)
+  {
+    if (NhanVienThuong *nvt = dynamic_cast<NhanVienThuong *>(ns))
+    {
+      if (nvt != nullptr)
+      {
+        listNVT.push_back(nvt);
+      }
+    }
+  }
+
+  bool flag = true;
+  int chon;
+  HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+  int cyan = 11;
+  int brightYellow = 14;
+  int darkWhite = 7;
+  cout << "\t\t                      ╔═════════════════════════════════╗\n";
+  cout << "\t\t                      ║ ";
+  SetConsoleTextAttribute(color, cyan);
+  cout << "   Danh sach nhan vien  📂   ";
+  SetConsoleTextAttribute(color, 7);
+  cout << "   ║                \n";
+  cout << "\t\t\t╔═════════════╬═══════════════╦═════════════════╩══════════╦════════════════════════════╗\n";
+  cout << "\t\t\t║ ";
+  SetConsoleTextAttribute(color, cyan);
+  cout << "So thu tu  ";
+  SetConsoleTextAttribute(color, darkWhite);
+  cout << " ║ ";
+  SetConsoleTextAttribute(color, cyan);
+  cout << " Ma nhan vien";
+  SetConsoleTextAttribute(color, darkWhite);
+  cout << " ║    ";
+  SetConsoleTextAttribute(color, cyan);
+  cout << "   Ten nhan vien    ";
+  SetConsoleTextAttribute(color, darkWhite);
+  cout << "    ║  ";
+  SetConsoleTextAttribute(color, cyan);
+  cout << "      Ma so task     ";
+  SetConsoleTextAttribute(color, darkWhite);
+  cout << "     ║\n";
+  cout << "\t\t\t╠═════════════╬═══════════════╬════════════════════════════╬════════════════════════════╣\n";
+  int j = 1;
+  NhanVienThuong *lastNV = listNVT.back();
+  for (NhanVienThuong *nvt : listNVT)
+  {
+    cout << "\t\t\t║ " << std::setw(5) << std::setfill(' ');
+    SetConsoleTextAttribute(color, cyan);
+    cout << j;
+    SetConsoleTextAttribute(color, darkWhite);
+    cout << std::setw(6) << std::setfill(' ') << ""
+         << " ║";
+    nvt->xuatMaVaTenNVTask();
+    cout << endl;
+    if (nvt != lastNV)
+    {
+      cout << "\t\t\t╠═════════════╬═══════════════╬════════════════════════════╬════════════════════════════╣\n";
+    }
+    else
+    {
+      cout << "\t\t\t╚═════════════╩═══════════════╩════════════════════════════╩════════════════════════════╝\n";
     }
     j++;
   }
@@ -468,7 +541,7 @@ void danhSachNhanSu::xuatMaSoVaTenTP()
   cout << "  Danh sach truong phong  📂  ";
   SetConsoleTextAttribute(color, 7);
   cout << "  ║                \n";
-  cout << "\t\t\t╔═════════════╬═══════════════╦═════════════════╩══════════╗\n";
+  cout << "\t\t\t╔═════════════╬═══════════════╦═════════════════╩══════════╦════════════════════════════╗\n";
   cout << "\t\t\t║ ";
   SetConsoleTextAttribute(color, cyan);
   cout << "So thu tu  ";
@@ -481,8 +554,12 @@ void danhSachNhanSu::xuatMaSoVaTenTP()
   SetConsoleTextAttribute(color, cyan);
   cout << "   Ten nhan vien    ";
   SetConsoleTextAttribute(color, darkWhite);
-  cout << "    ║\n";
-  cout << "\t\t\t╠═════════════╬═══════════════╬════════════════════════════╣\n";
+  cout << "    ║  ";
+  SetConsoleTextAttribute(color, cyan);
+  cout << "    Ma so phong ban  ";
+  SetConsoleTextAttribute(color, darkWhite);
+  cout << "     ║\n";
+  cout << "\t\t\t╠═════════════╬═══════════════╬════════════════════════════╬════════════════════════════╣\n";
   int j = 1;
   TruongPhong *lastTP = listTP.back();
   for (TruongPhong *tp : listTP)
@@ -497,11 +574,11 @@ void danhSachNhanSu::xuatMaSoVaTenTP()
     cout << endl;
     if (tp != lastTP)
     {
-      cout << "\t\t\t╠═════════════╬═══════════════╬════════════════════════════╣\n";
+      cout << "\t\t\t╠═════════════╬═══════════════╬════════════════════════════╬════════════════════════════╣\n";
     }
     else
     {
-      cout << "\t\t\t╚═════════════╩═══════════════╩════════════════════════════╝\n";
+      cout << "\t\t\t╚═════════════╩═══════════════╩════════════════════════════╩════════════════════════════╝\n";
     }
     j++;
   }

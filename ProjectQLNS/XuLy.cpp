@@ -533,7 +533,7 @@ void XuLy::phanBoTaskChoNhanVienCuThe()
   cout << "\t\t\t\t\tDay la danh sach task 📜 " << endl;
   dsTask.xuatTask();
   cout << "\t\t\t\t\tDay la danh sach nhan vien 📜 " << endl;
-  ds.xuatMaSoVaTenNV();
+  ds.xuatMaSoVaTenNVTask();
   NhanVienThuong *nvt;
   Task *task = nullptr;
 

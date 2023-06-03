@@ -27,6 +27,7 @@ public:
   void xuatNV(vector<NhanVienThuong *> listNV);
   void xuatMaSoVaTenNV();
   void xuatMaSoVaTenTP();
+  void xuatMaSoVaTenNVTask();
   void docFileNVT(string filename);
   void docFileGD(string filename);
   void docFileTP(string filename);
