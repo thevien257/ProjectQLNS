@@ -34,6 +34,7 @@ public:
   void nhap();
   void xuat();
   void xuatMaVaTen();
+  void xuatMaVaTenNVTask();
   ~NhanVienThuong();
   // friend istream &operator>>(istream &is, NhanVienThuong &nvt);
   friend ostream &operator<<(ostream &os, const NhanVienThuong &nvt);

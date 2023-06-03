@@ -258,4 +258,76 @@ void NhanVienThuong::xuatMaVaTen()
   SetConsoleTextAttribute(color, darkWhite);
   cout << setw(14 - hoTen.size() / 2) << setfill(' ') << ""
        << "║";
+
+  if (maPhongBan != "")
+  {
+    cout << setw(14 + maPhongBan.size() / 2) << setfill(' ');
+    SetConsoleTextAttribute(color, brightYellow);
+    cout << maPhongBan;
+    SetConsoleTextAttribute(color, darkWhite);
+    cout << setw(14 - maPhongBan.size() / 2) << setfill(' ') << ""
+         << "║";
+  }
+  else
+  {
+    string empty = "Chua co ma phong ban";
+    cout << setw(14 + empty.size() / 2) << setfill(' ');
+    SetConsoleTextAttribute(color, brightYellow);
+    cout << empty;
+    SetConsoleTextAttribute(color, darkWhite);
+    cout << setw(14 - empty.size() / 2) << setfill(' ') << ""
+         << "║";
+  }
+}
+
+void NhanVienThuong::xuatMaVaTenNVTask()
+{
+  HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+  int brightYellow = 14;
+  int darkWhite = 7;
+  cout << " " << setw(7 + maSo.size() / 2) << setfill(' ');
+  SetConsoleTextAttribute(color, brightYellow);
+  cout << maSo;
+  SetConsoleTextAttribute(color, darkWhite);
+  cout << setw(7 - maSo.size() / 2) << setfill(' ') << ""
+       << "║";
+
+  cout << setw(14 + hoTen.size() / 2) << setfill(' ');
+  SetConsoleTextAttribute(color, brightYellow);
+  cout << hoTen;
+  SetConsoleTextAttribute(color, darkWhite);
+  cout << setw(14 - hoTen.size() / 2) << setfill(' ') << ""
+       << "║";
+  if (dsTask.size() > 0)
+  {
+    Task *lastTask = dsTask[dsTask.size() - 1];
+    for (int i = 0; i < dsTask.size(); i++)
+    {
+      if (i >= 1)
+      {
+        cout << endl;
+        cout << "\t\t\t║             ║               ║                            ╠════════════════════════════╣\n";
+        cout << "\t\t\t║             ║               ║                            ║";
+      }
+      if (dsTask[i]->getMaTask() != "")
+      {
+        cout << setw(14 + dsTask[i]->getMaTask().size() / 2) << setfill(' ');
+        SetConsoleTextAttribute(color, brightYellow);
+        cout << dsTask[i]->getMaTask();
+        SetConsoleTextAttribute(color, darkWhite);
+        cout << setw(14 - dsTask[i]->getMaTask().size() / 2) << setfill(' ') << ""
+             << "║";
+      }
+     }
+  }
+  else
+  {
+    string empty = "Chua co ma task";
+    cout << setw(14 + empty.size() / 2) << setfill(' ');
+    SetConsoleTextAttribute(color, brightYellow);
+    cout << empty;
+    SetConsoleTextAttribute(color, darkWhite);
+    cout << setw(14 - empty.size() / 2) << setfill(' ') << ""
+         << "║";
+  }
 }
