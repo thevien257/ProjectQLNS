@@ -1101,7 +1101,7 @@ void XuLy::xoaPB()
         {
           if ((*it)->getMaPhongBan() == tp->getMaPhongBan())
           {
-            it = tp->getListNV().erase(it);
+            it = tp->getListNV().erase(it); // Gán lại cái it hiện tại (it đã xóa đi) để duyệt đến it tiếp theo
             tp->giamNhanVien();
           }
           else

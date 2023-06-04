@@ -8,6 +8,16 @@
 #include <windows.h>
 using namespace std;
 
+int TruongPhong::getSoLuongNhanVien()
+{
+  return soLuongNhanVien;
+}
+
+void TruongPhong::setSoLuongNhanVien(int soLuongNhanVien)
+{
+  this->soLuongNhanVien = soLuongNhanVien;
+}
+
 void TruongPhong::setMaPhongBan(string maPhongBan)
 {
   this->maPhongBan = maPhongBan;

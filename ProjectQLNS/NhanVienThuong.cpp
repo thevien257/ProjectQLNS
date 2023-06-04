@@ -8,6 +8,21 @@
 #include <windows.h>
 using namespace std;
 
+void NhanVienThuong::setHoanThanhTask(int hoanThanhTask)
+{
+  this->hoanThanhTask = hoanThanhTask;
+}
+
+void NhanVienThuong::setChuaHoanThanhTask(int chuaHoanThanhTask)
+{
+  this->chuaHoanThanhTask = chuaHoanThanhTask;
+}
+
+void NhanVienThuong::setSoLuongTask(int soLuongTask)
+{
+  this->soLuongTask = soLuongTask;
+}
+
 void NhanVienThuong::giamSoLuongTask()
 {
   this->soLuongTask--;
@@ -318,7 +333,7 @@ void NhanVienThuong::xuatMaVaTenNVTask()
         cout << setw(14 - dsTask[i]->getMaTask().size() / 2) << setfill(' ') << ""
              << "║";
       }
-     }
+    }
   }
   else
   {

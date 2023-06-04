@@ -17,6 +17,8 @@ private:
   int soLuongNhanVien;
   vector<NhanVienThuong *> listNV;
   string maPhongBan;
+  void setSoLuongNhanVien(int soLuongNhanVien);
+  int getSoLuongNhanVien();
 
 public:
   TruongPhong();

@@ -3,6 +3,11 @@
 #include <limits>
 using namespace std;
 
+void PhongBan::setSoLuongNhanSu(int soLuongNhanSu)
+{
+  this->soLuongNhanSu = soLuongNhanSu;
+}
+
 int PhongBan::getSoluongNhanSu()
 {
   return soLuongNhanSu;

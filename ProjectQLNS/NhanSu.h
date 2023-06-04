@@ -23,6 +23,12 @@ protected:
   static long luong1NgayGD;
   static long phuCapNVT;
   static long phuCapTP;
+  string getSoDienThoai();
+  void setSoDienThoai(string soDienThoai);
+  void setHoTen(string hoTen);
+  void setMaSo(string maSo);
+  void setSoNgayLamViec(float soNgayLamViec);
+  void setLuong(long luong);
 
 public:
   NhanSu();

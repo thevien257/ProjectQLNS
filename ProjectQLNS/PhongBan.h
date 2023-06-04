@@ -15,6 +15,7 @@ private:
   TruongPhong *tp;
   vector<NhanVienThuong *> dsNV;
   int soLuongNhanSu;
+  void setSoLuongNhanSu(int soLuongNhanSu);
 
 public:
   int getSoluongNhanSu();

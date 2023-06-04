@@ -16,6 +16,36 @@ long NhanSu::luong1NgayGD = 1000000;
 long NhanSu::phuCapNVT = 100000;
 long NhanSu::phuCapTP = 200000;
 
+string NhanSu::getSoDienThoai()
+{
+  return soDienThoai;
+}
+
+void NhanSu::setSoDienThoai(string soDienThoai)
+{
+  this->soDienThoai = soDienThoai;
+}
+
+void NhanSu::setHoTen(string hoTen)
+{
+  this->hoTen = hoTen;
+}
+
+void NhanSu::setMaSo(string maSo)
+{
+  this->maSo = maSo;
+}
+
+void NhanSu::setSoNgayLamViec(float soNgayLamViec)
+{
+  this->soNgayLamViec = soNgayLamViec;
+}
+
+void NhanSu::setLuong(long luong)
+{
+  this->luong = luong;
+}
+
 string NhanSu::formatLuong(double amount)
 {
   int luong = (int)amount; // cast sang int de khong co dau phay
@@ -59,7 +89,6 @@ istream &operator>>(istream &input, NhanSu &ns)
   getline(input, ns.maSo, '#');
   getline(input, ns.soDienThoai, '#');
   input >> ns.soNgayLamViec >> separator;
-  // Read and discard the remaining characters until the end of line
   input.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
   return input;
 }

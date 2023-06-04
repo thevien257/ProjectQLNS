@@ -20,6 +20,9 @@ private:
   int hoanThanhTask;
   int chuaHoanThanhTask;
   int soLuongTask;
+  void setHoanThanhTask(int hoanThanhTask);
+  void setChuaHoanThanhTask(int chuaHoanThanhTask);
+  void setSoLuongTask(int soLuongTask);
 
 public:
   NhanVienThuong();

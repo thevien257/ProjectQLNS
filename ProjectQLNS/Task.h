@@ -13,6 +13,9 @@ private:
   string deadLine;
   string maNV;
   string trangThaiTask;
+  void setDeadLine(string deadLine);
+  void setMaTask(string maTask);
+  void setTenTask(string tenTask);
 
 public:
   Task();

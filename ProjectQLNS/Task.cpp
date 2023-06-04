@@ -6,6 +6,21 @@
 
 using namespace std;
 
+void Task::setDeadLine(string deadLine)
+{
+  this->deadLine = deadLine;
+}
+
+void Task::setMaTask(string maTask)
+{
+  this->maTask = maTask;
+}
+
+void Task::setTenTask(string tenTask)
+{
+  this->tenTask = tenTask;
+}
+
 void Task::setTrangThaiTask(string trangThaiTask)
 {
   this->trangThaiTask = trangThaiTask;
