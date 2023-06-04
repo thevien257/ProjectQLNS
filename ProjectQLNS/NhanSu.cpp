@@ -50,7 +50,7 @@ string NhanSu::formatLuong(double amount)
 {
   int luong = (int)amount; // cast sang int de khong co dau phay
   stringstream ss;
-  ss << fixed << setprecision(0) << luong; // set precision to 0 nen se khong co dau phay
+  ss << fixed << setprecision(0) << luong; // Dùng fixed để không xuất ra 1.23457e+09 & set precision to 0 nen se khong co dau phay
   string str = ss.str();
   int len = str.length();
   for (int i = len - 3; i > 0; i -= 3)
