@@ -97,7 +97,7 @@ Khi dự án đang chạy, bạn có thể tương tác với hệ thống thôn
 ## Video demo sản phẩm
 
 <div style="text-align: center;">
-  <a href="https://youtu.be/Q210wc-xjYU" target="_blank">
+  <a href="https://youtu.be/JuRrFCtUuzU" target="_blank">
     <img src="https://drive.google.com/uc?id=1JERqXhLTVz5BE3EJfgkHeJ1lJVWdWB0o&export=download" alt="Video thumbnail" width="1920" height="425">
   </a>
 </div>
