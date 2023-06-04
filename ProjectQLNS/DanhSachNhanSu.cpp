@@ -23,10 +23,9 @@ void danhSachNhanSu::ghiFile(string filename)
   ofstream file(filename);
   if (file.is_open())
   {
-    set<string> maSoSet;         // tao set de du gia tri "Ma so"
-    auto it = dsNhanSu.begin();  // tao iterator de duyet vector
-    bool headerPrinted = false;  // check xem header da duoc in hay chua
-    while (it != dsNhanSu.end()) // duyet tu dau den cuoi vector
+    set<string> maSoSet;        // tao set de du gia tri "Ma so"
+    bool headerPrinted = false; // check xem header da duoc in hay chua
+    for (NhanSu *ns : dsNhanSu) // Iterate through the vector
     {
       if (!headerPrinted) // neu header chua in
       {
@@ -48,7 +47,7 @@ void danhSachNhanSu::ghiFile(string filename)
              << "Ma so nhan vien\t" << endl; // print header
         headerPrinted = true;                // set flag to true
       }
-      NhanSu *ns = *it;
+
       // Kiem tra xem neu trong set co ma so roi thi ko xuat nua, con chua co thi xuat
       if (maSoSet.count(ns->getMaSo()) == 0) // neu ma so chua ton tai trong set
       {
@@ -59,7 +58,6 @@ void danhSachNhanSu::ghiFile(string filename)
             nvt->tinhLuong();
             file << *nvt << endl;
             maSoSet.insert(nvt->getMaSo()); // them "Ma so moi xuat vao set"
-            ++it;                           // tang iterator len 1
           }
         }
         else if (TruongPhong *tp = dynamic_cast<TruongPhong *>(ns))
@@ -69,7 +67,6 @@ void danhSachNhanSu::ghiFile(string filename)
             tp->tinhLuong();
             file << *tp << endl;
             maSoSet.insert(tp->getMaSo()); // them "Ma so moi xuat vao set"
-            ++it;                          // tang iterator len 1
           }
         }
         else if (GiamDoc *gd = dynamic_cast<GiamDoc *>(ns))
@@ -79,15 +76,9 @@ void danhSachNhanSu::ghiFile(string filename)
             gd->tinhLuong();
             file << *gd << endl;
             maSoSet.insert(gd->getMaSo());
-            ++it; // tang iterator len 1
           }
         }
       }
-      // else // neu ma so da ton tai trong set
-      // {
-      //   it = dsNhanSu.erase(it); // xoa phan tu khoi vector
-      //   delete ns;               // giai phong bo nho cua old data object
-      // }
     }
     file.close();
   }

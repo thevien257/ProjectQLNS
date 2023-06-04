@@ -1097,16 +1097,12 @@ void XuLy::xoaPB()
     {
       if (tp != nullptr && tp->getMaPhongBan() == maPB)
       {
-        for (auto it = tp->getListNV().begin(); it != tp->getListNV().end();)
+        for (NhanVienThuong *nv : tp->getListNV())
         {
-          if ((*it)->getMaPhongBan() == tp->getMaPhongBan())
+          if (nv != nullptr && nv->getMaPhongBan() == tp->getMaPhongBan())
           {
-            it = tp->getListNV().erase(it); // Gán lại cái it hiện tại (it đã xóa đi) để duyệt đến it tiếp theo
+            tp->getListNV().erase(remove(tp->getListNV().begin(), tp->getListNV().end(), nv), tp->getListNV().end());
             tp->giamNhanVien();
-          }
-          else
-          {
-            ++it;
           }
         }
       }
@@ -1237,16 +1233,12 @@ void XuLy::xoaTPkhoiPB()
       }
     }
 
-    for (auto it = tp->getListNV().begin(); it != tp->getListNV().end();)
+    for (NhanVienThuong *nv : tp->getListNV())
     {
-      if ((*it)->getMaPhongBan() == tp->getMaPhongBan())
+      if (nv->getMaPhongBan() == tp->getMaPhongBan())
       {
-        it = tp->getListNV().erase(it);
+        tp->getListNV().erase(remove(tp->getListNV().begin(), tp->getListNV().end(), nv), tp->getListNV().end());
         tp->giamNhanVien();
-      }
-      else
-      {
-        ++it;
       }
     }
 
